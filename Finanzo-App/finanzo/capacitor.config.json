@@ -1,0 +1,14 @@
+{
+  "appId": "de.finanzo.app",
+  "appName": "Finanzo",
+  "webDir": "docs",
+  "android": {
+    "adjustMarginsForEdgeToEdge": "auto"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_finanzo",
+      "iconColor": "#3355FF"
+    }
+  }
+}
