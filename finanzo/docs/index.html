@@ -99,9 +99,9 @@ body[data-page="start"] main{padding-top:0}
 .b-empty{margin:4px 0 14px;color:var(--ink-2)}
 
 /* ---------- Bausteine ---------- */
-.page-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.page-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}
 .page-title{margin:2px 0 12px;font-size:27px;font-weight:800;letter-spacing:-.025em}
-.page-head .page-title{margin-bottom:8px}
+.page-head .page-title{margin:0}
 .page-sub{margin:-4px 4px 14px;color:var(--ink-2);font-size:15px}
 .round-btn{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;flex:none}
 .card{background:var(--card);border-radius:22px;padding:18px 18px 14px;margin-bottom:12px;box-shadow:var(--shadow)}
@@ -394,7 +394,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.5';   // bei jedem Update erhöhen
+const APP_VERSION='5.6';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1002,14 +1002,6 @@ function bookings(from,to){
       sign:m.amount>0?'−':'+',icon:(GOAL_ICONS.find(z=>z[0]===g.icon)||GOAL_ICONS[0])[2],color:GOAL_COLORS[g.color%GOAL_COLORS.length],open:'goal:'+g.id,t:0});
   return out.sort((a,b)=>a.iso<b.iso?1:a.iso>b.iso?-1:(b.t||0)-(a.t||0));
 }
-// Was in den nächsten Tagen automatisch kommt oder abgebucht wird
-function upcoming(days=14){
-  const t=today(), from=addDays(t,1), to=addDays(t,days), out=[];
-  data.contracts.forEach(c=>paymentsBetween(c,from,to).forEach(d=>out.push({iso:toISO(d),dir:'out',type:'fixed',name:c.name,sub:'Abo & Vertrag',amount:c.amount,icon:'repeat',color:COLORS[c.color],open:'contract:'+c.id})));
-  data.incomes.forEach(i=>(payOf(i)?paydaysBetween(i,from,to):periodStarts(from,to)).forEach(d=>out.push({iso:toISO(d),dir:'in',type:'income',name:i.name,sub:'Einnahme',amount:i.amount,icon:'arrowIn',color:'var(--green)',open:'income:'+i.id})));
-  return out.sort((a,b)=>a.iso<b.iso?-1:a.iso>b.iso?1:(a.dir==='in'?-1:1));
-}
-
 /* =====================================================================
    Erinnerungen und Nachrichten
    ===================================================================== */
@@ -1202,15 +1194,14 @@ function renderList(){
   const {y,m}=listMonth, from=new Date(y,m,1), lastDay=new Date(y,m+1,0), isNow=y===t.getFullYear()&&m===t.getMonth();
   const all=from<=t?bookings(from,lastDay<t?lastDay:t):[];
   const inSum=round2(sum(all.filter(b=>b.dir==='in').map(b=>b.amount))), outSum=round2(sum(all.filter(b=>b.dir==='out').map(b=>b.amount)));
-  const list=all.filter(pass), next=isNow?upcoming().filter(pass):[];
+  const list=all.filter(pass);
   const none=listFilter==='in'?'Keine Einnahmen':listFilter==='out'?'Keine Ausgaben':'Keine Buchungen';
   box.innerHTML=`<section class="card month-card">
       <div class="mc-nav"><button class="icon-btn" data-month="-1" aria-label="Monat zurück">${ICON.left}</button>
         <strong>${esc(monthName(y,m))} ${y}</strong><button class="icon-btn" data-month="1" aria-label="Monat vor" ${isNow?'disabled':''}>${ICON.right}</button></div>
-      <div class="mc-sums"><div><span>Einnahmen</span><b class="plus">+${eur(inSum)}</b></div><div><span>Ausgaben</span><b class="neg">−${eur(outSum)}</b></div></div></section>
+      <div class="mc-sums"><div><span>Einnahmen</span><b class="${inSum?'plus':''}">${inSum?'+':''}${eur(inSum)}</b></div><div><span>Ausgaben</span><b class="${outSum?'neg':''}">${outSum?'−':''}${eur(outSum)}</b></div></div></section>
     ${filters}
-    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${none} im ${esc(monthName(y,m))}.</p>`}
-    ${next.length?`<div class="group">Demnächst</div><ul class="list">${next.map(b=>bookRow(b,'planned')).join('')}</ul>`:''}`;
+    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${none} im ${esc(monthName(y,m))}.</p>`}`;
 }
 
 /* ---------- Reiter: Analyse ---------- */
