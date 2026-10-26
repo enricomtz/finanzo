@@ -393,7 +393,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.3';   // bei jedem Update erhöhen
+const APP_VERSION='5.4';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1498,7 +1498,7 @@ function expenseWin(id){
   const last=store.get('finanzo-lastcat');
   const v=x||{kind:'out',amount:0,cat:EXP_CATS.some(c=>c.id===last)?last:'essen',date:otherMonth?toISO(new Date(listMonth.y,listMonth.m,1)):toISO(t),note:''};
   let kind=v.kind;
-  const noteLabel=k=>k==='in'?'Was ist es?':'Notiz', notePh=k=>k==='in'?'z. B. Geschenk von Oma':'z. B. Döner mit Kollegen';
+  const noteLabel=k=>k==='in'?'Was ist es?':'Notiz', notePh=()=>'';   // kein Beispieltext im Feld
   win(x?(x.kind==='in'?'Einnahme ändern':'Ausgabe ändern'):'Neue Buchung',`<form novalidate>
     ${x?'':`<div class="seg kind-seg" data-kind role="group">${[['out','Ausgabe'],['in','Einnahme']].map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${kind===k}">${l}</button>`).join('')}</div>`}
     ${moneyField('Wie viel?',v.amount,!x)}
