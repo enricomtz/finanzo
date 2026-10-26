@@ -68,7 +68,8 @@ body[data-page="start"] main{padding-top:0}
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;background:color-mix(in srgb,var(--card) 94%,transparent);
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
 .tabbar-in{display:flex;gap:0;width:100%;max-width:600px}
-.tab{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0 3px;font-size:11.5px;font-weight:650;color:var(--ink-3);border-radius:14px;white-space:nowrap}
+.tab{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0 3px;font-size:clamp(10.5px,3vw,11.5px);letter-spacing:-.01em;font-weight:650;color:var(--ink-3);border-radius:14px;white-space:nowrap}
+.tab[data-tab="settings"]{flex-grow:1.35}
 .tab .pill{width:50px;height:30px;border-radius:999px;display:grid;place-items:center}
 .tab[aria-current="page"]{color:var(--accent)}
 .tab[aria-current="page"] .pill{background:var(--accent-soft)}
@@ -142,6 +143,7 @@ body[data-page="start"] main{padding-top:0}
 .empty strong{display:block;font-size:19px;margin-bottom:6px;color:var(--ink)}
 .empty-line{background:var(--card);border-radius:20px;padding:18px;color:var(--ink-2);margin:0;text-align:center;box-shadow:var(--shadow)}
 .empty-in{color:var(--ink-2);text-align:center;margin:18px 0 22px}
+.link-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .link-btn{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:700;padding:10px 0 4px}
 .bar{display:block;height:8px;border-radius:99px;background:var(--soft);overflow:hidden}
 .bar span{display:block;height:100%;border-radius:99px}
@@ -156,6 +158,7 @@ body[data-page="start"] main{padding-top:0}
 .ov{display:flex;align-items:center;gap:12px;width:calc(100% + 16px);margin:0 -8px;padding:10px 8px;text-align:left;border-radius:12px;font-variant-numeric:tabular-nums}
 .ov-name{flex:1;font-weight:620;color:var(--ink)}
 .ov b{font-weight:740;white-space:nowrap}
+.ov > svg{color:var(--ink-3);flex:none;margin-left:-6px;width:18px;height:18px}
 .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none}
 .ic svg{width:20px;height:20px}
 .ic-green{background:var(--green-soft);color:var(--green)}
@@ -330,6 +333,8 @@ select.input,select.input:focus{background-image:linear-gradient(45deg,transpare
 /* ---------- Einstellungen ---------- */
 .set{padding:16px 0;border-top:1px solid var(--line)}
 .sheet-top + .set{border-top:0}
+.set-card{padding-top:2px;padding-bottom:4px}
+.set-card .set:first-child{border-top:0}
 .set h3{margin:0 0 10px;font-size:16px}
 .set p{margin:-4px 0 12px;color:var(--ink-2);font-size:14.5px}
 .pick{width:100%;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;background:var(--soft);text-align:left}
@@ -381,7 +386,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
   <button class="tab" data-tab="list"><span class="pill" data-icon="list"></span>Buchungen</button>
   <button class="tab" data-tab="stats"><span class="pill" data-icon="pie"></span>Analyse</button>
   <button class="tab" data-tab="goals"><span class="pill" data-icon="target"></span>Ziele</button>
-  <button class="tab" data-tab="more"><span class="pill" data-icon="dots"></span>Mehr</button>
+  <button class="tab" data-tab="settings"><span class="pill" data-icon="gear"></span>Einstellungen</button>
 </div></nav>
 <button class="fab" data-add-expense><span data-icon="plus"></span>Eintragen</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -389,7 +394,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.0';   // bei jedem Update erhöhen
+const APP_VERSION='5.1';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -614,9 +619,9 @@ const saveLocal=()=>store.set(KEY,JSON.stringify(data));          // nur auf dem
 function save(){ data.updatedAt=Date.now(); saveLocal(); syncSoon(); } // Änderung: speichern und ins Konto schicken
 let data=load();
 setCurrency(data.settings.currency);
-const TABS=['start','list','stats','goals','more'];
+const TABS=['start','list','stats','goals','settings'];
 let tab=store.get('finanzo-tab'); if(!TABS.includes(tab)) tab='start';
-let moreSub=null;                                                 // Unterseite bei „Mehr“
+let sub=null;                                                     // Unterseite (Einnahmen, Abos, Termine, Budgets)
 let listMonth={y:today().getFullYear(),m:today().getMonth()}, listFilter='all', listQuery='';
 let statRange='month', statAnchor=today();
 
@@ -869,14 +874,14 @@ async function deleteAccount(){
 }
 function clearLocal(){
   const th=data.settings.theme; data=empty(); data.settings.theme=th; setCurrency('EUR'); saveLocal(); store.del(DIRTY_KEY);
-  applyTheme(); tab='start'; moreSub=null; draw();
+  applyTheme(); tab='start'; sub=null; draw();
 }
 
 /* =====================================================================
    Aussehen: Hell / Dunkel / System
    ===================================================================== */
 function setBarColor(){
-  const v=getComputedStyle(document.documentElement).getPropertyValue(tab==='start'?'--brand':'--bg').trim();
+  const v=getComputedStyle(document.documentElement).getPropertyValue(tab==='start'&&!sub?'--brand':'--bg').trim();
   const meta=document.querySelector('meta[name="theme-color"]'); if(meta&&v) meta.setAttribute('content',v);
 }
 function applyTheme(){
@@ -1069,12 +1074,13 @@ function showDueNotifications(){
    ===================================================================== */
 function draw(){
   document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===tab?'page':'false'));
-  const fab=document.querySelector('.fab'); if(fab) fab.hidden=!(tab==='start'||tab==='list');
-  document.body.dataset.page=tab;
-  ({start:drawStart,list:drawList,stats:drawStats,goals:drawGoals,more:drawMore})[tab]();
+  const fab=document.querySelector('.fab'); if(fab) fab.hidden=!((tab==='start'||tab==='list')&&!sub);
+  document.body.dataset.page=sub?'sub':tab;
+  if(sub) drawSub();
+  else ({start:drawStart,list:drawList,stats:drawStats,goals:drawGoals,settings:drawSettings})[tab]();
   setBarColor();
 }
-function go(t,sub=null){ tab=t; moreSub=t==='more'?sub:null; store.set('finanzo-tab',t); draw(); scrollTo({top:0}); }
+function go(t,s=null){ tab=t; sub=s; store.set('finanzo-tab',t); draw(); scrollTo({top:0}); }
 
 // Ring-Grafik
 function donutSVG(parts,base){
@@ -1150,21 +1156,21 @@ function drawStart(){
 
   // Monatsübersicht
   const ov=(icon,cls,label,val,sign,attr)=>`<li><button type="button" class="ov" ${attr}><span class="ic ${cls}">${ICON[icon]}</span>
-    <span class="ov-name">${label}</span><b class="${sign==='+'&&val?'plus':''}">${val?sign:''}${eur(Math.abs(val))}</b></button></li>`;
-  const overview=data.incomes.length||data.contracts.length||data.expenses.length?`<section class="card">
+    <span class="ov-name">${label}</span><b class="${sign==='+'&&val?'plus':''}">${val?sign:''}${eur(Math.abs(val))}</b>${ICON.right}</button></li>`;
+  const overview=`<section class="card">
     <div class="card-head"><h2>Monatsübersicht</h2><small>${esc(shortDate(P.start))} – ${esc(shortDate(P.last))}</small></div>
     <ul class="ov-list">
-      ${ov('arrowIn','ic-green','Einnahmen',P.income,'+','data-more="incomes"')}
-      ${ov('repeat','ic-blue','Abos &amp; Verträge',P.fixed,'−','data-more="abos"')}
+      ${ov('arrowIn','ic-green','Einnahmen',P.income,'+','data-sub="incomes"')}
+      ${ov('repeat','ic-blue','Abos &amp; Verträge',P.fixed,'−','data-sub="abos"')}
       ${ov('cart','ic-red','Ausgaben',P.spent,'−','data-tab-go="stats"')}
-      ${P.pays?ov('calendar','ic-orange','Zahlungen',P.pays,'−','data-more="tasks"'):''}
+      ${P.pays?ov('calendar','ic-orange','Zahlungen',P.pays,'−','data-sub="tasks"'):''}
       ${ov('coins','ic-teal','Gespart',P.saved,P.saved<0?'+':'−','data-tab-go="goals"')}
-    </ul></section>`:'';
+    </ul></section>`;
 
   // Termine
   const open=openTasks(), shown=open.slice(0,3);
   const openSum=round2(sum(open.map(x=>x.amount)));
-  const tasks=`<div class="sec-head"><h2>Termine</h2>${open.length?`<button class="sec-link" data-more="tasks">${open.length>3?`Alle ${open.length}`:'Alle'}</button>`:''}</div>
+  const tasks=`<div class="sec-head"><h2>Termine</h2>${data.tasks.length?`<button class="sec-link" data-sub="tasks">${open.length>3?`Alle ${open.length}`:'Alle'}</button>`:''}</div>
     <ul class="list">${shown.map(taskRow).join('')}${addRow('data-add-task','Termin hinzufügen')}</ul>
     ${openSum?`<p class="page-sub" style="margin:8px 6px 0">Offen zu zahlen: <b>${eur(openSum)}</b></p>`:''}`;
 
@@ -1252,7 +1258,8 @@ function drawStats(){
     const y=R.from.getFullYear(), m=R.from.getMonth(), bc=EXP_CATS.filter(c=>data.budgets[c.id]);
     extra+=`<section class="card"><div class="card-head"><h2>Budgets</h2><small>${esc(monthName(y,m))}</small></div>
       ${bc.length?bc.map(c=>catRow(c,y,m)).join(''):'<p class="muted">Leg fest, wie viel du pro Kategorie höchstens ausgeben willst. Finanzo warnt dich dann.</p>'}
-      <button type="button" class="link-btn" data-budget-new>${ICON.plus}Budget festlegen</button></section>`;
+      <div class="link-row"><button type="button" class="link-btn" data-budget-new>${ICON.plus}Budget festlegen</button>
+        <button type="button" class="link-btn" data-sub="budgets">Alle Kategorien ›</button></div></section>`;
     const months=[]; for(let k=5;k>=0;k--){const d=new Date(y,m-k,1); months.push({y:d.getFullYear(),m:d.getMonth(),v:outIn(d,new Date(d.getFullYear(),d.getMonth()+1,0))});}
     const maxV=Math.max(1,...months.map(x=>x.v)), prev=months[4];
     const cmp=!prev.v?`Im ${monthName(prev.y,prev.m)} gibt es keine Ausgaben.`
@@ -1297,29 +1304,9 @@ function drawGoals(){
         <button class="btn btn-main" data-add-goal>${ICON.plus}Sparziel hinzufügen</button></div>`}`;
 }
 
-/* ---------- Reiter: Mehr ---------- */
-function drawMore(){
-  if(moreSub==='incomes') return drawIncomes();
-  if(moreSub==='abos') return drawAbos();
-  if(moreSub==='tasks') return drawTasks();
-  if(moreSub==='budgets') return drawBudgets();
-  const inSum=round2(sum(data.incomes.map(i=>i.amount))), outSum=round2(sum(data.contracts.filter(c=>!inTrial(c)).map(monthlyOf)));
-  const open=openTasks().length, nb=Object.keys(data.budgets).length;
-  const row=(attr,icon,cls,title,sub)=>`<li><button class="item" ${attr}><span class="ic ${cls}">${ICON[icon]}</span>
-    <span class="item-main"><div class="item-name">${title}</div><div class="item-sub">${sub}</div></span>${ICON.right}</button></li>`;
-  $('#view').innerHTML=`<h1 class="page-title">Mehr</h1>
-    <ul class="list menu">
-      ${row('data-more="incomes"','arrowIn','ic-green','Einnahmen',data.incomes.length?`${plural(data.incomes.length,'Einnahme','Einnahmen')} · ${eur(inSum)} im Monat`:'Gehalt, Nebenjob und mehr')}
-      ${row('data-more="abos"','repeat','ic-blue','Abos &amp; Verträge',data.contracts.length?`${data.contracts.length} · ${eur(outSum)} im Monat`:'Handy, Streaming, Fitnessstudio')}
-      ${row('data-more="tasks"','calendar','ic-orange','Termine &amp; Erinnerungen',open?`${open} offen`:'Rechnungen, Kündigungen, Termine')}
-      ${row('data-more="budgets"','bars','ic-red','Budgets',nb?`${plural(nb,'Budget','Budgets')} festgelegt`:'Limit pro Kategorie festlegen')}
-    </ul>
-    <ul class="list menu">
-      ${row('data-settings','sliders','ic-gray','Einstellungen','Name, Aussehen, Währung, Sicherung')}
-    </ul>
-    <p class="version">Finanzo Version ${APP_VERSION}</p>`;
-}
-const subHead=title=>`<button class="back-btn" data-back>${ICON.left}Mehr</button><h1 class="page-title">${title}</h1>`;
+/* ---------- Unterseiten: Einnahmen, Abos & Verträge, Termine, Budgets ---------- */
+function drawSub(){ const f={incomes:drawIncomes,abos:drawAbos,tasks:drawTasks,budgets:drawBudgets}[sub]; if(f) f(); else { sub=null; draw(); } }
+const subHead=title=>`<button class="back-btn" data-back>${ICON.left}${tab==='stats'?'Analyse':'Start'}</button><h1 class="page-title">${title}</h1>`;
 function drawIncomes(){
   const incomes=[...data.incomes].sort((a,b)=>b.amount-a.amount), inSum=round2(sum(incomes.map(i=>i.amount)));
   $('#view').innerHTML=subHead('Einnahmen')+`
@@ -1703,8 +1690,10 @@ const seg=(key,options)=>`<div class="seg" role="group" data-set="${key}">${opti
   `<button type="button" data-v="${v}" aria-pressed="${String(data.settings[key])===String(v)}">${l}</button>`).join('')}</div>`;
 function curLabel(){ const code=data.settings.currency, sym=curSymbol(code); return `<span>${esc(curName(code))}</span><small>${esc(code)}${sym!==code?' '+esc(sym):''}</small>${ICON.right}`; }
 const backupInfo=()=>data.settings.lastBackup?`Letzte Sicherung: ${longDate(fromISO(data.settings.lastBackup))}`:'Du hast noch keine Sicherung gemacht.';
-function settingsWin(){
-  win('Einstellungen',`
+/* ---------- Reiter: Einstellungen ---------- */
+function drawSettings(){
+  $('#view').innerHTML=`<h1 class="page-title">Einstellungen</h1>
+    <section class="card set-card">
     ${ACCOUNTS&&session?`<div class="set"><h3>Konto</h3><p>Angemeldet als <b>${esc(session.user.email)}</b></p><p class="sync-info" data-sync>${esc(syncText())}</p>
       <div class="btns" style="margin-top:0"><button type="button" class="btn btn-soft" data-logout>Abmelden</button><button type="button" class="btn btn-red" data-delacc>Konto löschen</button></div></div>`:''}
     <div class="set"><h3>Dein Name</h3><input class="input" data-name value="${esc(data.settings.name)}" placeholder="z. B. Alex" maxlength="30" autocomplete="given-name" aria-label="Dein Name">
@@ -1716,25 +1705,26 @@ function settingsWin(){
       <input type="file" accept="application/json,.json,text/plain" hidden data-backup-file></div>
     <div class="set"><h3>Alles löschen</h3><p>${ACCOUNTS&&session?'Löscht alle deine Daten, auch in deinem Konto. Das Konto selbst bleibt.':'Löscht alle deine Daten auf diesem Gerät.'}</p>
       <button type="button" class="btn btn-red" data-wipe>Alles löschen</button></div>
-    <p class="version">Finanzo Version ${APP_VERSION}</p>`,s=>{
-    const lo=s.querySelector('[data-logout]'); if(lo) lo.addEventListener('click',logout);
-    const da=s.querySelector('[data-delacc]'); if(da) da.addEventListener('click',deleteAccount);
-    const nm=s.querySelector('[data-name]');
-    nm.addEventListener('input',()=>{ data.settings.name=nm.value.trim().slice(0,30); save(); draw(); });
-    s.querySelectorAll('[data-set]').forEach(g=>g.addEventListener('click',e=>{
-      const b=e.target.closest('button'); if(!b) return;
-      data.settings[g.dataset.set]=b.dataset.v; g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
-      save(); applyTheme(); draw();
-    }));
-    s.querySelector('[data-currency]').addEventListener('click',()=>currencyWin(()=>{s.querySelector('[data-currency]').innerHTML=curLabel();}));
-    s.querySelector('[data-backup-save]').addEventListener('click',()=>backupSave(()=>{s.querySelector('[data-backup-info]').textContent=backupInfo();}));
-    const file=s.querySelector('[data-backup-file]');
-    s.querySelector('[data-backup-load]').addEventListener('click',()=>file.click());
-    file.addEventListener('change',()=>{ const fl=file.files&&file.files[0]; file.value=''; if(fl) backupLoad(fl); });
-    s.querySelector('[data-wipe]').addEventListener('click',async()=>{
-      if(!await ask('Alles löschen?','Alle Einnahmen, Abos, Buchungen, Termine und Sparziele werden gelöscht. Das kann man nicht rückgängig machen.','Alles löschen')) return;
-      wipeData(); closeWin(2); draw(); toast('Alles gelöscht');
-    });
+    </section>
+    <p class="version">Finanzo Version ${APP_VERSION}</p>`;
+  const s=$('#view');
+  const lo=s.querySelector('[data-logout]'); if(lo) lo.addEventListener('click',logout);
+  const da=s.querySelector('[data-delacc]'); if(da) da.addEventListener('click',deleteAccount);
+  const nm=s.querySelector('[data-name]');
+  nm.addEventListener('input',()=>{ data.settings.name=nm.value.trim().slice(0,30); save(); });
+  s.querySelectorAll('[data-set]').forEach(g=>g.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    data.settings[g.dataset.set]=b.dataset.v; g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    save(); applyTheme();
+  }));
+  s.querySelector('[data-currency]').addEventListener('click',()=>currencyWin());
+  s.querySelector('[data-backup-save]').addEventListener('click',()=>backupSave(()=>{const el=document.querySelector('[data-backup-info]'); if(el) el.textContent=backupInfo();}));
+  const file=s.querySelector('[data-backup-file]');
+  s.querySelector('[data-backup-load]').addEventListener('click',()=>file.click());
+  file.addEventListener('change',()=>{ const fl=file.files&&file.files[0]; file.value=''; if(fl) backupLoad(fl); });
+  s.querySelector('[data-wipe]').addEventListener('click',async()=>{
+    if(!await ask('Alles löschen?','Alle Einnahmen, Abos, Buchungen, Termine und Sparziele werden gelöscht. Das kann man nicht rückgängig machen.','Alles löschen')) return;
+    wipeData(); closeWin(1); draw(); toast('Alles gelöscht');
   });
 }
 function wipeData(){
@@ -1812,9 +1802,9 @@ document.addEventListener('click',e=>{
   const d=b.dataset;
   if(d.tab) return go(d.tab);
   if(d.tabGo) return go(d.tabGo);
-  if(d.more) return go('more',d.more);
-  if(b.hasAttribute('data-back')) return go('more');
-  if(b.hasAttribute('data-settings')) return settingsWin();
+  if(d.sub) return go(tab,d.sub);
+  if(b.hasAttribute('data-back')) return go(tab);
+  if(b.hasAttribute('data-settings')) return go('settings');
   if(b.hasAttribute('data-add-expense')) return expenseWin();
   if(d.open){ const [k,id]=d.open.split(':'); if(OPEN[k]) OPEN[k](id); return; }
   if(d.filter){ listFilter=d.filter; document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderList(); return; }
