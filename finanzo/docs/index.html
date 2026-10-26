@@ -84,7 +84,6 @@ body[data-page="start"] main{padding-top:0}
   display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-radius:0 0 28px 28px}
 .hello h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.025em;line-height:1.2;overflow-wrap:anywhere}
 .hello p{margin:3px 0 0;color:var(--brand-sub);font-size:15.5px}
-.hello-btn{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.12);flex:none}
 @media (min-width:760px){ .hello{margin:0;border-radius:28px;padding:26px 24px 76px} }
 .budget{display:block;width:100%;text-align:left;background:var(--card);border-radius:24px;padding:18px 18px 16px;margin:-56px 0 12px;position:relative;
   box-shadow:0 14px 34px -16px rgba(10,40,25,.45)}
@@ -394,7 +393,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.1';   // bei jedem Update erhöhen
+const APP_VERSION='5.2';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1122,8 +1121,7 @@ const doneTasks=()=>data.tasks.filter(x=>x.done).sort((a,b)=>(a.doneAt||a.date)<
 /* ---------- Reiter: Start ---------- */
 function drawStart(){
   const P=plan(), t=today(), ty=t.getFullYear(), tm=t.getMonth(), name=data.settings.name;
-  const hello=`<header class="hello"><div><h1>Hallo${name?`, ${esc(name)}`:''}!</h1><p>Schön, dass du da bist!</p></div>
-    <button class="hello-btn" data-settings aria-label="Einstellungen">${ICON.gear}</button></header>`;
+  const hello=`<header class="hello"><div><h1>Hallo${name?`, ${esc(name)}`:''}!</h1><p>Schön, dass du da bist!</p></div></header>`;
 
   // Geld-Karte: wie viel noch übrig ist
   let card;
@@ -1694,8 +1692,6 @@ const backupInfo=()=>data.settings.lastBackup?`Letzte Sicherung: ${longDate(from
 function drawSettings(){
   $('#view').innerHTML=`<h1 class="page-title">Einstellungen</h1>
     <section class="card set-card">
-    ${ACCOUNTS&&session?`<div class="set"><h3>Konto</h3><p>Angemeldet als <b>${esc(session.user.email)}</b></p><p class="sync-info" data-sync>${esc(syncText())}</p>
-      <div class="btns" style="margin-top:0"><button type="button" class="btn btn-soft" data-logout>Abmelden</button><button type="button" class="btn btn-red" data-delacc>Konto löschen</button></div></div>`:''}
     <div class="set"><h3>Dein Name</h3><input class="input" data-name value="${esc(data.settings.name)}" placeholder="z. B. Alex" maxlength="30" autocomplete="given-name" aria-label="Dein Name">
       <span class="hint">Steht oben auf der Startseite: „Hallo, …!“</span></div>
     <div class="set"><h3>Aussehen</h3>${seg('theme',[['light','Hell'],['dark','Dunkel'],['system','System']])}</div>
@@ -1703,8 +1699,8 @@ function drawSettings(){
     <div class="set"><h3>Datensicherung</h3><p data-backup-info>${backupInfo()}</p>
       <div class="btns" style="margin-top:0"><button type="button" class="btn btn-soft" data-backup-save>Sicherung speichern</button><button type="button" class="btn btn-soft" data-backup-load>Sicherung laden</button></div>
       <input type="file" accept="application/json,.json,text/plain" hidden data-backup-file></div>
-    <div class="set"><h3>Alles löschen</h3><p>${ACCOUNTS&&session?'Löscht alle deine Daten, auch in deinem Konto. Das Konto selbst bleibt.':'Löscht alle deine Daten auf diesem Gerät.'}</p>
-      <button type="button" class="btn btn-red" data-wipe>Alles löschen</button></div>
+    ${ACCOUNTS&&session?`<div class="set"><h3>Konto</h3><p>Angemeldet als <b>${esc(session.user.email)}</b></p><p class="sync-info" data-sync>${esc(syncText())}</p>
+      <div class="btns" style="margin-top:0"><button type="button" class="btn btn-soft" data-logout>Abmelden</button><button type="button" class="btn btn-red" data-delacc>Konto löschen</button></div></div>`:''}
     </section>
     <p class="version">Finanzo Version ${APP_VERSION}</p>`;
   const s=$('#view');
@@ -1722,14 +1718,6 @@ function drawSettings(){
   const file=s.querySelector('[data-backup-file]');
   s.querySelector('[data-backup-load]').addEventListener('click',()=>file.click());
   file.addEventListener('change',()=>{ const fl=file.files&&file.files[0]; file.value=''; if(fl) backupLoad(fl); });
-  s.querySelector('[data-wipe]').addEventListener('click',async()=>{
-    if(!await ask('Alles löschen?','Alle Einnahmen, Abos, Buchungen, Termine und Sparziele werden gelöscht. Das kann man nicht rückgängig machen.','Alles löschen')) return;
-    wipeData(); closeWin(1); draw(); toast('Alles gelöscht');
-  });
-}
-function wipeData(){
-  Object.assign(data,{incomes:[],contracts:[],tasks:[],expenses:[],budgets:{},goals:[]});
-  save(); syncNotifications(false);
 }
 // Sicherung als Datei: am iPhone über „Teilen“ (z. B. „In Dateien sichern“), am PC als Download
 async function backupSave(done){
@@ -1804,7 +1792,6 @@ document.addEventListener('click',e=>{
   if(d.tabGo) return go(d.tabGo);
   if(d.sub) return go(tab,d.sub);
   if(b.hasAttribute('data-back')) return go(tab);
-  if(b.hasAttribute('data-settings')) return go('settings');
   if(b.hasAttribute('data-add-expense')) return expenseWin();
   if(d.open){ const [k,id]=d.open.split(':'); if(OPEN[k]) OPEN[k](id); return; }
   if(d.filter){ listFilter=d.filter; document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderList(); return; }
