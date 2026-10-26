@@ -325,6 +325,15 @@ select.input,select.input:focus{background-image:linear-gradient(45deg,transpare
 .choice button[aria-pressed="true"] .c-ic{color:inherit!important}
 .choice.cats button{display:flex;align-items:center;gap:8px;justify-content:flex-start;padding:10px 12px;text-align:left;font-size:14.5px}
 .c-ic svg{width:18px;height:18px}
+.choice.cats4{grid-template-columns:repeat(4,1fr);gap:8px}
+.choice.cats4 button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 2px 8px;border-radius:14px;font-size:12.5px;font-weight:700;min-width:0;white-space:nowrap}
+.choice.cats4 .c-ic svg{width:22px;height:22px}
+.row2{display:grid;grid-template-columns:1.15fr 1fr;gap:10px}
+.row2 .field{min-width:0}
+.row2 input[type=date]{min-width:0;padding-left:8px;padding-right:8px;text-align:center}
+form.compact .field{margin:12px 0}
+form.compact .kind-seg{margin:4px 0 0}
+form.compact .quick{margin:-2px 0 12px}
 .kind-seg{margin:8px 0 4px}
 .icon-pick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .icon-pick button{height:52px;border-radius:14px;border:1.5px solid var(--line);display:grid;place-items:center;color:var(--ink-2)}
@@ -412,7 +421,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='6.2';   // bei jedem Update erhöhen
+const APP_VERSION='6.3';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -461,14 +470,14 @@ const paintIcons=()=>document.querySelectorAll('[data-icon]').forEach(el=>el.inn
 const COLORS=['#4C6EF5','#F59F00','#E64980','#7950F2','#15AABF','#FA5252','#FD7E14','#BE4BDB','#1C7ED6','#868E96'];
 const PART={fixed:'#4C6EF5',pays:'#F59F00'};
 const EXP_CATS=[
-  {id:'essen',label:'Essen & Trinken',color:'#F76707',icon:'food'},
-  {id:'einkauf',label:'Einkaufen',color:'#12B886',icon:'bag'},
-  {id:'auto',label:'Tanken & Auto',color:'#E03131',icon:'car'},
-  {id:'freizeit',label:'Freizeit',color:'#7048E8',icon:'ticket'},
-  {id:'kleidung',label:'Kleidung',color:'#D6336C',icon:'shirt'},
-  {id:'technik',label:'Technik',color:'#15AABF',icon:'phone'},
-  {id:'geschenke',label:'Geschenke',color:'#F59F00',icon:'gift'},
-  {id:'sonstiges',label:'Sonstiges',color:'#868E96',icon:'dots'},
+  {id:'essen',label:'Essen & Trinken',color:'#F76707',icon:'food',short:'Essen'},
+  {id:'einkauf',label:'Einkaufen',color:'#12B886',icon:'bag',short:'Einkaufen'},
+  {id:'auto',label:'Tanken & Auto',color:'#E03131',icon:'car',short:'Auto'},
+  {id:'freizeit',label:'Freizeit',color:'#7048E8',icon:'ticket',short:'Freizeit'},
+  {id:'kleidung',label:'Kleidung',color:'#D6336C',icon:'shirt',short:'Kleidung'},
+  {id:'technik',label:'Technik',color:'#15AABF',icon:'phone',short:'Technik'},
+  {id:'geschenke',label:'Geschenke',color:'#F59F00',icon:'gift',short:'Geschenke'},
+  {id:'sonstiges',label:'Sonstiges',color:'#868E96',icon:'dots',short:'Sonstiges'},
 ];
 const catOf=id=>EXP_CATS.find(c=>c.id===id)||EXP_CATS[EXP_CATS.length-1];
 const GOAL_COLORS=['#12B886','#4C6EF5','#F59F00','#E64980','#7950F2','#15AABF'];
@@ -1428,6 +1437,10 @@ function win(title,body,setup){
   const w={el}; stack.push(w);
   if(useHistory){ try{ history.pushState({w:stack.length},''); }catch(e){ useHistory=false; } }
   el.addEventListener('click',e=>{ if(e.target===el||e.target.closest('[data-close]')){ e.preventDefault(); closeWin(stack.length-stack.indexOf(w)); } });
+  // Wischen nur erlauben, wo es wirklich etwas zu scrollen gibt (sonst bewegt sich nichts)
+  el.addEventListener('touchmove',e=>{ if(e.touches&&e.touches.length>1) return;
+    const sc=e.target.closest&&e.target.closest('[data-wheel-scroll],.sheet');
+    if(sc&&sc.scrollHeight>sc.clientHeight+1) return; e.preventDefault(); },{passive:false});
   const sheet=el.querySelector('.sheet'); if(setup) setup(sheet,w);
   const first=sheet.querySelector('[data-focus]');
   if(first&&matchMedia('(min-width:760px)').matches) setTimeout(()=>{try{first.focus();}catch(e){}},60);
@@ -1555,20 +1568,28 @@ function expenseWin(id){
   const last=store.get('finanzo-lastcat');
   const v=x||{kind:'out',amount:0,cat:EXP_CATS.some(c=>c.id===last)?last:'essen',date:otherMonth?toISO(new Date(listMonth.y,listMonth.m,1)):toISO(t),note:''};
   let kind=v.kind;
-  const noteLabel=k=>k==='in'?'Was ist es?':'Notiz', notePh=()=>'';   // kein Beispieltext im Feld
-  win(x?(x.kind==='in'?'Einnahme ändern':'Ausgabe ändern'):'Neue Buchung',`<form novalidate>
+  let cat0=v.cat;
+  const noteLabel=k=>k==='in'?'Was ist es?':cat0==='sonstiges'?'Wofür genau?':'Notiz', notePh=()=>'';   // kein Beispieltext im Feld
+  win(x?(x.kind==='in'?'Einnahme ändern':'Ausgabe ändern'):'Neue Buchung',`<form novalidate class="compact">
     ${x?'':`<div class="seg kind-seg" data-kind role="group">${[['out','Ausgabe'],['in','Einnahme']].map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${kind===k}">${l}</button>`).join('')}</div>`}
     ${moneyField('Wie viel?',v.amount,!x)}
-    <div class="field" data-out-only ${kind==='in'?'hidden':''}><span class="label">Wofür?</span>${choice('cat',EXP_CATS.map(c=>({v:c.id,l:c.label,dot:c.color,icon:c.icon})),v.cat,'cats')}</div>
-    <div class="field"><label><span class="label" data-note-label>${noteLabel(kind)}</span><input class="input" name="note" value="${esc(v.note)}" placeholder="${notePh(kind)}" maxlength="60" autocomplete="off"></label>
-      <div data-in-only ${kind==='in'?'':'hidden'}>${quick(['Geschenk','Rückzahlung','Verkauf','Trinkgeld'])}</div></div>
-    <label class="field"><span class="label">Datum</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label>
+    <div class="field" data-out-only ${kind==='in'?'hidden':''}><span class="label">Wofür?</span>${choice('cat',EXP_CATS.map(c=>({v:c.id,l:c.short,dot:c.color,icon:c.icon})),v.cat,'cats4')}</div>
+    <div class="row2">
+      <label class="field"><span class="label" data-note-label>${noteLabel(kind)}</span><input class="input" name="note" value="${esc(v.note)}" placeholder="${notePh(kind)}" maxlength="60" autocomplete="off"></label>
+      <label class="field"><span class="label">Datum</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label></div>
+    <div data-in-only ${kind==='in'?'':'hidden'}>${quick(['Geschenk','Rückzahlung','Verkauf','Trinkgeld'])}</div>
     <p class="err" hidden></p>
     <button class="btn btn-main btn-full" type="submit">Speichern</button>
     ${x?`<div class="btns"><button type="button" class="btn btn-red" data-del>${x.kind==='in'?'Einnahme':'Ausgabe'} löschen</button></div>`:''}
   </form>`,s=>{
     wireChoice(s);
     const f=s.querySelector('form'); wireQuick(s,f.note,null);
+    // „Sonstiges“ antippen: hinschreiben, wofür
+    s.querySelector('[data-choice="cat"]').addEventListener('click',e=>{
+      const b=e.target.closest('[data-v]'); if(!b) return; cat0=b.dataset.v;
+      s.querySelector('[data-note-label]').textContent=noteLabel(kind);
+      if(cat0==='sonstiges'&&!f.note.value) setTimeout(()=>{ try{ f.note.focus(); }catch(er){} },30);
+    });
     const kb=s.querySelector('[data-kind]');
     if(kb) kb.addEventListener('click',e=>{
       const b=e.target.closest('[data-k]'); if(!b) return; kind=b.dataset.k;
