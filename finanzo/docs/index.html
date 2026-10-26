@@ -171,20 +171,21 @@ body[data-page="start"] main{padding-top:0}
 .search{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:15px;padding:0 14px;box-shadow:var(--shadow);color:var(--ink-3)}
 .search input{flex:1;min-width:0;border:0;background:none;min-height:50px;font-size:16px;outline:none;color:var(--ink);-webkit-appearance:none;appearance:none}
 .search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
-.search-x{color:var(--ink-3);width:36px;height:36px;display:grid;place-items:center;margin-right:-8px}
-.chips{display:flex;gap:8px;margin:12px 0 14px;flex-wrap:wrap}
-.chip{padding:8px 17px;border-radius:999px;font-weight:700;font-size:15px}
-.chip-all{background:var(--soft);color:var(--ink-2)}
-.chip-in{background:var(--green-soft);color:var(--green)}
-.chip-out{background:var(--red-soft);color:var(--red)}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
 .month-nav{display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:999px;padding:4px;margin-bottom:12px;box-shadow:var(--shadow)}
 .month-nav strong{font-size:16.5px;font-weight:720;text-align:center}
 .month-nav .icon-btn{border-radius:999px}
-.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 4px}
-.mini div{background:var(--card);border-radius:16px;padding:10px 14px;box-shadow:var(--shadow)}
-.mini span,.stats span{display:block;font-size:13.5px;color:var(--ink-2);font-weight:600}
-.mini b{display:block;font-size:17.5px;font-weight:760;font-variant-numeric:tabular-nums}
+.stats span{display:block;font-size:13.5px;color:var(--ink-2);font-weight:600}
+.icon-round{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--ink-2);box-shadow:var(--shadow);flex:none}
+.icon-round[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.search{margin-bottom:12px}
+.month-card{padding:8px 8px 10px}
+.mc-nav{display:flex;align-items:center;justify-content:space-between}
+.mc-nav strong{font-size:17px;font-weight:760}
+.mc-sums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 4px 0}
+.mc-sums div{background:var(--soft);border-radius:16px;padding:10px 14px;min-width:0}
+.mc-sums span{display:block;font-size:13.5px;color:var(--ink-2);font-weight:600}
+.mc-sums b{display:block;font-size:20px;font-weight:780;letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-seg{margin:0 0 12px}
 .group{font-size:14px;font-weight:700;color:var(--ink-3);margin:18px 6px 8px}
 
 /* ---------- Analyse ---------- */
@@ -393,7 +394,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.4';   // bei jedem Update erhöhen
+const APP_VERSION='5.5';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -524,15 +525,8 @@ function whenText(iso){
   if(n===1) return `Morgen (${s})`;
   return `In ${n} Tagen (${s})`;
 }
-// Überschrift für einen Tag in der Buchungsliste
-function dayTitle(iso){
-  const d=fromISO(iso), n=daysBetween(d,today());
-  if(n===0) return 'Heute';
-  if(n===1) return 'Gestern';
-  const o={weekday:'long',day:'numeric',month:'long'}; if(d.getFullYear()!==today().getFullYear()) o.year='numeric';
-  return d.toLocaleDateString('de-DE',o);
-}
-const dayShort=iso=>{const n=daysBetween(fromISO(iso),today());return n===0?'Heute':n===1?'Gestern':shortDate(fromISO(iso));};
+const dayShort=iso=>{const d=fromISO(iso),n=daysBetween(d,today());if(n===0)return 'Heute';if(n===1)return 'Gestern';
+  return d.getFullYear()===today().getFullYear()?shortDate(d):d.toLocaleDateString('de-DE',{day:'numeric',month:'short',year:'numeric'});};
 
 /* =====================================================================
    Speichern und Laden
@@ -1094,16 +1088,16 @@ function donutSVG(parts,base){
   return `<svg viewBox="0 0 200 200" role="img" aria-label="Grafik: wofür dein Geld draufgeht"><circle cx="100" cy="100" r="${R}" fill="none" stroke="var(--soft)" stroke-width="${W}"/>${segs}</svg>`;
 }
 // Eine Buchung als Zeile
+function bookSub(b){
+  const kind=b.type==='spent'?(b.name===b.sub?'':b.sub):b.type==='fixed'?'Abo':b.type==='pays'?'Zahlung':b.type==='saved'?b.sub:'';
+  return [kind,dayShort(b.iso)].filter(Boolean).join(' · ');
+}
 function bookRow(b,mode=''){
   const sign=b.dir==='in'?'+':b.dir==='out'?'−':b.sign, cls=b.dir==='in'?'plus':b.dir==='out'?'neg':'';
-  const sub=mode==='planned'?`geplant · ${dayText(fromISO(b.iso))}`:mode==='date'?`${b.sub} · ${dayShort(b.iso)}`:b.sub;
+  const sub=mode==='planned'?`geplant · ${dayText(fromISO(b.iso))}`:bookSub(b);
   return `<li><button class="item book ${mode==='planned'?'planned':''}" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
     <span class="item-main"><div class="item-name">${esc(b.name)}</div><div class="item-sub">${esc(sub)}</div></span>
     <span class="item-amt ${cls}">${sign}${eur(b.amount)}</span></button></li>`;
-}
-function groupHTML(list,mode=''){
-  const groups=[]; for(const b of list){const g=groups[groups.length-1]; if(g&&g.iso===b.iso) g.items.push(b); else groups.push({iso:b.iso,items:[b]});}
-  return groups.map(g=>`<div class="group">${esc(dayTitle(g.iso))}</div><ul class="list">${g.items.map(b=>bookRow(b,mode)).join('')}</ul>`).join('');
 }
 // Termin mit Haken zum Abhaken
 function taskRow(x){
@@ -1182,36 +1176,41 @@ function drawStart(){
 }
 
 /* ---------- Reiter: Buchungen ---------- */
+let searchOpen=false;
 function drawList(){
-  $('#view').innerHTML=`<h1 class="page-title">Buchungen</h1>
-    <label class="search">${ICON.search}<input type="search" data-search placeholder="Buchungen suchen" value="${esc(listQuery)}" autocomplete="off" enterkeyhint="search" aria-label="Buchungen suchen">
-      <button type="button" class="search-x" data-search-clear aria-label="Suche löschen" ${listQuery?'':'hidden'}>${ICON.x}</button></label>
-    <div class="chips" role="group" aria-label="Filter">${[['all','Alle'],['in','Einnahmen'],['out','Ausgaben']].map(([v,l])=>
-      `<button type="button" class="chip chip-${v}" data-filter="${v}" aria-pressed="${listFilter===v}">${l}</button>`).join('')}</div>
+  const open=searchOpen||!!listQuery;
+  $('#view').innerHTML=`<div class="page-head"><h1 class="page-title">Buchungen</h1>
+      <button type="button" class="icon-round" data-search-toggle aria-label="${open?'Suche schließen':'Suchen'}" aria-pressed="${open}">${open?ICON.x:ICON.search}</button></div>
+    ${open?`<label class="search">${ICON.search}<input type="search" data-search placeholder="Suchen" value="${esc(listQuery)}" autocomplete="off" enterkeyhint="search" aria-label="Buchungen suchen"></label>`:''}
     <div id="blist"></div>`;
-  const inp=$('[data-search]'), clr=$('[data-search-clear]');
-  inp.addEventListener('input',()=>{ listQuery=inp.value; clr.hidden=!listQuery; renderList(); });
+  const inp=$('[data-search]');
+  if(inp){ inp.addEventListener('input',()=>{ listQuery=inp.value; renderList(); }); if(!listQuery) setTimeout(()=>{try{inp.focus();}catch(e){}},60); }
   renderList();
 }
 function renderList(){
   const box=$('#blist'); if(!box) return;
   const q=listQuery.trim().toLowerCase(), t=today();
   const pass=b=>(listFilter==='all'||b.dir===listFilter)&&(!q||b.name.toLowerCase().includes(q)||b.sub.toLowerCase().includes(q));
+  const filters=`<div class="seg list-seg" role="group" aria-label="Filter">${[['all','Alle'],['in','Einnahmen'],['out','Ausgaben']].map(([v,l])=>
+    `<button type="button" data-filter="${v}" aria-pressed="${listFilter===v}">${l}</button>`).join('')}</div>`;
   if(q){
     const hits=bookings(new Date(2000,0,1),t).filter(pass);
-    box.innerHTML=hits.length?`<p class="page-sub">${plural(hits.length,'Treffer','Treffer')}</p>`+groupHTML(hits)
-      :`<p class="empty-line">Nichts gefunden für „${esc(listQuery.trim())}“.</p>`;
+    box.innerHTML=filters+(hits.length?`<p class="page-sub">${plural(hits.length,'Treffer','Treffer')}</p><ul class="list">${hits.map(b=>bookRow(b)).join('')}</ul>`
+      :`<p class="empty-line">Nichts gefunden für „${esc(listQuery.trim())}“.</p>`);
     return;
   }
   const {y,m}=listMonth, from=new Date(y,m,1), lastDay=new Date(y,m+1,0), isNow=y===t.getFullYear()&&m===t.getMonth();
   const all=from<=t?bookings(from,lastDay<t?lastDay:t):[];
   const inSum=round2(sum(all.filter(b=>b.dir==='in').map(b=>b.amount))), outSum=round2(sum(all.filter(b=>b.dir==='out').map(b=>b.amount)));
   const list=all.filter(pass), next=isNow?upcoming().filter(pass):[];
-  box.innerHTML=`<div class="month-nav"><button class="icon-btn" data-month="-1" aria-label="Monat zurück">${ICON.left}</button>
-      <strong>${esc(monthName(y,m))} ${y}</strong><button class="icon-btn" data-month="1" aria-label="Monat vor" ${isNow?'disabled':''}>${ICON.right}</button></div>
-    <div class="mini"><div><span>Einnahmen</span><b class="plus">+${eur(inSum)}</b></div><div><span>Ausgaben</span><b class="neg">−${eur(outSum)}</b></div></div>
-    ${next.length?`<div class="group">Demnächst</div><ul class="list">${next.map(b=>bookRow(b,'planned')).join('')}</ul>`:''}
-    ${list.length?groupHTML(list):`<p class="empty-line" style="margin-top:14px">Keine Buchungen im ${esc(monthName(y,m))}.</p>`}`;
+  const none=listFilter==='in'?'Keine Einnahmen':listFilter==='out'?'Keine Ausgaben':'Keine Buchungen';
+  box.innerHTML=`<section class="card month-card">
+      <div class="mc-nav"><button class="icon-btn" data-month="-1" aria-label="Monat zurück">${ICON.left}</button>
+        <strong>${esc(monthName(y,m))} ${y}</strong><button class="icon-btn" data-month="1" aria-label="Monat vor" ${isNow?'disabled':''}>${ICON.right}</button></div>
+      <div class="mc-sums"><div><span>Einnahmen</span><b class="plus">+${eur(inSum)}</b></div><div><span>Ausgaben</span><b class="neg">−${eur(outSum)}</b></div></div></section>
+    ${filters}
+    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${none} im ${esc(monthName(y,m))}.</p>`}
+    ${next.length?`<div class="group">Demnächst</div><ul class="list">${next.map(b=>bookRow(b,'planned')).join('')}</ul>`:''}`;
 }
 
 /* ---------- Reiter: Analyse ---------- */
@@ -1757,7 +1756,7 @@ document.addEventListener('click',e=>{
   if(b.hasAttribute('data-add-expense')) return expenseWin();
   if(d.open){ const [k,id]=d.open.split(':'); if(OPEN[k]) OPEN[k](id); return; }
   if(d.filter){ listFilter=d.filter; document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderList(); return; }
-  if(b.hasAttribute('data-search-clear')){ listQuery=''; drawList(); return; }
+  if(b.hasAttribute('data-search-toggle')){ if(searchOpen||listQuery){ searchOpen=false; listQuery=''; } else searchOpen=true; drawList(); return; }
   if(d.month){ const x=new Date(listMonth.y,listMonth.m+Number(d.month),1); listMonth={y:x.getFullYear(),m:x.getMonth()}; renderList(); return; }
   if(d.range){ statRange=d.range; statAnchor=today(); draw(); return; }
   if(d.step){ const n=Number(d.step), a=statAnchor;
