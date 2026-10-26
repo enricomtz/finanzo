@@ -447,7 +447,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='6.7';   // bei jedem Update erhöhen
+const APP_VERSION='6.8';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1126,12 +1126,12 @@ function go(t,s=null){ tab=t; sub=s; store.set('finanzo-tab',t); draw(); scrollT
 // Eine Buchung als Zeile
 function bookSub(b){
   const kind=b.type==='spent'?(b.name===b.sub?'':b.sub):b.type==='fixed'?'Abo':b.type==='pays'?'Zahlung':b.type==='saved'?b.sub:'';
-  return [kind,dayShort(b.iso)].filter(Boolean).join(' · ');
+  return [kind,dayShort(b.iso),b.state].filter(Boolean).join(' · ');
 }
 function bookRow(b,mode=''){
   const sign=b.dir==='in'?'+':b.dir==='out'?'−':b.sign, cls=b.dir==='in'?'plus':b.dir==='out'?'neg':'';
   const sub=mode==='planned'?`geplant · ${dayText(fromISO(b.iso))}`:bookSub(b);
-  return `<li><button class="item book ${mode==='planned'?'planned':''}" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
+  return `<li><button class="item book ${mode==='planned'||b.state?'planned':''}" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
     <span class="item-main"><div class="item-name">${esc(b.name)}</div><div class="item-sub">${esc(sub)}</div></span>
     <span class="item-amt ${cls}">${sign}${eur(b.amount)}</span></button></li>`;
 }
@@ -1230,13 +1230,13 @@ function renderList(){
   const filters=`<div class="seg list-seg" role="group" aria-label="Filter">${[['all','Alle'],['in','Einnahmen'],['out','Ausgaben']].map(([v,l])=>
     `<button type="button" data-filter="${v}" aria-pressed="${listFilter===v}">${l}</button>`).join('')}</div>`;
   if(q){
-    const hits=bookings(new Date(2000,0,1),t).filter(pass);
+    const hits=[...monthBooks(t.getFullYear(),t.getMonth()).filter(b=>b.state),...bookings(new Date(2000,0,1),t)].filter(pass);
     box.innerHTML=filters+(hits.length?`<p class="page-sub">${plural(hits.length,'Treffer','Treffer')}</p><ul class="list">${hits.map(b=>bookRow(b)).join('')}</ul>`
       :`<p class="empty-line">Nichts gefunden für „${esc(listQuery.trim())}“.</p>`);
     return;
   }
   const {y,m}=listMonth, from=new Date(y,m,1), lastDay=new Date(y,m+1,0), isNow=y===t.getFullYear()&&m===t.getMonth();
-  const all=from<=t?bookings(from,lastDay<t?lastDay:t):[];
+  const all=monthBooks(y,m);   // alles im Monat: Ausgaben, Einnahmen, Abos, Zahlungen, Gespart – auch was noch kommt
   const inSum=round2(sum(all.filter(b=>b.dir==='in').map(b=>b.amount))), outSum=round2(sum(all.filter(b=>b.dir==='out').map(b=>b.amount)));
   const list=all.filter(pass);
   const none=listFilter==='in'?'Keine Einnahmen':listFilter==='out'?'Keine Ausgaben':'Keine Buchungen';
@@ -1292,13 +1292,13 @@ function monthPickerWin(){
 function monthBooks(y,m){
   const t=today(), from=new Date(y,m,1), last=new Date(y,m+1,0);
   if(from>t) return [];
-  const list=bookings(from,last);
+  const T=toISO(t), list=bookings(from,last).map(b=>b.iso>T?{...b,state:'geplant'}:b);   // kommt noch in diesem Monat
   if(y===t.getFullYear()&&m===t.getMonth()){
     const L=toISO(last);
     for(const x of data.tasks) if(!x.done&&x.amount>0&&x.date<=L)    // offene Zahlungen: diesen Monat oder überfällig
-      list.push({iso:x.date,dir:'out',type:'pays',name:x.title,sub:'Zahlung',amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0});
+      list.push({iso:x.date,dir:'out',type:'pays',name:x.title,sub:'Zahlung',amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0,state:x.date>T?'geplant':'offen'});
   }
-  return list;
+  return list.sort((a,b)=>a.iso<b.iso?1:a.iso>b.iso?-1:(b.t||0)-(a.t||0));
 }
 const monthTotals=list=>{ let i=0,o=0,sv=0;
   for(const b of list){ if(b.dir==='in') i+=b.amount; else if(b.dir==='out') o+=b.amount; else sv+=b.sign==='−'?b.amount:-b.amount; }
@@ -1368,10 +1368,10 @@ function drawStats(){
 // Alle Einträge einer Gruppe im gewählten Monat
 function catDetailWin(k){
   const y=statAnchor.getFullYear(), m=statAnchor.getMonth(), all=()=>monthBooks(y,m).filter(b=>groupKey(b)===k);
-  const first=all()[0]; if(!first) return; const meta=groupMeta(k,first), t=toISO(today());
+  const first=all()[0]; if(!first) return; const meta=groupMeta(k,first);
   const body=()=>{ const list=all().sort((a,b)=>b.amount-a.amount), total=round2(sum(list.map(b=>b.amount)));
     return list.length?`<p class="text">${esc(monthName(y,m))} ${y}: <b>${eur(total)}</b> · ${plural(list.length,'Eintrag','Einträge')}</p>
-      <ul class="list">${list.map(b=>{ const own=b.name!==meta.label, when=(b.iso>t?'geplant · ':'')+dayShort(b.iso);   // ohne eigenen Namen steht nur das Datum da
+      <ul class="list">${list.map(b=>{ const own=b.name!==meta.label, when=dayShort(b.iso)+(b.state?' · '+b.state:'');   // ohne eigenen Namen steht nur das Datum da
         return `<li><button class="item book" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
           <span class="item-main"><div class="item-name">${esc(own?b.name:when)}</div>${own?`<div class="item-sub">${esc(when)}</div>`:''}</span>
           <span class="item-amt ${b.dir==='in'?'plus':'neg'}">${b.dir==='in'?'+':'−'}${eur(b.amount)}</span></button></li>`; }).join('')}</ul>`:'<p class="text">Keine Einträge mehr.</p>'; };
