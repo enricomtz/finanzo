@@ -411,7 +411,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.9';   // bei jedem Update erhöhen
+const APP_VERSION='6.0';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1359,8 +1359,7 @@ function drawIncomes(){
         <span class="item-main"><div class="item-name">${esc(i.name)}</div>
           <div class="item-sub">Jeden Monat</div></span>
         <span class="item-amt plus">+${eur(i.amount)}<small>im Monat</small></span></button></li>`).join('')}
-      ${addRow('data-add-income','Einnahme hinzufügen')}</ul>
-    <p class="page-sub" style="margin-top:12px">Einmalige Einnahmen, zum Beispiel ein Geschenk, trägst du über „Eintragen“ ein.</p>`;
+      ${addRow('data-add-income','Einnahme hinzufügen')}</ul>`;
 }
 function drawAbos(){
   const contracts=[...data.contracts].sort((a,b)=>(inTrial(a)-inTrial(b))||monthlyOf(b)-monthlyOf(a));
