@@ -183,8 +183,17 @@ body[data-page="start"] main{padding-top:0}
 .mc-title{display:inline-flex;align-items:center;gap:6px;font-size:17px;font-weight:760;padding:8px 12px;border-radius:12px}
 .mc-title svg{color:var(--ink-3)}
 @media (hover:hover){ .mc-title:hover{background:var(--soft)} }
-.yp{display:flex;align-items:center;justify-content:space-between;background:var(--soft);border-radius:999px;padding:4px;margin:8px 0 14px}
-.yp strong{font-size:18px;font-weight:780}
+.yp-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--soft);border-radius:999px;min-height:52px;margin:8px 0 14px;font-size:18px;font-weight:780}
+.yp-btn svg{color:var(--ink-3);transition:transform .2s}
+.yp-btn.open svg{transform:rotate(180deg)}
+.wheel{position:relative;height:220px;margin:-4px 0 14px;border-radius:18px;background:var(--soft);overflow:hidden}
+.wheel-band{position:absolute;left:8px;right:8px;top:88px;height:44px;border-radius:12px;background:var(--card)}
+.wheel-scroll{position:relative;z-index:1;height:100%;overflow-y:auto;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior:contain;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 32%,#000 68%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 32%,#000 68%,transparent 100%)}
+.wheel-scroll::-webkit-scrollbar{display:none}
+.wheel-pad{height:88px}
+.wheel-item{height:44px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;font-size:21px;font-weight:600;color:var(--ink-3);cursor:pointer;font-variant-numeric:tabular-nums;transition:color .12s,font-size .12s}
+.wheel-item.on{color:var(--ink);font-size:25px;font-weight:780}
 .mp{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .mp button{padding:13px 4px;border-radius:13px;border:1.5px solid var(--line);font-weight:700;font-size:15.5px}
 .mp button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
@@ -402,7 +411,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.7';   // bei jedem Update erhöhen
+const APP_VERSION='5.8';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1215,23 +1224,35 @@ function renderList(){
 
 // Schnell zu einem Monat springen: Jahr wählen, dann Monat antippen
 const MONTHS_SHORT=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+const WHEEL_ROW=44;   // Höhe einer Zeile im Jahres-Drehrad
 function monthPickerWin(){
-  const t=today(); let year=listMonth.y;
-  win('Monat wählen',`<div class="yp"><button type="button" class="icon-btn" data-yp="-1" aria-label="Jahr zurück">${ICON.left}</button><strong data-year></strong>
-      <button type="button" class="icon-btn" data-yp="1" aria-label="Jahr vor">${ICON.right}</button></div>
+  const t=today(), years=[]; for(let y=2000;y<=t.getFullYear();y++) years.push(y);
+  let year=listMonth.y, wheelOpen=false;
+  win('Monat wählen',`<button type="button" class="yp-btn" data-yp-toggle aria-expanded="false"><span data-year></span>${ICON.down}</button>
+    <div class="wheel" data-wheel hidden><div class="wheel-band"></div>
+      <div class="wheel-scroll" data-wheel-scroll><div class="wheel-pad"></div>${years.map(y=>`<div class="wheel-item" data-wy="${y}">${y}</div>`).join('')}<div class="wheel-pad"></div></div></div>
     <div class="mp" data-months></div>
     <button type="button" class="btn btn-soft btn-full" data-mp-now>Dieser Monat</button>`,s=>{
+    const wheel=s.querySelector('[data-wheel]'), sc=s.querySelector('[data-wheel-scroll]'), tg=s.querySelector('[data-yp-toggle]');
     const render=()=>{
       s.querySelector('[data-year]').textContent=year;
-      s.querySelector('[data-yp="1"]').disabled=year>=t.getFullYear();
-      s.querySelector('[data-yp="-1"]').disabled=year<=2000;
       s.querySelector('[data-months]').innerHTML=MONTHS_SHORT.map((l,i)=>`<button type="button" data-m="${i}" aria-label="${esc(monthName(year,i))} ${year}"
         aria-pressed="${year===listMonth.y&&i===listMonth.m}" ${year===t.getFullYear()&&i>t.getMonth()?'disabled':''}>${l}</button>`).join('');
     };
+    const mark=()=>{ const idx=Math.max(0,Math.min(years.length-1,Math.round(sc.scrollTop/WHEEL_ROW)));
+      sc.querySelectorAll('.wheel-item').forEach((el,k)=>el.classList.toggle('on',k===idx)); return years[idx]; };
+    let settle=0;
+    sc.addEventListener('scroll',()=>{ const y=mark(); clearTimeout(settle); settle=setTimeout(()=>{ if(y!==year){ year=y; render(); } },120); },{passive:true});
+    const openWheel=on=>{
+      wheelOpen=on; wheel.hidden=!on; tg.setAttribute('aria-expanded',on); tg.classList.toggle('open',on);
+      if(on){ sc.scrollTop=years.indexOf(year)*WHEEL_ROW; mark(); }
+    };
     const pick=(y,m)=>{ listMonth={y,m}; closeWin(1); renderList(); };
     s.addEventListener('click',e=>{
+      const it=e.target.closest('[data-wy]');
+      if(it){ const k=years.indexOf(Number(it.dataset.wy)); try{ sc.scrollTo({top:k*WHEEL_ROW,behavior:'smooth'}); }catch(er){ sc.scrollTop=k*WHEEL_ROW; } return; }
       const b=e.target.closest('button'); if(!b||b.disabled) return;
-      if(b.dataset.yp){ year=Math.min(t.getFullYear(),Math.max(2000,year+Number(b.dataset.yp))); render(); }
+      if(b.hasAttribute('data-yp-toggle')) openWheel(!wheelOpen);
       else if(b.dataset.m) pick(year,Number(b.dataset.m));
       else if(b.hasAttribute('data-mp-now')) pick(t.getFullYear(),t.getMonth());
     });
