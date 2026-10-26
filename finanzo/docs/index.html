@@ -266,6 +266,7 @@ body[data-page="start"] main{padding-top:0}
 .goal-line{display:flex;justify-content:space-between;gap:10px;margin-top:8px;font-size:14.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .goal-line b{color:var(--ink)}
 .goal-line.small{font-size:13.5px;color:var(--ink-3);margin-top:3px}
+.goal-tip{margin-top:10px;padding:9px 12px;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-size:14.5px;font-weight:700;font-variant-numeric:tabular-nums}
 .goal-done{color:var(--green);font-weight:700}
 .goal .btn{margin-top:12px;width:100%;min-height:44px}
 
@@ -411,7 +412,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='6.0';   // bei jedem Update erhöhen
+const APP_VERSION='6.1';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1328,16 +1329,27 @@ function drawStats(){
 }
 
 /* ---------- Reiter: Ziele ---------- */
-const monthsLeft=iso=>{const t=today(),u=fromISO(iso);return (u.getFullYear()-t.getFullYear())*12+(u.getMonth()-t.getMonth());};
+// Wie viel muss ich sparen? Heute und der Zieltag zählen beide mit (26.10. bis 30.10. = 5 Tage).
+// Aufgerundet auf den Cent, damit das Ziel sicher erreicht wird.
+function saveTip(g,rest){
+  if(!g.until||!(rest>0)) return '';
+  const days=daysBetween(today(),fromISO(g.until))+1;
+  if(days<1) return 'Das Datum ist schon vorbei.';
+  const up=x=>Math.ceil(x*100-1e-6)/100;
+  if(days===1) return `Heute noch ${eur(rest)} sparen`;
+  const perDay=up(rest/days);
+  if(days<=31) return `${eur(perDay)} pro Tag sparen (noch ${days} Tage)`;
+  return `${eur(up(rest/(days/30.4375)))} pro Monat · ${eur(perDay)} pro Tag`;
+}
 function goalCard(g){
   const col=GOAL_COLORS[g.color%GOAL_COLORS.length], sv0=goalSaved(g), done=sv0>=g.target, pct=Math.min(100,Math.floor(sv0/g.target*100)), rest=round2(Math.max(0,g.target-sv0));
-  let tip='';
-  if(!done&&g.until){ tip=fromISO(g.until)<today()?'Das Datum ist schon vorbei.':`${eur(rest/Math.max(1,monthsLeft(g.until)))} pro Monat sparen`; }
+  const tip=done?'':saveTip(g,rest);
   return `<section class="goal"><button type="button" class="goal-head" data-goal="${g.id}"><span class="g-ic" style="--c:${col}">${goalIconSvg(g.icon)}</span>
       <span class="g-txt"><span class="g-name">${esc(g.name)}</span><span class="g-target">${eur(g.target)}</span></span>${ICON.right}</button>
     <span class="bar"><span style="width:${pct}%;background:${col}"></span></span>
     <div class="goal-line"><span><b>${eur(sv0)}</b> von ${eur(g.target)} gespart</span><span><b>${pct} %</b></span></div>
-    <div class="goal-line small"><span>${done?'<span class="goal-done">Geschafft!</span>':esc(tip||`Noch ${eur(rest)}`)}</span><span>${g.until?`Ziel: ${numDate(fromISO(g.until))}`:''}</span></div>
+    <div class="goal-line small"><span>${done?'<span class="goal-done">Geschafft!</span>':`Noch ${eur(rest)}`}</span><span>${g.until?`Ziel: ${numDate(fromISO(g.until))}`:''}</span></div>
+    ${tip?`<div class="goal-tip">${esc(tip)}</div>`:''}
     <button type="button" class="btn btn-soft" data-deposit="${g.id}">${ICON.plus}Geld einzahlen</button></section>`;
 }
 function drawGoals(){
@@ -1674,7 +1686,7 @@ function goalWin(id){
     ${moneyField('Wie viel brauchst du?',v.target,false,'target')}
     ${g?'':moneyField('Hast du schon etwas gespart?',0,false,'start')}
     <label class="field"><span class="label">Bis wann?</span><input class="input" type="date" name="until" value="${esc(v.until)}">
-      <span class="hint">Mit Datum rechnet Finanzo aus, wie viel du jeden Monat sparen musst.</span></label>
+      <span class="hint">Mit Datum rechnet Finanzo aus, wie viel du pro Tag oder pro Monat sparen musst.</span></label>
     <p class="err" hidden></p>
     <button class="btn btn-main btn-full" type="submit">Speichern</button>
     ${g?'<div class="btns"><button type="button" class="btn btn-red" data-del>Sparziel löschen</button></div>':''}
