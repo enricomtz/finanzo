@@ -411,7 +411,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.8';   // bei jedem Update erhöhen
+const APP_VERSION='5.9';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1250,7 +1250,7 @@ function monthPickerWin(){
     const pick=(y,m)=>{ listMonth={y,m}; closeWin(1); renderList(); };
     s.addEventListener('click',e=>{
       const it=e.target.closest('[data-wy]');
-      if(it){ const k=years.indexOf(Number(it.dataset.wy)); try{ sc.scrollTo({top:k*WHEEL_ROW,behavior:'smooth'}); }catch(er){ sc.scrollTop=k*WHEEL_ROW; } return; }
+      if(it){ clearTimeout(settle); year=Number(it.dataset.wy); render(); openWheel(false); return; }   // Jahr antippen: auswählen und Drehrad schließen
       const b=e.target.closest('button'); if(!b||b.disabled) return;
       if(b.hasAttribute('data-yp-toggle')) openWheel(!wheelOpen);
       else if(b.dataset.m) pick(year,Number(b.dataset.m));
