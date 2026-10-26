@@ -430,7 +430,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='6.4';   // bei jedem Update erhöhen
+const APP_VERSION='6.5';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1670,11 +1670,11 @@ function taskWin(id){
   const d0=toISO(addDays(today(),7));
   const v=x||{title:'',date:d0,amount:0,note:'',remindOn:remindDefault(d0,3)};
   win(x?'Termin ändern':'Neuer Termin',`<form novalidate>
-    <label class="field"><span class="label">Was?</span><input class="input" name="title" value="${esc(v.title)}" placeholder="z. B. Strafzettel bezahlen" maxlength="60" autocomplete="off" ${x?'':'data-focus'}></label>
+    <label class="field"><span class="label">Was?</span><input class="input" name="title" value="${esc(v.title)}" maxlength="60" autocomplete="off" ${x?'':'data-focus'}></label>
     <label class="field"><span class="label">Wann?</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label>
     <button type="button" class="switch-row" data-money aria-pressed="${v.amount>0}"><span>Muss ich etwas bezahlen?</span><span class="switch"></span></button>
     <div data-money-on ${v.amount>0?'':'hidden'}>${moneyField('Betrag',v.amount)}</div>
-    <label class="field"><span class="label">Notiz</span><textarea class="input" name="note" maxlength="300" placeholder="z. B. Rechnungsnummer oder Kündigung per E-Mail">${esc(v.note)}</textarea></label>
+    <label class="field"><span class="label">Notiz</span><textarea class="input" name="note" maxlength="300">${esc(v.note)}</textarea></label>
     ${remindField(v.remindOn)}
     <p class="err" hidden></p>
     <button class="btn btn-main btn-full" type="submit">Speichern</button>
