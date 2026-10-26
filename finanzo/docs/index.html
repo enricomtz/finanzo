@@ -412,7 +412,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='6.1';   // bei jedem Update erhöhen
+const APP_VERSION='6.2';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1356,7 +1356,7 @@ function drawGoals(){
   const goals=data.goals, total=round2(sum(goals.map(goalSaved)));
   $('#view').innerHTML=`<div class="page-head"><h1 class="page-title">Sparziele</h1><button class="round-btn" data-add-goal aria-label="Sparziel hinzufügen">${ICON.plus}</button></div>
     ${goals.length?`<p class="page-sub">Gespart insgesamt: <b>${eur(total)}</b></p>${goals.map(goalCard).join('')}`
-      :`<div class="empty"><div class="empty-ic">${ICON.target}</div><p><strong>Noch keine Sparziele</strong>Spar zum Beispiel für ein Auto oder einen Urlaub. Finanzo zeigt dir, wie weit du schon bist.</p>
+      :`<div class="empty"><div class="empty-ic">${ICON.target}</div><p><strong>Noch keine Sparziele</strong></p>
         <button class="btn btn-main" data-add-goal>${ICON.plus}Sparziel hinzufügen</button></div>`}`;
 }
 
