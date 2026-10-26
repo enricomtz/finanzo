@@ -216,15 +216,32 @@ body[data-page="start"] main{padding-top:0}
 .mstats > *{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:14px;background:var(--soft);text-align:left}
 .mstats span{font-size:13px;font-weight:650;color:var(--ink-3)}
 .mstats b{font-size:15px;font-weight:780;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mchart{display:flex;align-items:stretch;gap:4px;height:150px;margin-top:14px}
-.mcol{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;border-radius:10px}
-.mcol-wrap{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center}
-.mcol-bar{display:block;width:72%;max-width:24px;border-radius:7px 7px 3px 3px;background:color-mix(in srgb,var(--accent) 28%,var(--card));transition:background .15s}
-.mcol.sel .mcol-bar{background:var(--accent)}
+.mchart{display:flex;align-items:stretch;gap:2px;height:150px;margin-top:10px}
+.mcol{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0 2px;border-radius:10px}
+.mcol-wrap{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:2px}
+.mcol-bar{display:block;width:38%;max-width:11px;min-height:2px;border-radius:5px 5px 2px 2px;transition:background .15s}
+.mcol-bar.in{background:color-mix(in srgb,var(--green) 30%,var(--card))}
+.mcol-bar.out{background:color-mix(in srgb,var(--red) 30%,var(--card))}
+.mcol.sel .mcol-bar.in{background:var(--green)}
+.mcol.sel .mcol-bar.out{background:var(--red)}
+.mcol.sel{background:var(--soft)}
+.mlegend{display:flex;gap:16px;margin-top:14px;font-size:13px;font-weight:650;color:var(--ink-3)}
+.mlegend span{display:inline-flex;align-items:center;gap:6px}
+.mlegend i{width:10px;height:10px;border-radius:3px;background:var(--green)}
+.mlegend i.out{background:var(--red)}
+.msum{display:flex;gap:10px;margin-top:12px}
+.msum > div{flex:1;min-width:0;padding:12px 14px;border-radius:16px;background:var(--soft)}
+.msum span{display:block;font-size:13px;font-weight:650;color:var(--ink-3)}
+.msum b{display:block;margin-top:2px;font-size:clamp(17px,5.4vw,22px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.msum .plus,.crow-top .plus{color:var(--green)}
+.msum .neg,.mleft .neg{color:var(--red)}
+.mleft{margin:10px 2px 0;color:var(--ink-2);font-weight:600}
+.mleft b{color:var(--ink)}
+.sec-h{margin:18px 0 0;font-size:13px;font-weight:750;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.sec-h + .crows{margin-top:4px}
 .mcol-lbl{font-size:11px;font-weight:650;color:var(--ink-3);white-space:nowrap}
 .mcol.sel .mcol-lbl{color:var(--ink);font-weight:800}
-.mdet-num{margin:6px 0 0;font-size:36px;font-weight:820;letter-spacing:-.03em;line-height:1.1;font-variant-numeric:tabular-nums}
-.cmp{display:inline-block;margin-top:10px;padding:6px 11px;border-radius:10px;font-size:14px;font-weight:700}
+.cmp{display:inline-block;margin-top:10px;padding:6px 11px;border-radius:10px;font-size:13px;font-weight:700}
 .cmp.up{background:var(--red-soft);color:var(--red)}
 .cmp.down{background:var(--green-soft);color:var(--green)}
 .cmp.same{background:var(--soft);color:var(--ink-2)}
@@ -430,7 +447,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='6.6';   // bei jedem Update erhöhen
+const APP_VERSION='6.7';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1270,26 +1287,34 @@ function monthPickerWin(){
 }
 
 /* ---------- Reiter: Analyse ---------- */
-// Ausgaben werden nach Kategorie gruppiert; Abos und bezahlte Termine sind eigene Gruppen
-const outGroup=b=>b.type==='spent'?b.cat:b.type;
-function groupMeta(k){
+// Alles, was in einem Monat passiert – genau wie in der Monatsübersicht auf Start:
+// Einnahmen, Ausgaben, Abos & Verträge, Zahlungen und Gespartes. Der aktuelle Monat zählt ganz (auch was noch kommt).
+function monthBooks(y,m){
+  const t=today(), from=new Date(y,m,1), last=new Date(y,m+1,0);
+  if(from>t) return [];
+  const list=bookings(from,last);
+  if(y===t.getFullYear()&&m===t.getMonth()){
+    const L=toISO(last);
+    for(const x of data.tasks) if(!x.done&&x.amount>0&&x.date<=L)    // offene Zahlungen: diesen Monat oder überfällig
+      list.push({iso:x.date,dir:'out',type:'pays',name:x.title,sub:'Zahlung',amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0});
+  }
+  return list;
+}
+const monthTotals=list=>{ let i=0,o=0,sv=0;
+  for(const b of list){ if(b.dir==='in') i+=b.amount; else if(b.dir==='out') o+=b.amount; else sv+=b.sign==='−'?b.amount:-b.amount; }
+  return {i:round2(i),o:round2(o),s:round2(sv)}; };
+// Gruppen: Ausgaben nach Kategorie, Abos und Zahlungen extra, Einnahmen nach Name
+const groupKey=b=>b.dir==='in'?(b.type==='income'?b.open:'x:'+b.name):b.type==='spent'?b.cat:b.type;
+function groupMeta(k,b){
+  if(b&&b.dir==='in') return {label:b.name,color:'var(--green)',icon:'arrowIn'};
   if(k==='fixed') return {label:'Abos & Verträge',color:PART.fixed,icon:'repeat'};
   if(k==='pays') return {label:'Zahlungen',color:PART.pays,icon:'calendar'};
   const c=catOf(k); return {label:c.label,color:c.color,icon:c.icon};
 }
-// Alle Ausgaben eines Monats (beim aktuellen Monat nur bis heute)
-function monthOuts(y,m){
-  const t=today(), from=new Date(y,m,1), last=new Date(y,m+1,0);
-  return from>t?[]:bookings(from,last<t?last:t).filter(b=>b.dir==='out');
-}
-function monthIns(y,m){
-  const t=today(), from=new Date(y,m,1), last=new Date(y,m+1,0);
-  return from>t?0:round2(sum(bookings(from,last<t?last:t).filter(b=>b.dir==='in').map(b=>b.amount)));
-}
-function spendParts(list){
-  const map={}, cnt={};
-  for(const b of list){ const k=outGroup(b); map[k]=round2((map[k]||0)+b.amount); cnt[k]=(cnt[k]||0)+1; }
-  return Object.entries(map).map(([k,v])=>({k,v,n:cnt[k],...groupMeta(k)})).sort((a,b)=>b.v-a.v);
+function groupParts(list){
+  const map=new Map();
+  for(const b of list){ const k=groupKey(b); const g=map.get(k)||{k,v:0,n:0,...groupMeta(k,b)}; g.v=round2(g.v+b.amount); g.n++; map.set(k,g); }
+  return [...map.values()].sort((a,b)=>b.v-a.v);
 }
 function catRow(c,y,m){
   const sp=catSpent(y,m,c.id), b=data.budgets[c.id];
@@ -1303,49 +1328,53 @@ function catRow(c,y,m){
 }
 function drawStats(){
   const t=today(), sy=statAnchor.getFullYear(), sm=statAnchor.getMonth();
-  // 1) Ausgaben der letzten 12 Monate als Balken
+  // 1) Die letzten 12 Monate: grün = Einnahmen, rot = Ausgaben
   const months=[];
-  for(let k=11;k>=0;k--){ const d=new Date(t.getFullYear(),t.getMonth()-k,1), y=d.getFullYear(), m=d.getMonth();
-    months.push({y,m,v:round2(sum(monthOuts(y,m).map(b=>b.amount)))}); }
-  const maxV=Math.max(...months.map(x=>x.v)), top=months.reduce((a,b)=>b.v>a.v?b:a,months[0]);
-  const past=months.slice(0,11).filter(x=>x.v>0), avg=past.length?round2(sum(past.map(x=>x.v))/past.length):0;
-  const chart=`<section class="card"><h2>Ausgaben pro Monat</h2>
-    ${maxV>0?`<div class="mstats"><button type="button" data-stat-month="${top.y}-${top.m}"><span>Am meisten</span><b>${esc(monthName(top.y,top.m))} · ${eur(top.v)}</b></button>
-      ${avg?`<div><span>Im Schnitt</span><b>${eur(avg)}</b></div>`:''}</div>`:'<p class="muted">Noch keine Ausgaben.</p>'}
-    <div class="mchart">${months.map(x=>`<button type="button" class="mcol ${x.y===sy&&x.m===sm?'sel':''}" data-stat-month="${x.y}-${x.m}" aria-label="${esc(monthName(x.y,x.m))} ${x.y}: ${eur(x.v)}">
-      <span class="mcol-wrap"><span class="mcol-bar" style="height:${maxV?Math.max(3,x.v/maxV*100).toFixed(1):3}%"></span></span>
+  for(let k=11;k>=0;k--){ const d=new Date(t.getFullYear(),t.getMonth()-k,1), y=d.getFullYear(), m=d.getMonth(); months.push({y,m,...monthTotals(monthBooks(y,m))}); }
+  const maxV=Math.max(0,...months.map(x=>Math.max(x.i,x.o))), top=months.reduce((a,b)=>b.o>a.o?b:a,months[0]);
+  const past=months.slice(0,11).filter(x=>x.o>0), avg=past.length?round2(sum(past.map(x=>x.o))/past.length):0;
+  const h=v=>v>0&&maxV?Math.max(3,v/maxV*100).toFixed(1):0;
+  const chart=`<section class="card"><h2>Pro Monat</h2>
+    ${top.o>0?`<div class="mstats"><button type="button" data-stat-month="${top.y}-${top.m}"><span>Meiste Ausgaben</span><b>${esc(monthName(top.y,top.m))} · ${eur(top.o)}</b></button>
+      ${avg?`<div><span>Ausgaben im Schnitt</span><b>${eur(avg)}</b></div>`:''}</div>`:''}
+    <div class="mlegend"><span><i class="in"></i>Einnahmen</span><span><i class="out"></i>Ausgaben</span></div>
+    <div class="mchart">${months.map(x=>`<button type="button" class="mcol ${x.y===sy&&x.m===sm?'sel':''}" data-stat-month="${x.y}-${x.m}" aria-label="${esc(monthName(x.y,x.m))} ${x.y}: Einnahmen ${eur(x.i)}, Ausgaben ${eur(x.o)}">
+      <span class="mcol-wrap"><span class="mcol-bar in" style="height:${h(x.i)}%"></span><span class="mcol-bar out" style="height:${h(x.o)}%"></span></span>
       <span class="mcol-lbl">${MONTHS_SHORT[x.m]}</span></button>`).join('')}</div></section>`;
   // 2) Der gewählte Monat genauer
-  const parts=spendParts(monthOuts(sy,sm)), total=round2(sum(parts.map(p=>p.v))), inSum=monthIns(sy,sm);
-  const pd=new Date(sy,sm-1,1), prev=round2(sum(monthOuts(pd.getFullYear(),pd.getMonth()).map(b=>b.amount))), diff=round2(total-prev), pName=monthName(pd.getFullYear(),pd.getMonth());
-  const cmp=!total&&!prev?'':!prev?`<span class="cmp same">Im ${esc(pName)} gab es keine Ausgaben</span>`
-    :diff>0?`<span class="cmp up">↑ ${eur(diff)} mehr als im ${esc(pName)}</span>`
-    :diff<0?`<span class="cmp down">↓ ${eur(-diff)} weniger als im ${esc(pName)}</span>`:`<span class="cmp same">Genauso viel wie im ${esc(pName)}</span>`;
-  const rows=parts.map(p=>{
-    const pct=total?Math.round(p.v/total*100):0, b=data.budgets[p.k];
+  const books=monthBooks(sy,sm), T=monthTotals(books), left=round2(T.i-T.o-T.s);
+  const pd=new Date(sy,sm-1,1), prev=monthTotals(monthBooks(pd.getFullYear(),pd.getMonth())).o, diff=round2(T.o-prev), pName=monthName(pd.getFullYear(),pd.getMonth());
+  const cmp=!T.o||!prev?'':diff>0?`<span class="cmp up">↑ ${eur(diff)} mehr ausgegeben als im ${esc(pName)}</span>`
+    :diff<0?`<span class="cmp down">↓ ${eur(-diff)} weniger ausgegeben als im ${esc(pName)}</span>`:`<span class="cmp same">Genauso viel ausgegeben wie im ${esc(pName)}</span>`;
+  const rows=(parts,total,dir)=>`<ul class="crows">${parts.map(p=>{
+    const pct=total?Math.round(p.v/total*100):0, b=dir==='out'&&data.budgets[p.k];
     const bud=b?(p.v>b?`<span class="over">${eur(round2(p.v-b))} über dem Budget</span>`:`Budget ${eur(b)}`):'';
-    return `<li><button type="button" class="crow" data-cat-detail="${p.k}"><span class="b-icon" style="--c:${p.color}">${ICON[p.icon]||ICON.dots}</span>
-      <span class="crow-main"><span class="crow-top"><span class="crow-name">${esc(p.label)}</span><b>${eur(p.v)}</b></span>
+    return `<li><button type="button" class="crow" data-cat-detail="${esc(p.k)}"><span class="b-icon" style="--c:${p.color}">${ICON[p.icon]||ICON.dots}</span>
+      <span class="crow-main"><span class="crow-top"><span class="crow-name">${esc(p.label)}</span><b class="${dir==='in'?'plus':''}">${dir==='in'?'+':''}${eur(p.v)}</b></span>
         <span class="bar"><span style="width:${pct}%;background:${p.color}"></span></span>
         <span class="crow-sub">${pct} % · ${plural(p.n,'Eintrag','Einträge')}${bud?' · '+bud:''}</span></span>${ICON.right}</button></li>`;
-  }).join('');
-  const detail=`<section class="card"><div class="card-head"><h2>${esc(monthName(sy,sm))} ${sy}</h2>${sy===t.getFullYear()&&sm===t.getMonth()?'<small>bis heute</small>':''}</div>
-    <p class="mdet-num">${eur(total)}</p>
-    <p class="muted" style="margin-top:2px">ausgegeben${inSum>0&&total>0?` · ${Math.round(total/inSum*100)} % deiner Einnahmen`:''}</p>
+  }).join('')}</ul>`;
+  const inParts=groupParts(books.filter(b=>b.dir==='in')), outParts=groupParts(books.filter(b=>b.dir==='out'));
+  const detail=`<section class="card"><h2>${esc(monthName(sy,sm))} ${sy}</h2>
+    <div class="msum"><div><span>Einnahmen</span><b class="plus">+${eur(T.i)}</b></div><div><span>Ausgaben</span><b class="neg">−${eur(T.o)}</b></div></div>
+    <p class="mleft">${T.s?`Gespart ${eur(T.s)} · `:''}${left<0?`<span class="neg">Minus ${eur(-left)}</span>`:`Übrig <b>${eur(left)}</b>`}</p>
     ${cmp}
-    ${parts.length?`<ul class="crows">${rows}</ul>`:'<p class="muted" style="margin:14px 0 4px">Keine Ausgaben in diesem Monat.</p>'}</section>
+    ${!books.length?'<p class="muted" style="margin:14px 0 4px">Keine Buchungen in diesem Monat.</p>':''}
+    ${inParts.length?`<h3 class="sec-h">Einnahmen</h3>${rows(inParts,T.i,'in')}`:''}
+    ${outParts.length?`<h3 class="sec-h">Ausgaben</h3>${rows(outParts,T.o,'out')}`:''}</section>
     <button type="button" class="link-btn budget-link" data-sub="budgets">${ICON.bars}Budgets festlegen ›</button>`;
   $('#view').innerHTML=`<h1 class="page-title">Analyse</h1>${chart}${detail}`;
 }
-// Alle Ausgaben einer Kategorie im gewählten Monat
+// Alle Einträge einer Gruppe im gewählten Monat
 function catDetailWin(k){
-  const y=statAnchor.getFullYear(), m=statAnchor.getMonth(), meta=groupMeta(k);
-  const body=()=>{ const list=monthOuts(y,m).filter(b=>outGroup(b)===k).sort((a,b)=>b.amount-a.amount), total=round2(sum(list.map(b=>b.amount)));
+  const y=statAnchor.getFullYear(), m=statAnchor.getMonth(), all=()=>monthBooks(y,m).filter(b=>groupKey(b)===k);
+  const first=all()[0]; if(!first) return; const meta=groupMeta(k,first), t=toISO(today());
+  const body=()=>{ const list=all().sort((a,b)=>b.amount-a.amount), total=round2(sum(list.map(b=>b.amount)));
     return list.length?`<p class="text">${esc(monthName(y,m))} ${y}: <b>${eur(total)}</b> · ${plural(list.length,'Eintrag','Einträge')}</p>
-      <ul class="list">${list.map(b=>{ const own=b.name!==meta.label;   // ohne Notiz steht nur das Datum da
+      <ul class="list">${list.map(b=>{ const own=b.name!==meta.label, when=(b.iso>t?'geplant · ':'')+dayShort(b.iso);   // ohne eigenen Namen steht nur das Datum da
         return `<li><button class="item book" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
-          <span class="item-main"><div class="item-name">${esc(own?b.name:dayShort(b.iso))}</div>${own?`<div class="item-sub">${esc(dayShort(b.iso))}</div>`:''}</span>
-          <span class="item-amt neg">−${eur(b.amount)}</span></button></li>`; }).join('')}</ul>`:'<p class="text">Keine Ausgaben mehr.</p>'; };
+          <span class="item-main"><div class="item-name">${esc(own?b.name:when)}</div>${own?`<div class="item-sub">${esc(when)}</div>`:''}</span>
+          <span class="item-amt ${b.dir==='in'?'plus':'neg'}">${b.dir==='in'?'+':'−'}${eur(b.amount)}</span></button></li>`; }).join('')}</ul>`:'<p class="text">Keine Einträge mehr.</p>'; };
   const w=win(meta.label,`<div class="cd-body">${body()}</div>`,s=>{
     // Eintrag antippen: Bearbeiten-Fenster öffnet sich darüber, danach bleibt man in der Liste
     s.addEventListener('click',e=>{ const b=e.target.closest('[data-open]'); if(!b) return; const [kk,id]=b.dataset.open.split(':'); if(OPEN[kk]) OPEN[kk](id); });
