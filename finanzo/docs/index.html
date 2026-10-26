@@ -180,7 +180,15 @@ body[data-page="start"] main{padding-top:0}
 .search{margin-bottom:12px}
 .month-card{padding:8px 8px 10px}
 .mc-nav{display:flex;align-items:center;justify-content:space-between}
-.mc-nav strong{font-size:17px;font-weight:760}
+.mc-title{display:inline-flex;align-items:center;gap:6px;font-size:17px;font-weight:760;padding:8px 12px;border-radius:12px}
+.mc-title svg{color:var(--ink-3)}
+@media (hover:hover){ .mc-title:hover{background:var(--soft)} }
+.yp{display:flex;align-items:center;justify-content:space-between;background:var(--soft);border-radius:999px;padding:4px;margin:8px 0 14px}
+.yp strong{font-size:18px;font-weight:780}
+.mp{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.mp button{padding:13px 4px;border-radius:13px;border:1.5px solid var(--line);font-weight:700;font-size:15.5px}
+.mp button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.mp button:disabled{opacity:.3}
 .mc-sums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 4px 0}
 .mc-sums div{background:var(--soft);border-radius:16px;padding:10px 14px;min-width:0}
 .mc-sums span{display:block;font-size:13.5px;color:var(--ink-2);font-weight:600}
@@ -394,7 +402,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='5.6';   // bei jedem Update erhöhen
+const APP_VERSION='5.7';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -406,6 +414,7 @@ const ICON={
   x:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>',
   right:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
   left:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+  down:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
   check:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   bell:sv('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>'),
   alert:sv('<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>'),
@@ -1198,10 +1207,36 @@ function renderList(){
   const none=listFilter==='in'?'Keine Einnahmen':listFilter==='out'?'Keine Ausgaben':'Keine Buchungen';
   box.innerHTML=`<section class="card month-card">
       <div class="mc-nav"><button class="icon-btn" data-month="-1" aria-label="Monat zurück">${ICON.left}</button>
-        <strong>${esc(monthName(y,m))} ${y}</strong><button class="icon-btn" data-month="1" aria-label="Monat vor" ${isNow?'disabled':''}>${ICON.right}</button></div>
+        <button type="button" class="mc-title" data-pick-month aria-label="Monat wählen">${esc(monthName(y,m))} ${y}${ICON.down}</button><button class="icon-btn" data-month="1" aria-label="Monat vor" ${isNow?'disabled':''}>${ICON.right}</button></div>
       <div class="mc-sums"><div><span>Einnahmen</span><b class="${inSum?'plus':''}">${inSum?'+':''}${eur(inSum)}</b></div><div><span>Ausgaben</span><b class="${outSum?'neg':''}">${outSum?'−':''}${eur(outSum)}</b></div></div></section>
     ${filters}
-    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${none} im ${esc(monthName(y,m))}.</p>`}`;
+    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${none} im ${esc(monthName(y,m))}${y!==t.getFullYear()?' '+y:''}.</p>`}`;
+}
+
+// Schnell zu einem Monat springen: Jahr wählen, dann Monat antippen
+const MONTHS_SHORT=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+function monthPickerWin(){
+  const t=today(); let year=listMonth.y;
+  win('Monat wählen',`<div class="yp"><button type="button" class="icon-btn" data-yp="-1" aria-label="Jahr zurück">${ICON.left}</button><strong data-year></strong>
+      <button type="button" class="icon-btn" data-yp="1" aria-label="Jahr vor">${ICON.right}</button></div>
+    <div class="mp" data-months></div>
+    <button type="button" class="btn btn-soft btn-full" data-mp-now>Dieser Monat</button>`,s=>{
+    const render=()=>{
+      s.querySelector('[data-year]').textContent=year;
+      s.querySelector('[data-yp="1"]').disabled=year>=t.getFullYear();
+      s.querySelector('[data-yp="-1"]').disabled=year<=2000;
+      s.querySelector('[data-months]').innerHTML=MONTHS_SHORT.map((l,i)=>`<button type="button" data-m="${i}" aria-label="${esc(monthName(year,i))} ${year}"
+        aria-pressed="${year===listMonth.y&&i===listMonth.m}" ${year===t.getFullYear()&&i>t.getMonth()?'disabled':''}>${l}</button>`).join('');
+    };
+    const pick=(y,m)=>{ listMonth={y,m}; closeWin(1); renderList(); };
+    s.addEventListener('click',e=>{
+      const b=e.target.closest('button'); if(!b||b.disabled) return;
+      if(b.dataset.yp){ year=Math.min(t.getFullYear(),Math.max(2000,year+Number(b.dataset.yp))); render(); }
+      else if(b.dataset.m) pick(year,Number(b.dataset.m));
+      else if(b.hasAttribute('data-mp-now')) pick(t.getFullYear(),t.getMonth());
+    });
+    render();
+  });
 }
 
 /* ---------- Reiter: Analyse ---------- */
@@ -1748,6 +1783,7 @@ document.addEventListener('click',e=>{
   if(d.open){ const [k,id]=d.open.split(':'); if(OPEN[k]) OPEN[k](id); return; }
   if(d.filter){ listFilter=d.filter; document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',x===b)); renderList(); return; }
   if(b.hasAttribute('data-search-toggle')){ if(searchOpen||listQuery){ searchOpen=false; listQuery=''; } else searchOpen=true; drawList(); return; }
+  if(b.hasAttribute('data-pick-month')) return monthPickerWin();
   if(d.month){ const x=new Date(listMonth.y,listMonth.m+Number(d.month),1); listMonth={y:x.getFullYear(),m:x.getMonth()}; renderList(); return; }
   if(d.range){ statRange=d.range; statAnchor=today(); draw(); return; }
   if(d.step){ const n=Number(d.step), a=statAnchor;
