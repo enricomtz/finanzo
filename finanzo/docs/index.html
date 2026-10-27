@@ -430,6 +430,10 @@ form.compact .quick{margin:-2px 0 12px}
 .set-list .item{min-height:56px;padding:10px 14px}
 .s-ic{width:34px;height:34px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none}
 .s-ic svg{width:19px;height:19px}
+.nt-msg{margin:4px 0 6px;padding:14px 16px;border-radius:14px;background:var(--soft);color:var(--ink-2);font-weight:600;line-height:1.45}
+.nt-test{margin-top:14px}
+.nt-test svg{width:19px;height:19px}
+input[type=time].input{text-align:start;-webkit-appearance:none;appearance:none;display:block}
 .s-val{color:var(--ink-2);font-weight:600;font-size:15px;max-width:48%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .set-row > svg.chev{color:var(--ink-3);flex:none}
 .set-row.danger .item-name{color:var(--red)}
@@ -540,13 +544,13 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 <script src="lang.js"></script>
 <script>
 "use strict";
-const APP_VERSION='7.8';   // bei jedem Update erhöhen
+const APP_VERSION='7.9';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Sprachen: Alle Texte stehen in Wörterbüchern. Deutsch steht hier, die anderen Sprachen in lang.js.
    tr('schlüssel',{wert}) holt den Text in der gewählten Sprache.
    ===================================================================== */
-/*DE*/const DE={"tab.start":"Start","tab.list":"Buchungen","tab.stats":"Analyse","tab.goals":"Ziele","tab.settings":"Einstellungen","fab":"Eintragen","nav":"Bereiche","cat.essen":"Essen & Trinken","cat.einkauf":"Einkaufen","cat.auto":"Tanken & Auto","cat.freizeit":"Freizeit","cat.kleidung":"Kleidung","cat.technik":"Technik","cat.geschenke":"Geschenke","cat.sonstiges":"Sonstiges","catS.essen":"Essen","catS.einkauf":"Einkaufen","catS.auto":"Auto","catS.freizeit":"Freizeit","catS.kleidung":"Kleidung","catS.technik":"Technik","catS.geschenke":"Geschenke","catS.sonstiges":"Sonstiges","gi.ziel":"Ziel","gi.urlaub":"Urlaub","gi.notgroschen":"Notgroschen","gi.auto":"Auto","gi.fahrrad":"Fahrrad","gi.handy":"Technik","gi.wohnung":"Wohnung","gi.geschenk":"Geschenk","d.today":"Heute","d.yesterday":"Gestern","d.todayL":"heute","d.tomorrowL":"morgen","when.overdue":{"one":"Überfällig seit {n} Tag ({date})","other":"Überfällig seit {n} Tagen ({date})"},"when.today":"Heute ({date})","when.tomorrow":"Morgen ({date})","when.inDays":{"one":"In {n} Tag ({date})","other":"In {n} Tagen ({date})"},"rh.monthly":"Monatlich","rh.quarterly":"Alle 3 Monate","rh.halfyearly":"Alle 6 Monate","rh.yearly":"Jährlich","rhi.monthly":"monatlich","rhi.quarterly":"alle 3 Monate","rhi.halfyearly":"alle 6 Monate","rhi.yearly":"jährlich","migr.cancel":"{name} kündigen","auth.reLogin":"Bitte melde dich neu an.","sync.offline":"Offline: Änderungen kommen ins Konto, sobald du wieder online bist.","sync.saving":"Wird in deinem Konto gespeichert …","sync.ok":"Alles ist in deinem Konto gespeichert.","merge.title":"Welche Daten willst du behalten?","merge.text":"In deinem Konto und auf diesem Gerät sind schon Daten gespeichert. Die anderen werden ersetzt.","merge.account":"Aus dem Konto","merge.device":"Von diesem Gerät","err.offline":"Keine Verbindung zum Internet. Prüfe dein WLAN oder deine mobilen Daten.","err.credentials":"E-Mail oder Passwort ist falsch.","err.notConfirmed":"Bitte bestätige zuerst deine E-Mail. Den Link findest du in deinem Postfach.","err.exists":"Für diese E-Mail gibt es schon ein Konto. Melde dich an.","err.weak":"Das Passwort ist zu schwach. Nimm mindestens 8 Zeichen mit Buchstaben und Zahlen.","err.samePw":"Das neue Passwort muss anders sein als das alte.","err.emailInvalid":"Diese E-Mail-Adresse ist ungültig.","err.rate":"Zu viele Versuche. Bitte warte ein paar Minuten.","err.signupOff":"Neue Konten sind gerade ausgeschaltet.","err.db":"Die Datenbank ist noch nicht fertig eingerichtet (SQL-Schritt in Supabase).","err.generic":"Das hat nicht geklappt. Bitte versuch es nochmal.","auth.subReset":"Wähle ein neues Passwort für dein Konto.","auth.subUp":"Erstelle dein Konto. Dann sind deine Daten sicher gespeichert, auch für ein neues Handy.","auth.subIn":"Melde dich an, um deine Daten zu sehen.","auth.in":"Anmelden","auth.up":"Konto erstellen","auth.name":"Dein Name","auth.namePh":"z. B. Alex","auth.email":"E-Mail","auth.emailPh":"name@beispiel.de","auth.newPw":"Neues Passwort","auth.pw":"Passwort","auth.pwPh":"Dein Passwort","auth.pwMin":"Mindestens 8 Zeichen","auth.pw2":"Passwort wiederholen","auth.savePw":"Passwort speichern","auth.forgot":"Passwort vergessen?","auth.note":"Dein Passwort wird nur verschlüsselt gespeichert. Nur du kannst deine Daten sehen.","busy":"Einen Moment …","auth.needEmail":"Bitte gib deine E-Mail-Adresse ein, zum Beispiel name@beispiel.de.","auth.needPw":"Bitte gib dein Passwort ein.","auth.choosePw":"Bitte wähle ein Passwort.","auth.pwShort":"Das Passwort braucht mindestens 8 Zeichen.","auth.pwMismatch":"Die beiden Passwörter sind nicht gleich.","auth.checkMail":"Fast geschafft: Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und melde dich dann hier an.","toast.created":"Konto erstellt","toast.newPw":"Neues Passwort gespeichert","toast.signedIn":"Angemeldet","auth.forgotNeedEmail":"Gib oben deine E-Mail-Adresse ein. Dann schicken wir dir einen Link.","auth.forgotSent":"Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und wähle ein neues Passwort.","auth.linkExpired":"Der Link ist abgelaufen. Tippe auf „Passwort vergessen?“, dann bekommst du einen neuen.","auth.linkFailed":"Der Link hat nicht geklappt. Bitte versuch es nochmal.","logout.title":"Trotzdem abmelden?","logout.text":"Ein paar Änderungen sind noch nicht in deinem Konto, weil gerade keine Verbindung besteht. Wenn du dich jetzt abmeldest, gehen sie verloren.","logout.ok":"Abmelden","toast.signedOut":"Abgemeldet","delAcc.title":"Konto löschen?","delAcc.text":"Dein Konto und alle Daten darin werden für immer gelöscht. Das kann man nicht rückgängig machen.","delAcc.ok":"Konto löschen","toast.noNet":"Keine Verbindung zum Internet","toast.delFailed":"Löschen hat nicht geklappt","toast.accDeleted":"Konto gelöscht","b.income":"Einnahme","b.contract":"Abo & Vertrag","b.payment":"Zahlung","b.toGoal":"Ins Sparziel gelegt","b.fromGoal":"Aus dem Sparziel genommen","b.abo":"Abo","st.planned":"geplant","st.open":"offen","al.trialTitle":"Probe-Abo: {name}","al.trialText":"Kostenlos bis {date}, danach {amount} {rhythm}. Kündige vorher, wenn du es nicht behalten willst.","al.channel":"Erinnerungen","task.reopenAria":"wieder öffnen","task.doneAria":"als erledigt abhaken","task.doneOn":"Erledigt am {date}","task.done":"Erledigt","start.hello":"Hallo, {name}!","start.helloNo":"Hallo!","start.welcome":"Schön, dass du da bist!","start.money":"Verfügbares Geld","start.noIncome":"Trag dein Gehalt ein. Dann siehst du hier, wie viel Geld du noch ausgeben kannst.","start.addIncome":"Gehalt eintragen","start.payToday":"Heute kommt: {name}","start.payTomorrow":"{name} kommt morgen","start.payIn":{"one":"{name} kommt in {n} Tag","other":"{name} kommt in {n} Tagen"},"start.lastDay":"Letzter Tag im Monat","start.daysLeft":{"one":"Noch {n} Tag im Monat","other":"Noch {n} Tage im Monat"},"start.availPay":"Verfügbar bis zum Gehalt","start.availIn":"Verfügbar im {month}","start.ofIncome":"von {amount} Einnahmen","warn.budget":"Budget überschritten:","warn.ofBudget":"{spent} von {budget}","warn.trial":"Probe-Abo {name}","warn.endsToday":"endet heute.","warn.endsTomorrow":"endet morgen.","warn.endsIn":{"one":"endet in {n} Tag.","other":"endet in {n} Tagen."},"warn.trialAfter":"Danach kostet es {amount}. Kündige vorher, wenn du es nicht willst.","ov.title":"Monatsübersicht","ov.income":"Einnahmen","ov.fixed":"Abos & Verträge","ov.spent":"Ausgaben","ov.pays":"Zahlungen","ov.saved":"Gespart","tasks.title":"Termine","all":"Alle","allN":"Alle {n}","tasks.add":"Termin hinzufügen","tasks.openPay":"Offen zu zahlen:","recent.title":"Letzte Buchungen","recent.empty":"Noch keine Buchungen. Tippe unten rechts auf „Eintragen“.","list.title":"Buchungen","search.close":"Suche schließen","search":"Suchen","search.aria":"Buchungen suchen","f.all":"Alle","f.in":"Einnahmen","f.out":"Ausgaben","n.hits":{"one":"{n} Treffer","other":"{n} Treffer"},"search.none":"Nichts gefunden für „{q}“.","list.noneIn":"Keine Einnahmen im {month}.","list.noneOut":"Keine Ausgaben im {month}.","list.noneAll":"Keine Buchungen im {month}.","month.prev":"Monat zurück","month.pick":"Monat wählen","month.next":"Monat vor","sum.in":"Einnahmen","sum.out":"Ausgaben","mp.title":"Monat wählen","mp.now":"Dieser Monat","g.fixed":"Abos & Verträge","g.pays":"Zahlungen","bud.over":"{amount} über dem Budget","bud.left":"Noch {left} von {budget} übrig","bud.none":"Kein Budget","stats.title":"Analyse","stats.perMonth":"Pro Monat","stats.most":"Meiste Ausgaben","stats.avg":"Ausgaben im Schnitt","stats.in":"Einnahmen","stats.out":"Ausgaben","stats.barAria":"{month}: Einnahmen {i}, Ausgaben {o}","cmp.more":"↑ {amount} mehr ausgegeben als im {month}","cmp.less":"↓ {amount} weniger ausgegeben als im {month}","cmp.same":"Genauso viel ausgegeben wie im {month}","stats.budget":"Budget {amount}","pct":"{n} %","n.entries":{"one":"{n} Eintrag","other":"{n} Einträge"},"stats.saved":"Gespart {amount}","stats.minus":"Minus {amount}","stats.left":"Übrig {amount}","stats.noBooks":"Keine Buchungen in diesem Monat.","stats.setBudgets":"Budgets festlegen ›","cd.none":"Keine Einträge mehr.","tip.past":"Das Datum ist schon vorbei.","tip.today":"Heute noch {amount} sparen","tip.perDay":{"one":"{amount} pro Tag sparen (noch {n} Tag)","other":"{amount} pro Tag sparen (noch {n} Tage)"},"tip.perMonth":"{month} pro Monat · {day} pro Tag","goal.savedOf":"{saved} von {target} gespart","goal.done":"Geschafft!","goal.rest":"Noch {amount}","goal.target":"Ziel: {date}","goal.deposit":"Geld einzahlen","goals.title":"Sparziele","goals.add":"Sparziel hinzufügen","goals.total":"Gespart insgesamt: {amount}","goals.empty":"Noch keine Sparziele","back.stats":"Analyse","back.start":"Start","inc.title":"Einnahmen","inc.perMonth":"Bekommst du im Monat","inc.every":"Jeden Monat","inc.inMonth":"im Monat","inc.add":"Einnahme hinzufügen","abo.trialUntil":"Probe-Abo: gratis bis {date}","abo.after":"Danach {amount} {rhythm}","abo.free":"Gratis","abo.left":{"one":"noch {n} Tag","other":"noch {n} Tage"},"abo.next":"Nächste Abbuchung: {date}","abo.save":"Kündigen spart {amount} im Jahr","abo.title":"Abos & Verträge","abo.add":"Abo oder Vertrag hinzufügen","tasks.page":"Termine & Erinnerungen","tasks.open":"Offen","tasks.toPay":"{amount} zu zahlen","tasks.done":"Erledigt","tasks.none":"Keine Termine","tasks.noneText":"Trag ein, was du nicht vergessen darfst, zum Beispiel eine Rechnung oder eine Kündigung. Finanzo erinnert dich.","bud.title":"Budgets","bud.intro":"Leg fest, wie viel du im Monat pro Kategorie höchstens ausgeben willst. Tipp dazu auf eine Kategorie.","bud.spentIn":"Ausgegeben im {month}","close":"Schließen","cancel":"Abbrechen","remind.label":"Wann erinnern?","remind.aria":"Datum der Erinnerung","save":"Speichern","delete":"Löschen","delQ":"Löschen?","delText":"„{name}“ wird gelöscht.","toast.saved":"Gespeichert","toast.deleted":"Gelöscht","what":"Was?","name":"Name","amount":"Betrag","err.amountEx":"Bitte gib einen Betrag ein, zum Beispiel {ex}.","err.date":"Bitte wähle ein Datum.","inc.edit":"Einnahme ändern","inc.new":"Neue Einnahme","inc.namePh":"z. B. Gehalt","inc.amount":"Wie viel bekommst du im Monat?","inc.hint":"Der Betrag, der wirklich auf deinem Konto ankommt.","inc.delete":"Einnahme löschen","inc.errName":"Bitte gib ein, was es ist, zum Beispiel „Gehalt“.","inc.delQ":"Einnahme löschen?","q.salary":"Gehalt","q.sidejob":"Nebenjob","q.childben":"Kindergeld","q.other":"Sonstiges","abo.edit":"Abo ändern","abo.new":"Neues Abo oder Vertrag","abo.namePh":"z. B. Handyvertrag","q.phone":"Handyvertrag","q.gym":"Fitnessstudio","q.insurance":"Versicherung","abo.how":"Wie oft wird abgebucht?","abo.trial":"Kostenloses Probe-Abo","abo.freeUntil":"Kostenlos bis","abo.trialHint":"Finanzo erinnert dich 3 Tage vorher, damit du rechtzeitig kündigen kannst.","abo.nextDate":"Nächste Abbuchung","abo.errName":"Bitte gib einen Namen ein.","abo.errTrialAmount":"Bitte gib ein, was es nach dem Probe-Abo kostet, zum Beispiel {ex}.","abo.errTrialEnd":"Bitte wähle, bis wann das Probe-Abo kostenlos ist.","abo.errNext":"Bitte wähle das Datum der nächsten Abbuchung.","exp.whatIs":"Was ist es?","exp.whatFor":"Wofür genau?","exp.note":"Notiz","exp.editIn":"Einnahme ändern","exp.editOut":"Ausgabe ändern","exp.new":"Neue Buchung","exp.out":"Ausgabe","exp.in":"Einnahme","exp.howMuch":"Wie viel?","exp.for":"Wofür?","exp.date":"Datum","q.gift":"Geschenk","q.refund":"Rückzahlung","q.sale":"Verkauf","q.tip":"Trinkgeld","exp.delIn":"Einnahme löschen","exp.delOut":"Ausgabe löschen","exp.delInQ":"Einnahme löschen?","exp.delOutQ":"Ausgabe löschen?","exp.delText":"Die Buchung wird gelöscht.","toast.budgetOver":"Gespeichert. Budget für {cat} überschritten!","toast.budgetLeft":"Gespeichert. Noch {amount} im Budget für {cat}.","bud.set":"Budget festlegen","bud.for":"Budget: {cat}","bud.which":"Für welche Kategorie?","bud.already":"Im {month} schon ausgegeben: {amount}","bud.max":"Höchstens pro Monat","bud.remove":"Budget entfernen","toast.budSaved":"Budget für {cat} gespeichert","toast.budRemoved":"Budget entfernt","task.edit":"Termin ändern","task.new":"Neuer Termin","task.titlePh":"z. B. Strafzettel bezahlen","task.when":"Wann?","task.pay":"Muss ich etwas bezahlen?","task.reopen":"Wieder öffnen","task.errTitle":"Bitte gib ein, worum es geht.","task.errAmount":"Bitte gib den Betrag ein, zum Beispiel {ex}.","task.errRemind":"Bitte wähle, wann du erinnert werden willst.","task.errRemindAfter":"Die Erinnerung muss vor dem Termin oder am selben Tag sein.","task.delQ":"Termin löschen?","toast.paid":"Als bezahlt abgehakt","toast.done":"Erledigt","toast.reopened":"Wieder offen","goal.edit":"Sparziel ändern","goal.new":"Neues Sparziel","goal.for":"Wofür sparst du?","goal.namePh":"z. B. Urlaub","q.car":"Auto","q.vacation":"Urlaub","q.emergency":"Notgroschen","q.phone2":"Handy","goal.icon":"Symbol","goal.need":"Wie viel brauchst du?","goal.have":"Hast du schon etwas gespart?","goal.untilLbl":"Bis wann?","goal.untilHint":"Mit Datum rechnet Finanzo aus, wie viel du pro Tag oder pro Monat sparen musst.","goal.delete":"Sparziel löschen","goal.errName":"Bitte gib ein, wofür du sparst.","goal.errTarget":"Bitte gib ein, wie viel du brauchst, zum Beispiel {ex}.","goal.errStart":"Bitte gib eine Zahl ein, zum Beispiel 0 oder {ex}.","goal.delQ":"Sparziel löschen?","dep.saved":"Gespart: {saved} von {target}","dep.hint":"Eingezahltes Geld zählt auf der Startseite als „Gespart“ und ist nicht mehr zum Ausgeben übrig.","dep.out":"Rausnehmen","dep.in":"Einzahlen","dep.errOnly":"Du hast hier nur {amount} gespart.","toast.goalDone":"Geschafft! Ziel erreicht.","toast.depIn":"{amount} eingezahlt","toast.depOut":"{amount} rausgenommen","pw.title":"Passwort ändern","pw.current":"Aktuelles Passwort","pw.new":"Neues Passwort","pw.new2":"Neues Passwort wiederholen","pw.forgot":"Aktuelles Passwort vergessen?","pw.needOld":"Bitte gib dein aktuelles Passwort ein.","pw.short":"Das neue Passwort braucht mindestens 8 Zeichen.","pw.mismatch":"Die beiden neuen Passwörter sind nicht gleich.","pw.wrongOld":"Das aktuelle Passwort stimmt nicht.","pw.mailSent":"Wir haben dir eine E-Mail an {email} geschickt. Tippe auf den Link darin und wähle ein neues Passwort.","cur.title":"Währung","cur.searchPh":"Suchen, z. B. Dollar oder USD","cur.note":"Die Beträge werden dabei nicht umgerechnet, nur das Zeichen ändert sich.","cur.popular":"Häufig","cur.all":"Alle Währungen","cur.none":"Keine Währung gefunden.","toast.cur":"Währung: {name}","set.title":"Einstellungen","set.general":"Allgemein","set.yourName":"Dein Name","set.addName":"Name hinzufügen","set.lang":"Sprache","set.cur":"Währung","set.theme":"Aussehen","theme.light":"Hell","theme.dark":"Dunkel","theme.system":"System","theme.systemSub":"Wie bei deinem Handy","set.account":"Konto","set.pw":"Passwort ändern","set.logout":"Abmelden","set.delete":"Konto löschen","set.version":"Finanzo Version {v}","lang.auto":"Automatisch","lang.autoSub":"Sprache deines Handys: {name}","lang.searchPh":"Sprache suchen","lang.none":"Keine Sprache gefunden.","toast.lang":"Sprache: {name}","name.placeholder":"Dein Vorname","prof.title":"Profil","prof.email":"E-Mail-Adresse","prof.change":"Ändern","mail.title":"E-Mail ändern","mail.current":"Aktuell: {email}","mail.new":"Neue E-Mail-Adresse","mail.save":"E-Mail speichern","mail.same":"Das ist schon deine E-Mail-Adresse.","mail.taken":"Diese E-Mail-Adresse wird schon von einem anderen Konto benutzt.","mail.confirm":"Fast geschafft: Wir haben dir eine E-Mail an {email} geschickt. Tippe auf den Link darin, dann gilt die neue Adresse.","toast.mailChanged":"E-Mail-Adresse geändert"};/*/DE*/
+/*DE*/const DE={"tab.start":"Start","tab.list":"Buchungen","tab.stats":"Analyse","tab.goals":"Ziele","tab.settings":"Einstellungen","fab":"Eintragen","nav":"Bereiche","cat.essen":"Essen & Trinken","cat.einkauf":"Einkaufen","cat.auto":"Tanken & Auto","cat.freizeit":"Freizeit","cat.kleidung":"Kleidung","cat.technik":"Technik","cat.geschenke":"Geschenke","cat.sonstiges":"Sonstiges","catS.essen":"Essen","catS.einkauf":"Einkaufen","catS.auto":"Auto","catS.freizeit":"Freizeit","catS.kleidung":"Kleidung","catS.technik":"Technik","catS.geschenke":"Geschenke","catS.sonstiges":"Sonstiges","gi.ziel":"Ziel","gi.urlaub":"Urlaub","gi.notgroschen":"Notgroschen","gi.auto":"Auto","gi.fahrrad":"Fahrrad","gi.handy":"Technik","gi.wohnung":"Wohnung","gi.geschenk":"Geschenk","d.today":"Heute","d.yesterday":"Gestern","d.todayL":"heute","d.tomorrowL":"morgen","when.overdue":{"one":"Überfällig seit {n} Tag ({date})","other":"Überfällig seit {n} Tagen ({date})"},"when.today":"Heute ({date})","when.tomorrow":"Morgen ({date})","when.inDays":{"one":"In {n} Tag ({date})","other":"In {n} Tagen ({date})"},"rh.monthly":"Monatlich","rh.quarterly":"Alle 3 Monate","rh.halfyearly":"Alle 6 Monate","rh.yearly":"Jährlich","rhi.monthly":"monatlich","rhi.quarterly":"alle 3 Monate","rhi.halfyearly":"alle 6 Monate","rhi.yearly":"jährlich","migr.cancel":"{name} kündigen","auth.reLogin":"Bitte melde dich neu an.","sync.offline":"Offline: Änderungen kommen ins Konto, sobald du wieder online bist.","sync.saving":"Wird in deinem Konto gespeichert …","sync.ok":"Alles ist in deinem Konto gespeichert.","merge.title":"Welche Daten willst du behalten?","merge.text":"In deinem Konto und auf diesem Gerät sind schon Daten gespeichert. Die anderen werden ersetzt.","merge.account":"Aus dem Konto","merge.device":"Von diesem Gerät","err.offline":"Keine Verbindung zum Internet. Prüfe dein WLAN oder deine mobilen Daten.","err.credentials":"E-Mail oder Passwort ist falsch.","err.notConfirmed":"Bitte bestätige zuerst deine E-Mail. Den Link findest du in deinem Postfach.","err.exists":"Für diese E-Mail gibt es schon ein Konto. Melde dich an.","err.weak":"Das Passwort ist zu schwach. Nimm mindestens 8 Zeichen mit Buchstaben und Zahlen.","err.samePw":"Das neue Passwort muss anders sein als das alte.","err.emailInvalid":"Diese E-Mail-Adresse ist ungültig.","err.rate":"Zu viele Versuche. Bitte warte ein paar Minuten.","err.signupOff":"Neue Konten sind gerade ausgeschaltet.","err.db":"Die Datenbank ist noch nicht fertig eingerichtet (SQL-Schritt in Supabase).","err.generic":"Das hat nicht geklappt. Bitte versuch es nochmal.","auth.subReset":"Wähle ein neues Passwort für dein Konto.","auth.subUp":"Erstelle dein Konto. Dann sind deine Daten sicher gespeichert, auch für ein neues Handy.","auth.subIn":"Melde dich an, um deine Daten zu sehen.","auth.in":"Anmelden","auth.up":"Konto erstellen","auth.name":"Dein Name","auth.namePh":"z. B. Alex","auth.email":"E-Mail","auth.emailPh":"name@beispiel.de","auth.newPw":"Neues Passwort","auth.pw":"Passwort","auth.pwPh":"Dein Passwort","auth.pwMin":"Mindestens 8 Zeichen","auth.pw2":"Passwort wiederholen","auth.savePw":"Passwort speichern","auth.forgot":"Passwort vergessen?","auth.note":"Dein Passwort wird nur verschlüsselt gespeichert. Nur du kannst deine Daten sehen.","busy":"Einen Moment …","auth.needEmail":"Bitte gib deine E-Mail-Adresse ein, zum Beispiel name@beispiel.de.","auth.needPw":"Bitte gib dein Passwort ein.","auth.choosePw":"Bitte wähle ein Passwort.","auth.pwShort":"Das Passwort braucht mindestens 8 Zeichen.","auth.pwMismatch":"Die beiden Passwörter sind nicht gleich.","auth.checkMail":"Fast geschafft: Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und melde dich dann hier an.","toast.created":"Konto erstellt","toast.newPw":"Neues Passwort gespeichert","toast.signedIn":"Angemeldet","auth.forgotNeedEmail":"Gib oben deine E-Mail-Adresse ein. Dann schicken wir dir einen Link.","auth.forgotSent":"Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und wähle ein neues Passwort.","auth.linkExpired":"Der Link ist abgelaufen. Tippe auf „Passwort vergessen?“, dann bekommst du einen neuen.","auth.linkFailed":"Der Link hat nicht geklappt. Bitte versuch es nochmal.","logout.title":"Trotzdem abmelden?","logout.text":"Ein paar Änderungen sind noch nicht in deinem Konto, weil gerade keine Verbindung besteht. Wenn du dich jetzt abmeldest, gehen sie verloren.","logout.ok":"Abmelden","toast.signedOut":"Abgemeldet","delAcc.title":"Konto löschen?","delAcc.text":"Dein Konto und alle Daten darin werden für immer gelöscht. Das kann man nicht rückgängig machen.","delAcc.ok":"Konto löschen","toast.noNet":"Keine Verbindung zum Internet","toast.delFailed":"Löschen hat nicht geklappt","toast.accDeleted":"Konto gelöscht","b.income":"Einnahme","b.contract":"Abo & Vertrag","b.payment":"Zahlung","b.toGoal":"Ins Sparziel gelegt","b.fromGoal":"Aus dem Sparziel genommen","b.abo":"Abo","st.planned":"geplant","st.open":"offen","al.trialTitle":"Probe-Abo: {name}","al.trialText":"Kostenlos bis {date}, danach {amount} {rhythm}. Kündige vorher, wenn du es nicht behalten willst.","al.channel":"Erinnerungen","task.reopenAria":"wieder öffnen","task.doneAria":"als erledigt abhaken","task.doneOn":"Erledigt am {date}","task.done":"Erledigt","start.hello":"Hallo, {name}!","start.helloNo":"Hallo!","start.welcome":"Schön, dass du da bist!","start.money":"Verfügbares Geld","start.noIncome":"Trag dein Gehalt ein. Dann siehst du hier, wie viel Geld du noch ausgeben kannst.","start.addIncome":"Gehalt eintragen","start.payToday":"Heute kommt: {name}","start.payTomorrow":"{name} kommt morgen","start.payIn":{"one":"{name} kommt in {n} Tag","other":"{name} kommt in {n} Tagen"},"start.lastDay":"Letzter Tag im Monat","start.daysLeft":{"one":"Noch {n} Tag im Monat","other":"Noch {n} Tage im Monat"},"start.availPay":"Verfügbar bis zum Gehalt","start.availIn":"Verfügbar im {month}","start.ofIncome":"von {amount} Einnahmen","warn.budget":"Budget überschritten:","warn.ofBudget":"{spent} von {budget}","warn.trial":"Probe-Abo {name}","warn.endsToday":"endet heute.","warn.endsTomorrow":"endet morgen.","warn.endsIn":{"one":"endet in {n} Tag.","other":"endet in {n} Tagen."},"warn.trialAfter":"Danach kostet es {amount}. Kündige vorher, wenn du es nicht willst.","ov.title":"Monatsübersicht","ov.income":"Einnahmen","ov.fixed":"Abos & Verträge","ov.spent":"Ausgaben","ov.pays":"Zahlungen","ov.saved":"Gespart","tasks.title":"Termine","all":"Alle","allN":"Alle {n}","tasks.add":"Termin hinzufügen","tasks.openPay":"Offen zu zahlen:","recent.title":"Letzte Buchungen","recent.empty":"Noch keine Buchungen. Tippe unten rechts auf „Eintragen“.","list.title":"Buchungen","search.close":"Suche schließen","search":"Suchen","search.aria":"Buchungen suchen","f.all":"Alle","f.in":"Einnahmen","f.out":"Ausgaben","n.hits":{"one":"{n} Treffer","other":"{n} Treffer"},"search.none":"Nichts gefunden für „{q}“.","list.noneIn":"Keine Einnahmen im {month}.","list.noneOut":"Keine Ausgaben im {month}.","list.noneAll":"Keine Buchungen im {month}.","month.prev":"Monat zurück","month.pick":"Monat wählen","month.next":"Monat vor","sum.in":"Einnahmen","sum.out":"Ausgaben","mp.title":"Monat wählen","mp.now":"Dieser Monat","g.fixed":"Abos & Verträge","g.pays":"Zahlungen","bud.over":"{amount} über dem Budget","bud.left":"Noch {left} von {budget} übrig","bud.none":"Kein Budget","stats.title":"Analyse","stats.perMonth":"Pro Monat","stats.most":"Meiste Ausgaben","stats.avg":"Ausgaben im Schnitt","stats.in":"Einnahmen","stats.out":"Ausgaben","stats.barAria":"{month}: Einnahmen {i}, Ausgaben {o}","cmp.more":"↑ {amount} mehr ausgegeben als im {month}","cmp.less":"↓ {amount} weniger ausgegeben als im {month}","cmp.same":"Genauso viel ausgegeben wie im {month}","stats.budget":"Budget {amount}","pct":"{n} %","n.entries":{"one":"{n} Eintrag","other":"{n} Einträge"},"stats.saved":"Gespart {amount}","stats.minus":"Minus {amount}","stats.left":"Übrig {amount}","stats.noBooks":"Keine Buchungen in diesem Monat.","stats.setBudgets":"Budgets festlegen ›","cd.none":"Keine Einträge mehr.","tip.past":"Das Datum ist schon vorbei.","tip.today":"Heute noch {amount} sparen","tip.perDay":{"one":"{amount} pro Tag sparen (noch {n} Tag)","other":"{amount} pro Tag sparen (noch {n} Tage)"},"tip.perMonth":"{month} pro Monat · {day} pro Tag","goal.savedOf":"{saved} von {target} gespart","goal.done":"Geschafft!","goal.rest":"Noch {amount}","goal.target":"Ziel: {date}","goal.deposit":"Geld einzahlen","goals.title":"Sparziele","goals.add":"Sparziel hinzufügen","goals.total":"Gespart insgesamt: {amount}","goals.empty":"Noch keine Sparziele","back.stats":"Analyse","back.start":"Start","inc.title":"Einnahmen","inc.perMonth":"Bekommst du im Monat","inc.every":"Jeden Monat","inc.inMonth":"im Monat","inc.add":"Einnahme hinzufügen","abo.trialUntil":"Probe-Abo: gratis bis {date}","abo.after":"Danach {amount} {rhythm}","abo.free":"Gratis","abo.left":{"one":"noch {n} Tag","other":"noch {n} Tage"},"abo.next":"Nächste Abbuchung: {date}","abo.save":"Kündigen spart {amount} im Jahr","abo.title":"Abos & Verträge","abo.add":"Abo oder Vertrag hinzufügen","tasks.page":"Termine & Erinnerungen","tasks.open":"Offen","tasks.toPay":"{amount} zu zahlen","tasks.done":"Erledigt","tasks.none":"Keine Termine","tasks.noneText":"Trag ein, was du nicht vergessen darfst, zum Beispiel eine Rechnung oder eine Kündigung. Finanzo erinnert dich.","bud.title":"Budgets","bud.intro":"Leg fest, wie viel du im Monat pro Kategorie höchstens ausgeben willst. Tipp dazu auf eine Kategorie.","bud.spentIn":"Ausgegeben im {month}","close":"Schließen","cancel":"Abbrechen","remind.label":"Wann erinnern?","remind.aria":"Datum der Erinnerung","save":"Speichern","delete":"Löschen","delQ":"Löschen?","delText":"„{name}“ wird gelöscht.","toast.saved":"Gespeichert","toast.deleted":"Gelöscht","what":"Was?","name":"Name","amount":"Betrag","err.amountEx":"Bitte gib einen Betrag ein, zum Beispiel {ex}.","err.date":"Bitte wähle ein Datum.","inc.edit":"Einnahme ändern","inc.new":"Neue Einnahme","inc.namePh":"z. B. Gehalt","inc.amount":"Wie viel bekommst du im Monat?","inc.hint":"Der Betrag, der wirklich auf deinem Konto ankommt.","inc.delete":"Einnahme löschen","inc.errName":"Bitte gib ein, was es ist, zum Beispiel „Gehalt“.","inc.delQ":"Einnahme löschen?","q.salary":"Gehalt","q.sidejob":"Nebenjob","q.childben":"Kindergeld","q.other":"Sonstiges","abo.edit":"Abo ändern","abo.new":"Neues Abo oder Vertrag","abo.namePh":"z. B. Handyvertrag","q.phone":"Handyvertrag","q.gym":"Fitnessstudio","q.insurance":"Versicherung","abo.how":"Wie oft wird abgebucht?","abo.trial":"Kostenloses Probe-Abo","abo.freeUntil":"Kostenlos bis","abo.trialHint":"Finanzo erinnert dich 3 Tage vorher, damit du rechtzeitig kündigen kannst.","abo.nextDate":"Nächste Abbuchung","abo.errName":"Bitte gib einen Namen ein.","abo.errTrialAmount":"Bitte gib ein, was es nach dem Probe-Abo kostet, zum Beispiel {ex}.","abo.errTrialEnd":"Bitte wähle, bis wann das Probe-Abo kostenlos ist.","abo.errNext":"Bitte wähle das Datum der nächsten Abbuchung.","exp.whatIs":"Was ist es?","exp.whatFor":"Wofür genau?","exp.note":"Notiz","exp.editIn":"Einnahme ändern","exp.editOut":"Ausgabe ändern","exp.new":"Neue Buchung","exp.out":"Ausgabe","exp.in":"Einnahme","exp.howMuch":"Wie viel?","exp.for":"Wofür?","exp.date":"Datum","q.gift":"Geschenk","q.refund":"Rückzahlung","q.sale":"Verkauf","q.tip":"Trinkgeld","exp.delIn":"Einnahme löschen","exp.delOut":"Ausgabe löschen","exp.delInQ":"Einnahme löschen?","exp.delOutQ":"Ausgabe löschen?","exp.delText":"Die Buchung wird gelöscht.","toast.budgetOver":"Gespeichert. Budget für {cat} überschritten!","toast.budgetLeft":"Gespeichert. Noch {amount} im Budget für {cat}.","bud.set":"Budget festlegen","bud.for":"Budget: {cat}","bud.which":"Für welche Kategorie?","bud.already":"Im {month} schon ausgegeben: {amount}","bud.max":"Höchstens pro Monat","bud.remove":"Budget entfernen","toast.budSaved":"Budget für {cat} gespeichert","toast.budRemoved":"Budget entfernt","task.edit":"Termin ändern","task.new":"Neuer Termin","task.titlePh":"z. B. Strafzettel bezahlen","task.when":"Wann?","task.pay":"Muss ich etwas bezahlen?","task.reopen":"Wieder öffnen","task.errTitle":"Bitte gib ein, worum es geht.","task.errAmount":"Bitte gib den Betrag ein, zum Beispiel {ex}.","task.errRemind":"Bitte wähle, wann du erinnert werden willst.","task.errRemindAfter":"Die Erinnerung muss vor dem Termin oder am selben Tag sein.","task.delQ":"Termin löschen?","toast.paid":"Als bezahlt abgehakt","toast.done":"Erledigt","toast.reopened":"Wieder offen","goal.edit":"Sparziel ändern","goal.new":"Neues Sparziel","goal.for":"Wofür sparst du?","goal.namePh":"z. B. Urlaub","q.car":"Auto","q.vacation":"Urlaub","q.emergency":"Notgroschen","q.phone2":"Handy","goal.icon":"Symbol","goal.need":"Wie viel brauchst du?","goal.have":"Hast du schon etwas gespart?","goal.untilLbl":"Bis wann?","goal.untilHint":"Mit Datum rechnet Finanzo aus, wie viel du pro Tag oder pro Monat sparen musst.","goal.delete":"Sparziel löschen","goal.errName":"Bitte gib ein, wofür du sparst.","goal.errTarget":"Bitte gib ein, wie viel du brauchst, zum Beispiel {ex}.","goal.errStart":"Bitte gib eine Zahl ein, zum Beispiel 0 oder {ex}.","goal.delQ":"Sparziel löschen?","dep.saved":"Gespart: {saved} von {target}","dep.hint":"Eingezahltes Geld zählt auf der Startseite als „Gespart“ und ist nicht mehr zum Ausgeben übrig.","dep.out":"Rausnehmen","dep.in":"Einzahlen","dep.errOnly":"Du hast hier nur {amount} gespart.","toast.goalDone":"Geschafft! Ziel erreicht.","toast.depIn":"{amount} eingezahlt","toast.depOut":"{amount} rausgenommen","pw.title":"Passwort ändern","pw.current":"Aktuelles Passwort","pw.new":"Neues Passwort","pw.new2":"Neues Passwort wiederholen","pw.forgot":"Aktuelles Passwort vergessen?","pw.needOld":"Bitte gib dein aktuelles Passwort ein.","pw.short":"Das neue Passwort braucht mindestens 8 Zeichen.","pw.mismatch":"Die beiden neuen Passwörter sind nicht gleich.","pw.wrongOld":"Das aktuelle Passwort stimmt nicht.","pw.mailSent":"Wir haben dir eine E-Mail an {email} geschickt. Tippe auf den Link darin und wähle ein neues Passwort.","cur.title":"Währung","cur.searchPh":"Suchen, z. B. Dollar oder USD","cur.note":"Die Beträge werden dabei nicht umgerechnet, nur das Zeichen ändert sich.","cur.popular":"Häufig","cur.all":"Alle Währungen","cur.none":"Keine Währung gefunden.","toast.cur":"Währung: {name}","set.title":"Einstellungen","set.general":"Allgemein","set.yourName":"Dein Name","set.addName":"Name hinzufügen","set.lang":"Sprache","set.cur":"Währung","set.theme":"Aussehen","theme.light":"Hell","theme.dark":"Dunkel","theme.system":"System","theme.systemSub":"Wie bei deinem Handy","set.account":"Konto","set.pw":"Passwort ändern","set.logout":"Abmelden","set.delete":"Konto löschen","set.version":"Finanzo Version {v}","lang.auto":"Automatisch","lang.autoSub":"Sprache deines Handys: {name}","lang.searchPh":"Sprache suchen","lang.none":"Keine Sprache gefunden.","toast.lang":"Sprache: {name}","name.placeholder":"Dein Vorname","prof.title":"Profil","prof.email":"E-Mail-Adresse","prof.change":"Ändern","mail.title":"E-Mail ändern","mail.current":"Aktuell: {email}","mail.new":"Neue E-Mail-Adresse","mail.save":"E-Mail speichern","mail.same":"Das ist schon deine E-Mail-Adresse.","mail.taken":"Diese E-Mail-Adresse wird schon von einem anderen Konto benutzt.","mail.confirm":"Fast geschafft: Wir haben dir eine E-Mail an {email} geschickt. Tippe auf den Link darin, dann gilt die neue Adresse.","toast.mailChanged":"E-Mail-Adresse geändert","set.notify":"Mitteilungen","nt.title":"Mitteilungen","nt.on":"An","nt.off":"Aus","nt.intro":"Finanzo erinnert dich an Termine, Zahlungen und das Ende von Probe-Abos – auch wenn die App zu ist.","nt.switch":"Mitteilungen auf diesem Gerät","nt.time":"Uhrzeit","nt.when":"Du bekommst eine Mitteilung am Erinnerungstag und am Tag selbst.","nt.test":"Test-Mitteilung schicken","nt.testBody":"So sehen deine Erinnerungen aus. Alles funktioniert!","nt.testSent":"Die Test-Mitteilung kommt in spätestens einer Minute.","nt.homescreen":"Auf dem iPhone gehen Mitteilungen nur, wenn du Finanzo über das Symbol auf deinem Home-Bildschirm öffnest.","nt.unsupported":"Auf diesem Gerät kann Finanzo leider keine Mitteilungen schicken.","nt.deniedIos":"Mitteilungen sind für Finanzo verboten. Du kannst sie in den iPhone-Einstellungen unter Mitteilungen › Finanzo wieder erlauben.","nt.denied":"Mitteilungen sind für Finanzo verboten. Du kannst sie in den Einstellungen deines Browsers wieder erlauben.","nt.notReady":"Mitteilungen sind noch nicht fertig eingerichtet. Versuch es in ein paar Minuten nochmal.","nt.dismissed":"Du hast noch nichts ausgewählt. Tippe nochmal und wähle „Erlauben“.","toast.ntOn":"Mitteilungen eingeschaltet","toast.ntOff":"Mitteilungen ausgeschaltet","nt.timeSaved":"Mitteilungen um {time}"};/*/DE*/
 const LANGS=[['de','Deutsch'],['en','English'],['es','Español'],['fr','Français'],['it','Italiano'],['pt','Português'],['nl','Nederlands'],['pl','Polski'],
   ['tr','Türkçe'],['ru','Русский'],['uk','Українська'],['ar','العربية'],['hi','हिन्दी'],['bn','বাংলা'],['ur','اردو'],['zh','中文'],['ja','日本語'],['ko','한국어'],
   ['id','Bahasa Indonesia'],['vi','Tiếng Việt']];
@@ -736,8 +740,8 @@ function parseMoney(s){
 }
 const moneyInput=n=>n?fmtIn.format(Number(n)):'';
 // „Heute“, „Morgen“, „In 3 Tagen“, „Überfällig seit 2 Tagen“ (jeweils mit Datum)
-function whenText(iso){
-  const d=fromISO(iso), n=daysBetween(today(),d), date=shortDate(d);
+function whenText(iso,ref){
+  const d=fromISO(iso), n=daysBetween(ref||today(),d), date=shortDate(d);
   if(n<0) return tr('when.overdue',{n:-n,date});
   if(n===0) return tr('when.today',{date});
   if(n===1) return tr('when.tomorrow',{date});
@@ -765,7 +769,7 @@ function remindDefault(dateISO,daysBefore,notPast=true){
   return toISO(c);
 }
 const empty=()=>({version:11,updatedAt:0,owner:'',incomes:[],contracts:[],tasks:[],expenses:[],budgets:{},goals:[],
-  settings:{theme:'system',currency:'EUR',name:'',lastBackup:'',lang:'auto'}});
+  settings:{theme:'system',currency:'EUR',name:'',lastBackup:'',lang:'auto',notifyTime:'09:00',push:false}});
 function freeColor(list){const used=list.map(c=>c.color);for(let i=0;i<COLORS.length;i++)if(!used.includes(i))return i;return list.length%COLORS.length;}
 const mkTask=o=>({id:o.id||uid(),title:String(o.title||'').slice(0,60),date:o.date,amount:Number(o.amount)>0?round2(o.amount):0,
   note:String(o.note||'').slice(0,300),remindOn:isISO(o.remindOn)?o.remindOn:remindDefault(o.date,3,false),
@@ -781,6 +785,8 @@ function clean(raw){
     name:typeof st.name==='string'?st.name.trim().slice(0,30):'',
     lastBackup:isISO(st.lastBackup)?st.lastBackup:'',
     lang:LANGS.some(l=>l[0]===st.lang)?st.lang:'auto',
+    notifyTime:/^([01]\d|2[0-3]):[0-5]\d$/.test(st.notifyTime)?st.notifyTime:'09:00',
+    push:st.push===true,
   };
   for(const i of arr('incomes')){
     if(!i||!i.name||!(i.amount>0)) continue;
@@ -923,7 +929,7 @@ async function push(){
     await sbUser('/rest/v1/finanzo_data?on_conflict=user_id',{method:'POST',prefer:'resolution=merge-duplicates,return=minimal',
       body:{user_id:session.user.id,data,updated_at:new Date(ts).toISOString()}});
     if((data.updatedAt||0)<=ts) store.del(DIRTY_KEY);
-    updateSyncInfo(); return true;
+    updateSyncInfo(); pushJobsSoon(); return true;
   }catch(e){ syncError(e); return false; }
 }
 function applyRemote(raw,ts){
@@ -1087,6 +1093,7 @@ async function logout(){
     const ok=await ask(tr('logout.title'),tr('logout.text'),tr('logout.ok'));
     if(!ok) return;
   }
+  await pushForget();
   const tok=session&&session.access_token;
   saveSession(null); clearLocal(); showAuth('in'); toast(tr('toast.signedOut'));
   if(tok) sbFetch('/auth/v1/logout',{method:'POST',token:tok}).catch(()=>{});
@@ -1095,6 +1102,7 @@ async function deleteAccount(){
   if(!await ask(tr('delAcc.title'),tr('delAcc.text'),tr('delAcc.ok'))) return;
   try{ await sbUser('/rest/v1/rpc/delete_my_account',{method:'POST',body:{}}); }
   catch(e){ closeWin(1); toast(e.offline?tr('toast.noNet'):tr('toast.delFailed')); return; }
+  store.del(PUSH_ON); store.del(PUSH_SIG);
   saveSession(null); clearLocal(); showAuth('in'); toast(tr('toast.accDeleted'));
 }
 function clearLocal(){
@@ -1238,11 +1246,13 @@ function bookings(from,to){
    Erinnerungen und Nachrichten
    ===================================================================== */
 const remindDay=a=>fromISO(a.remindOn);
-const notifyAt=a=>{const d=remindDay(a);return new Date(d.getFullYear(),d.getMonth(),d.getDate(),NOTIFY_HOUR,0,0);};
+const notifyHM=()=>{ const m=/^(\d\d):(\d\d)$/.exec(data.settings.notifyTime||''); return m?[+m[1],+m[2]]:[NOTIFY_HOUR,0]; };
+const atNotifyTime=d=>{ const [hh,mm]=notifyHM(); return new Date(d.getFullYear(),d.getMonth(),d.getDate(),hh,mm,0); };
+const notifyAt=a=>atNotifyTime(remindDay(a));
 function alerts(){
   return [
-    ...data.tasks.filter(x=>!x.done).map(x=>({id:x.id,ref:x,title:x.title,remindOn:x.remindOn,due:today()>=remindDay(x),
-      text:()=>(x.amount?`${eur(x.amount)} – `:'')+whenText(x.date)+(x.note?` – ${x.note}`:'')})),
+    ...data.tasks.filter(x=>!x.done).map(x=>({id:x.id,ref:x,title:x.title,remindOn:x.remindOn,date:x.date,due:today()>=remindDay(x),
+      text:ref=>(x.amount?`${eur(x.amount)} – `:'')+whenText(x.date,ref)+(x.note?` – ${x.note}`:'')})),
     ...data.contracts.filter(inTrial).map(c=>({id:c.id+'-probe',ref:c,title:tr('al.trialTitle',{name:c.name}),remindOn:remindDefault(c.trialEnd,3),
       due:today()>=addDays(fromISO(c.trialEnd),-3),
       text:()=>tr('al.trialText',{date:shortDate(fromISO(c.trialEnd)),amount:eur(c.amount),rhythm:RHYTHM[c.rhythm].inline})})),
@@ -1275,7 +1285,7 @@ async function syncNotifications(ask){
   showDueNotifications();
 }
 function showDueNotifications(){
-  if(nativeLN()||isIOS||!('Notification' in window)) return;
+  if(nativeLN()||isIOS||!('Notification' in window)||pushOn()) return;
   let perm; try{ perm=Notification.permission; }catch(e){ return; }
   if(perm!=='granted') return;
   const t=toISO(today()); let changed=false;
@@ -1284,6 +1294,88 @@ function showDueNotifications(){
     try{ new Notification(a.title,{body:a.text(),tag:a.id}); a.ref.notified=t; changed=true; }catch(e){}
   }
   if(changed) save();
+}
+
+/* ---------- Mitteilungen, auch wenn Finanzo zu ist (Web Push über Supabase) ----------
+   Die App trägt geplante Mitteilungen in Supabase ein. Dort wird jede Minute nachgesehen,
+   was fällig ist; die Edge Function „finanzo-push“ schickt es dann an iPhone oder PC. */
+const PUSH_ON='finanzo-push-on', PUSH_SIG='finanzo-push-sig';
+const pushOn=()=>store.get(PUSH_ON)==='1';
+const isStandalone=()=>{ try{ return navigator.standalone===true||matchMedia('(display-mode: standalone)').matches; }catch(e){ return false; } };
+function pushSupport(){
+  if(isIOS&&!isStandalone()) return 'homescreen';                     // iPhone: nur vom Home-Bildschirm aus
+  if(!ACCOUNTS||window.Capacitor||!('serviceWorker' in navigator)||!('PushManager' in window)||!('Notification' in window)) return 'no';
+  return 'ok';
+}
+const swReady=(ms=6000)=>Promise.race([navigator.serviceWorker.ready,new Promise(r=>setTimeout(()=>r(null),ms))]);
+const keyBytes=s=>{ const t=String(s).replace(/-/g,'+').replace(/_/g,'/'); const b=atob(t+'==='.slice((t.length+3)%4)); return Uint8Array.from(b,c=>c.charCodeAt(0)); };
+const subBody=s=>{ const j=s.toJSON(); return {endpoint_url:j.endpoint,p256dh_key:j.keys&&j.keys.p256dh,auth_secret:j.keys&&j.keys.auth}; };
+let pushKey=null;
+async function pushKeyGet(){
+  if(pushKey) return pushKey;
+  const k=await sbUser('/rest/v1/rpc/push_public_key',{method:'POST',body:{}});
+  pushKey=typeof k==='string'&&k?k:null; return pushKey;
+}
+function sameKey(s,key){
+  try{ const a=s.options&&s.options.applicationServerKey; if(!a) return true;
+    const x=new Uint8Array(a), y=keyBytes(key); return x.length===y.length&&x.every((v,i)=>v===y[i]); }catch(e){ return true; }
+}
+async function pushSubscribe(reg,key){
+  let s=await reg.pushManager.getSubscription();
+  if(s&&!sameKey(s,key)){ try{ await s.unsubscribe(); }catch(e){} s=null; }
+  if(!s) s=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:keyBytes(key)});
+  await sbUser('/rest/v1/rpc/push_subscribe',{method:'POST',body:subBody(s)});
+}
+// Einschalten (muss direkt nach dem Tippen aufgerufen werden, sonst fragt das iPhone nicht)
+async function pushEnable(){
+  let perm=Notification.permission;
+  if(perm!=='granted'){ try{ perm=await Notification.requestPermission(); }catch(e){ perm='default'; } }
+  if(perm!=='granted') return perm==='denied'?'denied':'dismissed';
+  const key=await pushKeyGet(); if(!key) return 'notready';
+  const reg=await swReady(); if(!reg) throw new Error('no service worker');
+  await pushSubscribe(reg,key);
+  store.set(PUSH_ON,'1'); store.del(PUSH_SIG);
+  if(!data.settings.push){ data.settings.push=true; save(); }
+  pushJobsSoon(0);
+  return 'ok';
+}
+async function pushDisable(){
+  store.del(PUSH_ON);
+  const reg=await swReady(3000); const s=reg&&await reg.pushManager.getSubscription();
+  if(s){ try{ await sbUser('/rest/v1/rpc/push_unsubscribe',{method:'POST',body:{endpoint_url:s.endpoint}}); }catch(e){} try{ await s.unsubscribe(); }catch(e){} }
+}
+// Beim Abmelden: dieses Gerät bekommt keine Mitteilungen mehr für das Konto
+async function pushForget(){
+  if(!pushOn()) return; store.del(PUSH_ON); store.del(PUSH_SIG);
+  try{ const reg=await swReady(1500); const s=reg&&await reg.pushManager.getSubscription();
+    if(s) await Promise.race([sbUser('/rest/v1/rpc/push_unsubscribe',{method:'POST',body:{endpoint_url:s.endpoint}}),new Promise(r=>setTimeout(r,3000))]); }catch(e){}
+}
+// Beim Start: Gerät noch angemeldet? (Abos laufen manchmal ab)
+async function pushCheck(){
+  if(!pushOn()||!session||pushSupport()!=='ok') return;
+  if(Notification.permission!=='granted'){ store.del(PUSH_ON); return; }
+  try{ const key=await pushKeyGet(), reg=key&&await swReady(); if(reg) await pushSubscribe(reg,key); }catch(e){}
+}
+// Geplante Mitteilungen: am Erinnerungstag und am Tag selbst, zur gewählten Uhrzeit
+function pushJobs(){
+  const min=Date.now()-10*60000, out=[];
+  for(const a of alerts()){
+    const days=[a.remindOn]; if(a.date&&a.date!==a.remindOn) days.push(a.date);
+    for(const iso of days){
+      if(!isISO(iso)) continue;
+      const day=fromISO(iso), t=atNotifyTime(day); if(t.getTime()<min) continue;
+      out.push({key:a.id+'|'+iso,at:t.toISOString(),title:String(a.title).slice(0,200),body:String(a.text(day)).slice(0,500)});
+    }
+  }
+  return out.sort((x,y)=>x.at<y.at?-1:x.at>y.at?1:0).slice(0,200);
+}
+let pushJobT=0;
+function pushJobsSoon(ms=1500){ if(!ACCOUNTS||!session||!data.settings.push) return; clearTimeout(pushJobT); pushJobT=setTimeout(pushJobsSync,ms); }
+async function pushJobsSync(){
+  if(!ACCOUNTS||!session||!data.settings.push) return;
+  const jobs=pushJobs(), txt=JSON.stringify(jobs), sig=session.user.id+':'+txt.length+':'+numId(txt);
+  if(store.get(PUSH_SIG)===sig) return;
+  try{ await sbUser('/rest/v1/rpc/push_set_jobs',{method:'POST',body:{jobs}}); store.set(PUSH_SIG,sig); }catch(e){}   // sonst beim nächsten Mal
 }
 
 /* =====================================================================
@@ -2027,6 +2119,7 @@ function drawSettings(){
       ${setRow('data-lang','globe','#4C6EF5',tr('set.lang'),langLabel())}
       ${setRow('data-currency','coins','#12B886',tr('set.cur'),curLabel())}
       ${setRow('data-theme-pick','moon','#7048E8',tr('set.theme'),themeLabel())}
+      ${acc&&!window.Capacitor?setRow('data-notify','bell','#F76707',tr('set.notify'),pushOn()?tr('nt.on'):tr('nt.off')):''}
     </ul>
     ${acc?`<h2 class="set-h">${esc(tr('set.account'))}</h2>
     <ul class="list set-list">
@@ -2038,7 +2131,58 @@ function drawSettings(){
   const s=$('#view');
   const on=(sel,fn)=>{ const b=s.querySelector(sel); if(b) b.addEventListener('click',fn); };
   on('[data-logout]',logout); on('[data-delacc]',deleteAccount); on('[data-pwchange]',passwordWin);
-  on('[data-edit-name]',nameWin); on('[data-lang]',langWin); on('[data-theme-pick]',themeWin); on('[data-currency]',()=>currencyWin());
+  on('[data-edit-name]',nameWin); on('[data-lang]',langWin); on('[data-theme-pick]',themeWin); on('[data-currency]',()=>currencyWin()); on('[data-notify]',notifyWin);
+}
+// Mitteilungen: ein- und ausschalten, Uhrzeit, Test
+function notifyWin(){
+  win(tr('nt.title'),`<p class="text">${esc(tr('nt.intro'))}</p><div data-nt></div>`,(s,w)=>{
+    const box=s.querySelector('[data-nt]');
+    let ready=null, busy=false;                      // ready: null = wird geprüft, false = Supabase noch nicht eingerichtet
+    const msg=t=>`<p class="nt-msg">${esc(t)}</p>`;
+    const render=note=>{
+      const sup=pushSupport();
+      if(sup==='homescreen') return box.innerHTML=msg(tr('nt.homescreen'));
+      if(sup!=='ok') return box.innerHTML=msg(tr('nt.unsupported'));
+      if(Notification.permission==='denied') return box.innerHTML=msg(isIOS?tr('nt.deniedIos'):tr('nt.denied'));
+      if(ready===false) return box.innerHTML=msg(tr('nt.notReady'));
+      const on=pushOn();
+      box.innerHTML=`<button type="button" class="switch-row" data-nt-sw aria-pressed="${on}" ${ready===null||busy?'disabled':''}><span>${esc(busy?tr('busy'):tr('nt.switch'))}</span><span class="switch"></span></button>
+        ${note?`<p class="err">${esc(note)}</p>`:''}
+        ${on?`<label class="field"><span class="label">${esc(tr('nt.time'))}</span><input class="input" type="time" data-nt-time value="${esc(data.settings.notifyTime)}" required></label>
+        <p class="hint" style="margin-top:-8px">${esc(tr('nt.when'))}</p>
+        <button type="button" class="btn btn-soft btn-full nt-test" data-nt-test>${ICON.bell}${esc(tr('nt.test'))}</button>`:''}`;
+    };
+    render();
+    w.onClose=()=>{ if(tab==='settings'&&!sub) draw(); };
+    if(pushSupport()==='ok'&&Notification.permission!=='denied')
+      pushKeyGet().then(k=>{ ready=!!k; render(); }).catch(e=>{ ready=e&&e.status===404?false:true; render(); });
+    s.addEventListener('click',async e=>{
+      if(e.target.closest('[data-nt-sw]')){
+        if(busy||ready===null) return;
+        if(pushOn()){ busy=true; render(); try{ await pushDisable(); }catch(x){} busy=false; render(); toast(tr('toast.ntOff')); return; }
+        const job=pushEnable();                      // sofort, solange das Tippen noch „frisch“ ist
+        busy=true; render();
+        try{ const r=await job; busy=false;
+          if(r==='ok'){ render(); toast(tr('toast.ntOn')); }
+          else if(r==='notready'){ ready=false; render(); }
+          else render(r==='dismissed'?tr('nt.dismissed'):'');
+        }catch(x){ busy=false; render(x&&x.offline?tr('toast.noNet'):tr('err.generic')); }
+        return;
+      }
+      if(e.target.closest('[data-nt-test]')){
+        const b=e.target.closest('[data-nt-test]'); if(b.disabled) return; b.disabled=true;
+        try{ await pushJobsSync(); await sbUser('/rest/v1/rpc/push_test',{method:'POST',body:{title:'Finanzo',body:tr('nt.testBody')}}); toast(tr('nt.testSent')); }
+        catch(x){ toast(x&&x.offline?tr('toast.noNet'):tr('err.generic')); }
+        setTimeout(()=>{ b.disabled=false; },4000);
+      }
+    });
+    s.addEventListener('change',e=>{
+      const t=e.target.closest('[data-nt-time]'); if(!t) return;
+      if(/^([01]\d|2[0-3]):[0-5]\d$/.test(t.value)&&t.value!==data.settings.notifyTime){
+        data.settings.notifyTime=t.value; save(); syncNotifications(false); toast(tr('nt.timeSaved',{time:t.value})); }
+      else t.value=data.settings.notifyTime;
+    });
+  });
 }
 // Profil: Name (so begrüßt dich Finanzo) und E-Mail-Adresse des Kontos
 function nameWin(){
@@ -2249,7 +2393,9 @@ applyTheme();
 draw();
 saveLocal();   // speichert übernommene Daten aus älteren Versionen
 splashStep(.35);   // Daten auf dem Gerät sind da
-Promise.race([bootAccount(),new Promise(r=>setTimeout(r,SPLASH_MAX))]).catch(()=>{}).then(()=>splashHide());
+const booted=bootAccount().catch(()=>{});
+Promise.race([booted,new Promise(r=>setTimeout(r,SPLASH_MAX))]).then(()=>splashHide());
+booted.then(()=>{ pushCheck(); pushJobsSoon(2500); });
 if(data.tasks.length||data.contracts.some(inTrial)) syncNotifications(false);
 showDueNotifications();
 // Online-Version (iPhone): auch ohne Internet starten können

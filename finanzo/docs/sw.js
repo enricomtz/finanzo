@@ -1,6 +1,6 @@
 // Sorgt dafür, dass Finanzo auch ohne Internet startet.
 // Mit Internet wird immer die neueste Version geladen, ohne Internet die gespeicherte.
-const CACHE = 'finanzo-40';
+const CACHE = 'finanzo-41';
 const FILES = [
   './',
   './index.html',
@@ -34,5 +34,31 @@ self.addEventListener('fetch', (event) => {
         return res;
       })
       .catch(() => caches.match(req).then((hit) => hit || caches.match('./index.html')))
+  );
+});
+
+// Mitteilungen (kommen auch, wenn Finanzo zu ist)
+self.addEventListener('push', (event) => {
+  let d = {};
+  try { d = event.data ? event.data.json() : {}; } catch (e) {
+    try { d = { body: event.data.text() }; } catch (e2) { d = {}; }
+  }
+  event.waitUntil(self.registration.showNotification(d.title || 'Finanzo', {
+    body: d.body || '',
+    tag: d.tag || undefined,
+    icon: 'icons/icon-192.png',
+    badge: 'icons/icon-192.png',
+    data: { url: './' },
+  }));
+});
+
+// Tippen auf die Mitteilung öffnet Finanzo
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      for (const c of list) { if ('focus' in c) return c.focus(); }
+      return self.clients.openWindow ? self.clients.openWindow('./') : undefined;
+    })
   );
 });
