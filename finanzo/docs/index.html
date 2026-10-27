@@ -7,7 +7,7 @@
 <!-- iPhone: als App auf dem Home-Bildschirm -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Finanzo">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -30,6 +30,7 @@
 <style>
 /* ---------- Farben: hell ---------- */
 :root{
+  --sat:env(safe-area-inset-top,0px);   /* Höhe der Statusleiste oben (Uhrzeit, Akku) */
   --bg:#F2F5F3; --card:#FFFFFF; --soft:#EDF2EF; --ink:#12231B; --ink-2:#55675E; --ink-3:#88978F; --line:#E3E9E5;
   --brand:#1B4D3B; --brand-sub:#B7D2C4;
   --accent:#1E6B4F; --on-accent:#FFFFFF; --accent-soft:#E0EFE7;
@@ -70,7 +71,7 @@ svg{display:block}
 .plus{color:var(--green)} .neg{color:var(--red)} .minus{color:var(--red)}
 
 /* ---------- Aufbau ---------- */
-main{padding:calc(env(safe-area-inset-top) + 14px) 16px calc(170px + env(safe-area-inset-bottom))}
+main{padding:calc(var(--sat) + 14px) 16px calc(170px + env(safe-area-inset-bottom))}
 body[data-page="start"] main{padding-top:0}
 .wrap{max-width:600px;margin:0 auto}
 .icon-btn{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--ink-2);flex:none}
@@ -79,6 +80,7 @@ body[data-page="start"] main{padding-top:0}
 @media (min-width:760px){ main{padding:28px 32px calc(150px + env(safe-area-inset-bottom))} body[data-page="start"] main{padding-top:28px} }
 
 /* ---------- Reiter unten ---------- */
+.sbar{position:fixed;top:0;left:0;right:0;height:var(--sat);background:var(--brand);z-index:36;pointer-events:none}   /* grüne Leiste hinter Uhrzeit und Akku */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;background:color-mix(in srgb,var(--card) 94%,transparent);
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
 .tabbar-in{display:flex;gap:0;width:100%;max-width:600px}
@@ -94,7 +96,7 @@ body[data-page="start"] main{padding-top:0}
 @media (min-width:760px){ .fab{right:max(16px,calc(50% - 380px))} }
 
 /* ---------- Start: grüner Kopf und Geld-Karte ---------- */
-.hello{background:var(--brand);color:#fff;margin:0 -16px;padding:calc(env(safe-area-inset-top) + 22px) 20px 74px;
+.hello{background:var(--brand);color:#fff;margin:0 -16px;padding:calc(var(--sat) + 22px) 20px 74px;
   display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-radius:0 0 28px 28px}
 .hello h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.025em;line-height:1.2;overflow-wrap:anywhere}
 .hello p{margin:3px 0 0;color:var(--brand-sub);font-size:15.5px}
@@ -329,7 +331,7 @@ body[data-page="start"] main{padding-top:0}
 
 /* ---------- Fenster ---------- */
 .scrim{position:fixed;inset:0;z-index:40;background:var(--scrim);display:flex;align-items:flex-end;justify-content:center;animation:fade .18s ease-out}
-.sheet{background:var(--card);width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:26px 26px 0 0;
+.sheet{background:var(--card);width:100%;max-width:520px;max-height:min(92vh,calc(100vh - var(--sat) - 14px));overflow:auto;border-radius:26px 26px 0 0;
   padding:8px 20px calc(22px + env(safe-area-inset-bottom));animation:up .24s cubic-bezier(.2,.8,.2,1);overscroll-behavior:contain}
 .sheet-top{display:flex;justify-content:space-between;align-items:center;padding:6px 0 2px;position:sticky;top:-8px;background:var(--card);z-index:2}
 .sheet-top h2{margin:0;font-size:21px;letter-spacing:-.015em}
@@ -424,7 +426,7 @@ form.compact .quick{margin:-2px 0 12px}
 
 /* ---------- Anmelden ---------- */
 .auth{position:fixed;inset:0;z-index:35;background:var(--bg);overflow:auto;display:flex;justify-content:center;
-  padding:calc(env(safe-area-inset-top) + 20px) 16px calc(28px + env(safe-area-inset-bottom));overscroll-behavior:contain}
+  padding:calc(var(--sat) + 20px) 16px calc(28px + env(safe-area-inset-bottom));overscroll-behavior:contain}
 body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 .auth-in{width:100%;max-width:440px}
 .auth-hero{background:var(--brand);color:#fff;border-radius:28px;padding:24px 22px 64px}
@@ -473,6 +475,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
     <rect class="sp-bar b3" x="26" y="76" width="28" height="13" rx="6.5"/><circle class="sp-dot" cx="79" cy="82.5" r="9.5"/></svg>
   <div class="sp-name">Finanzo</div><div class="sp-load"><i></i></div>
 </div></div>
+<div class="sbar" aria-hidden="true"></div>
 <main>
   <div class="wrap"><section id="view"></section></div>
 </main>
@@ -489,7 +492,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='7.3';   // bei jedem Update erhöhen
+const APP_VERSION='7.4';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
