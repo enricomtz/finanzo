@@ -339,7 +339,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 
 /* ---------- Fenster ---------- */
 .scrim{position:fixed;inset:0;z-index:40;background:var(--scrim);display:flex;align-items:flex-end;justify-content:center;animation:fade .18s ease-out}
-.sheet{background:var(--card);width:100%;max-width:520px;max-height:min(92vh,calc(100vh - var(--sat) - 14px));overflow:auto;border-radius:26px 26px 0 0;
+.sheet{background:var(--card);width:100%;max-width:520px;max-height:min(92vh,calc(var(--vvh,100vh) - var(--sat) - 14px));overflow:auto;border-radius:26px 26px 0 0;
   padding:8px 20px calc(22px + env(safe-area-inset-bottom));animation:up .24s cubic-bezier(.2,.8,.2,1);overscroll-behavior:contain}
 .sheet-top{display:flex;justify-content:space-between;align-items:center;padding:6px 0 2px;position:sticky;top:-8px;background:var(--card);z-index:2}
 .sheet-top h2{margin:0;font-size:21px;letter-spacing:-.015em}
@@ -349,6 +349,10 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
   .sheet{border-radius:26px;padding:12px 26px 26px;animation:pop .2s cubic-bezier(.2,.8,.2,1)}
   .sheet-top{top:-12px}
 }
+/* Suchfenster behalten ihre Höhe, damit das Suchfeld beim Tippen nicht nach unten rutscht */
+.sheet.sheet-tall{height:min(92vh,calc(var(--vvh,100vh) - var(--sat) - 14px))}
+/* Tastatur offen: Fenster sitzen direkt über der Tastatur */
+body.kb .sheet{padding-bottom:16px;animation:none}
 @keyframes fade{from{opacity:0}}
 @keyframes up{from{transform:translateY(40px);opacity:.6}}
 @keyframes pop{from{transform:scale(.97);opacity:0}}
@@ -536,7 +540,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 <script src="lang.js"></script>
 <script>
 "use strict";
-const APP_VERSION='7.7';   // bei jedem Update erhöhen
+const APP_VERSION='7.8';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Sprachen: Alle Texte stehen in Wörterbüchern. Deutsch steht hier, die anderen Sprachen in lang.js.
@@ -1662,12 +1666,32 @@ function win(title,body,setup){
   el.addEventListener('touchmove',e=>{ if(e.touches&&e.touches.length>1) return;
     const sc=e.target.closest&&e.target.closest('[data-wheel-scroll],.sheet');
     if(sc&&sc.scrollHeight>sc.clientHeight+1) return; e.preventDefault(); },{passive:false});
-  const sheet=el.querySelector('.sheet'); if(setup) setup(sheet,w);
+  const sheet=el.querySelector('.sheet'); if(setup) setup(sheet,w); fitKeyboard();
   const first=sheet.querySelector('[data-focus]');
   if(first&&matchMedia('(min-width:760px)').matches) setTimeout(()=>{try{first.focus();}catch(e){}},60);
   return w;
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&stack.length){e.preventDefault();closeWin(1);}});
+// Tastatur am Handy: offene Fenster rücken über die Tastatur, damit man sieht, was man tippt
+function fitKeyboard(){
+  const vv=window.visualViewport; if(!vv) return;
+  const full=Math.max(document.documentElement.clientHeight,window.innerHeight);
+  const kb=full-vv.height>120&&Math.abs((vv.scale||1)-1)<.05;
+  document.body.classList.toggle('kb',kb);
+  document.documentElement.style.setProperty('--vvh',kb?vv.height+'px':'');
+  document.querySelectorAll('.scrim').forEach(s=>{
+    s.style.top=kb?vv.offsetTop+'px':''; s.style.height=kb?vv.height+'px':''; s.style.bottom=kb?'auto':''; });
+  const a=document.activeElement;
+  if(kb&&a&&a.closest&&a.closest('.sheet')&&a.matches('input,textarea')) requestAnimationFrame(()=>{   // Feld mit etwas Luft in den sichtbaren Teil holen
+    const sh=a.closest('.sheet'), r=a.getBoundingClientRect(), sr=sh.getBoundingClientRect(), top=sh.querySelector('.sheet-top');
+    const down=r.bottom+24-sr.bottom, up=sr.top+(top?top.offsetHeight:0)+(a.closest('.cur-search')?0:12)-r.top;
+    if(down>0) sh.scrollTop+=down; else if(up>0) sh.scrollTop-=up; });
+}
+if(window.visualViewport){ visualViewport.addEventListener('resize',fitKeyboard); visualViewport.addEventListener('scroll',fitKeyboard); }
+document.addEventListener('focusin',()=>setTimeout(fitKeyboard,50));
+document.addEventListener('focusout',()=>setTimeout(fitKeyboard,50));
+// Suchfelder: „Suchen“ auf der Tastatur schließt die Tastatur
+const searchKeys=q=>q.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); q.blur(); } });
 function ask(title,text,okText){
   return new Promise(res=>{let done=false;
     win(title,`<p class="text">${esc(text)}</p><div class="btns"><button type="button" class="btn btn-soft" data-close>${esc(tr('cancel'))}</button><button type="button" class="btn btn-red" data-ok>${esc(okText)}</button></div>`,(s,w)=>{
@@ -2084,7 +2108,7 @@ function langWin(){
       const hits=t?all.filter(x=>x.c===t||[x.n,x.loc,x.en].some(starts)):all;
       box.innerHTML=(t?'':autoRow())+(hits.length?`<ul class="opt-list">${hits.map(x=>optRow('data-l',x.c,x.n,x.loc,cur===x.c)).join('')}</ul>`:`<p class="cur-none">${esc(tr('lang.none'))}</p>`);
     };
-    render(); q.addEventListener('input',render);
+    render(); q.addEventListener('input',render); searchKeys(q); s.classList.add('sheet-tall');
     s.addEventListener('click',e=>{
       const b=e.target.closest('[data-l]'); if(!b) return;
       data.settings.lang=b.dataset.l; setLang(data.settings.lang); setCurrency(data.settings.currency); save();
@@ -2144,16 +2168,16 @@ function currencyWin(onPick){
   const row=c=>`<li><button type="button" class="cur" data-code="${c.code}" aria-selected="${c.code===data.settings.currency}">
     <span class="cur-name">${esc(c.name)}<small>${c.code}</small></span><span class="cur-sym">${c.code===data.settings.currency?ICON.check:(c.sym!==c.code?esc(c.sym):'')}</span></button></li>`;
   win(tr('cur.title'),`<div class="cur-search"><input class="input" type="search" placeholder="${esc(tr('cur.searchPh'))}" data-q autocomplete="off"></div>
-    <p class="text" style="margin-top:0">${esc(tr('cur.note'))}</p><div data-results></div>`,s=>{
-    const box=s.querySelector('[data-results]'), q=s.querySelector('[data-q]');
+    <p class="text" style="margin-top:0" data-cnote>${esc(tr('cur.note'))}</p><div data-results></div>`,s=>{
+    const box=s.querySelector('[data-results]'), q=s.querySelector('[data-q]'), note=s.querySelector('[data-cnote]');
     const render=()=>{
-      const t=q.value.trim().toLowerCase();
+      const t=q.value.trim().toLowerCase(); note.hidden=!!t;
       if(!t) box.innerHTML=`<div class="cur-group">${esc(tr('cur.popular'))}</div><ul class="cur-list">${POPULAR.map(c=>all.find(x=>x.code===c)).filter(Boolean).map(row).join('')}</ul>
         <div class="cur-group">${esc(tr('cur.all'))}</div><ul class="cur-list">${all.map(row).join('')}</ul>`;
       else { const hits=all.filter(c=>c.name.toLowerCase().includes(t)||c.code.toLowerCase().includes(t)||c.sym.toLowerCase()===t);
         box.innerHTML=hits.length?`<ul class="cur-list">${hits.map(row).join('')}</ul>`:`<p class="cur-none">${esc(tr('cur.none'))}</p>`; }
     };
-    render(); q.addEventListener('input',render);
+    render(); q.addEventListener('input',render); searchKeys(q); s.classList.add('sheet-tall');
     box.addEventListener('click',e=>{
       const b=e.target.closest('[data-code]'); if(!b) return;
       data.settings.currency=b.dataset.code; setCurrency(b.dataset.code); save();
