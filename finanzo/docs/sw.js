@@ -1,9 +1,10 @@
 // Sorgt dafür, dass Finanzo auch ohne Internet startet.
 // Mit Internet wird immer die neueste Version geladen, ohne Internet die gespeicherte.
-const CACHE = 'finanzo-37';
+const CACHE = 'finanzo-38';
 const FILES = [
   './',
   './index.html',
+  './lang.js',
   './manifest.webmanifest',
   './icons/apple-touch-icon.png',
   './icons/icon-192.png',

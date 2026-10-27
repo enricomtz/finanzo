@@ -88,6 +88,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .tab{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0 3px;font-size:clamp(10.5px,3vw,11.5px);letter-spacing:-.01em;font-weight:650;color:var(--ink-3);border-radius:14px;white-space:nowrap}
 .tab[data-tab="settings"]{flex-grow:1.35}
 .tab .pill{width:50px;height:30px;border-radius:999px;display:grid;place-items:center}
+.tab-l{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 2px}
 .tab[aria-current="page"]{color:var(--accent)}
 .tab[aria-current="page"] .pill{background:var(--accent-soft)}
 .fab{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:31;height:56px;padding:0 22px 0 16px;border-radius:18px;
@@ -102,7 +103,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .hello h1{margin:0;font-size:27px;font-weight:800;letter-spacing:-.025em;line-height:1.2;overflow-wrap:anywhere}
 .hello p{margin:3px 0 0;color:var(--brand-sub);font-size:15.5px}
 @media (min-width:760px){ .hello{margin:0;border-radius:28px;padding:26px 24px 76px} }
-.budget{display:block;width:100%;text-align:left;background:var(--card);border-radius:24px;padding:18px 18px 16px;margin:-56px 0 12px;position:relative;
+.budget{display:block;width:100%;text-align:start;background:var(--card);border-radius:24px;padding:18px 18px 16px;margin:-56px 0 12px;position:relative;
   box-shadow:0 14px 34px -16px rgba(10,40,25,.45)}
 .b-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .b-label{color:var(--ink-2);font-weight:650;font-size:15.5px;padding-top:2px}
@@ -132,7 +133,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .sec-link{color:var(--accent);font-weight:700;font-size:15px;padding:6px 2px}
 .list{list-style:none;margin:0;padding:0;background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
 .list li+li{border-top:1px solid var(--line)}
-.item{width:100%;display:flex;align-items:center;gap:13px;padding:12px 16px;text-align:left;min-height:64px}
+.item{width:100%;display:flex;align-items:center;gap:13px;padding:12px 16px;text-align:start;min-height:64px}
 @media (hover:hover){ .item:hover,.cat-row:hover,.ov:hover{background:var(--soft)} }
 .dot{width:12px;height:12px;border-radius:50%;flex:none}
 .item-main{flex:1;min-width:0}
@@ -143,7 +144,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .item-sub.late{color:var(--red);font-weight:650}
 .item-sub.save{color:var(--green);font-weight:600;white-space:normal}
 .item-sub.act{color:var(--accent);font-weight:650}
-.item-amt{text-align:right;font-weight:740;font-variant-numeric:tabular-nums;white-space:nowrap}
+.item-amt{text-align:end;font-weight:740;font-variant-numeric:tabular-nums;white-space:nowrap}
 .item-amt small{display:block;font-size:13px;font-weight:500;color:var(--ink-3)}
 .b-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;
   background:color-mix(in srgb,var(--c) 15%,var(--card));color:var(--c)}
@@ -162,7 +163,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .link-btn{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:700;padding:10px 0 4px}
 .bar{display:block;height:8px;border-radius:99px;background:var(--soft);overflow:hidden}
 .bar span{display:block;height:100%;border-radius:99px}
-.warn-card{width:100%;display:flex;gap:12px;align-items:flex-start;background:var(--red-soft);color:var(--ink);border-radius:18px;padding:13px 16px;margin-bottom:12px;text-align:left}
+.warn-card{width:100%;display:flex;gap:12px;align-items:flex-start;background:var(--red-soft);color:var(--ink);border-radius:18px;padding:13px 16px;margin-bottom:12px;text-align:start}
 .warn-card svg{color:var(--red);flex:none;margin-top:1px}
 .warn-card.yellow{background:var(--warn-soft)}
 .warn-card.yellow svg{color:var(--warn)}
@@ -170,7 +171,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 /* ---------- Start: Monatsübersicht ---------- */
 .ov-list{list-style:none;margin:8px 0 0;padding:0}
 .ov-list li+li{border-top:1px solid var(--line)}
-.ov{display:flex;align-items:center;gap:12px;width:calc(100% + 16px);margin:0 -8px;padding:10px 8px;text-align:left;border-radius:12px;font-variant-numeric:tabular-nums}
+.ov{display:flex;align-items:center;gap:12px;width:calc(100% + 16px);margin:0 -8px;padding:10px 8px;text-align:start;border-radius:12px;font-variant-numeric:tabular-nums}
 .ov-name{flex:1;font-weight:620;color:var(--ink)}
 .ov b{font-weight:740;white-space:nowrap}
 .ov > svg{color:var(--ink-3);flex:none;margin-left:-6px;width:18px;height:18px}
@@ -230,7 +231,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .stats div{background:var(--soft);border-radius:16px;padding:12px 14px}
 .stats b{display:block;font-size:19px;font-weight:760;font-variant-numeric:tabular-nums;margin-top:2px}
 .mstats{display:flex;gap:10px;margin-top:10px}
-.mstats > *{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:14px;background:var(--soft);text-align:left}
+.mstats > *{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:14px;background:var(--soft);text-align:start}
 .mstats span{font-size:13px;font-weight:650;color:var(--ink-3)}
 .mstats b{font-size:15px;font-weight:780;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mchart{display:flex;align-items:stretch;gap:2px;height:150px;margin-top:10px}
@@ -259,13 +260,19 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .sec-h + .crows{margin-top:4px}
 .mcol-lbl{font-size:11px;font-weight:650;color:var(--ink-3);white-space:nowrap}
 .mcol.sel .mcol-lbl{color:var(--ink);font-weight:800}
+.mchart.small .mcol-lbl{font-size:9.5px;letter-spacing:-.03em}
+/* Arabisch und Urdu: Beträge bleiben von links nach rechts lesbar (+1.300,00 €) */
+[dir="rtl"] :is(input[type=email],input[type=password]){direction:ltr;text-align:right}
+[dir="rtl"] .fab{right:auto;left:16px}
+@media (min-width:760px){ [dir="rtl"] .fab{left:max(16px,calc(50% - 380px))} }
+[dir="rtl"] :is(.item-amt,.ov b,.mc-sums b,.msum b,.crow-top b,.b-num,.mstats .neg,.g-target,.cur-sym){direction:ltr;unicode-bidi:isolate}
 .cmp{display:inline-block;margin-top:10px;padding:6px 11px;border-radius:10px;font-size:13px;font-weight:700}
 .cmp.up{background:var(--red-soft);color:var(--red)}
 .cmp.down{background:var(--green-soft);color:var(--green)}
 .cmp.same{background:var(--soft);color:var(--ink-2)}
 .crows{list-style:none;margin:14px 0 0;padding:0}
 .crows li+li{border-top:1px solid var(--line)}
-.crow{display:flex;align-items:center;gap:12px;width:calc(100% + 16px);margin:0 -8px;padding:12px 8px;text-align:left;border-radius:12px}
+.crow{display:flex;align-items:center;gap:12px;width:calc(100% + 16px);margin:0 -8px;padding:12px 8px;text-align:start;border-radius:12px}
 @media (hover:hover){ .crow:hover{background:var(--soft)} }
 .crow-main{flex:1;min-width:0}
 .crow-top{display:flex;justify-content:space-between;gap:10px;font-weight:700}
@@ -278,7 +285,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 .budget-link{margin:2px 6px 0}
 .budget-link svg{width:18px;height:18px}
 .sheet .list{background:var(--soft);box-shadow:none}
-.cat-row{display:block;text-align:left;padding:10px 8px;margin:0 -8px;width:calc(100% + 16px);border-radius:12px}
+.cat-row{display:block;text-align:start;padding:10px 8px;margin:0 -8px;width:calc(100% + 16px);border-radius:12px}
 .cat-top{display:flex;align-items:center;gap:10px;font-size:15.5px}
 .cat-top .name{flex:1;font-weight:650;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cat-top b{font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -300,7 +307,7 @@ body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}        
 
 /* ---------- Sparziele ---------- */
 .goal{background:var(--card);border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
-.goal-head{width:100%;display:flex;align-items:center;gap:13px;text-align:left}
+.goal-head{width:100%;display:flex;align-items:center;gap:13px;text-align:start}
 .g-ic{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--c) 16%,var(--card));color:var(--c)}
 .g-ic svg{width:25px;height:25px}
 .g-txt{flex:1;min-width:0}
@@ -367,7 +374,7 @@ select.input,select.input:focus{background-image:linear-gradient(45deg,transpare
 .choice button{padding:11px 8px;border-radius:13px;border:1.5px solid var(--line);font-weight:650;font-size:15px}
 .choice button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .choice button[aria-pressed="true"] .c-ic{color:inherit!important}
-.choice.cats button{display:flex;align-items:center;gap:8px;justify-content:flex-start;padding:10px 12px;text-align:left;font-size:14.5px}
+.choice.cats button{display:flex;align-items:center;gap:8px;justify-content:flex-start;padding:10px 12px;text-align:start;font-size:14.5px}
 .c-ic svg{width:18px;height:18px}
 .choice.cats4{grid-template-columns:repeat(4,1fr);gap:8px}
 .choice.cats4 button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 2px 8px;border-radius:14px;font-size:12.5px;font-weight:700;min-width:0;white-space:nowrap}
@@ -384,7 +391,7 @@ form.compact .quick{margin:-2px 0 12px}
 .icon-pick button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .quick{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .quick button{padding:7px 13px;border-radius:999px;background:var(--soft);font-size:14.5px;font-weight:650;color:var(--ink-2)}
-.switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:14px;background:var(--soft);width:100%;text-align:left;font-weight:650;margin:16px 0 0}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:14px;background:var(--soft);width:100%;text-align:start;font-weight:650;margin:16px 0 0}
 .switch{width:50px;height:30px;border-radius:999px;background:var(--line);position:relative;flex:none;transition:background .15s}
 .switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .15s}
 .switch-row[aria-pressed="true"] .switch{background:var(--green)}
@@ -402,13 +409,43 @@ form.compact .quick{margin:-2px 0 12px}
 .recap li.total b{font-weight:800}
 
 /* ---------- Einstellungen ---------- */
+/* ---------- Einstellungen ---------- */
+.prof-card{padding:16px}
+.prof{display:flex;align-items:center;gap:14px;width:100%;text-align:start;border-radius:14px}
+.avatar{width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:24px;font-weight:800;flex:none;text-transform:uppercase}
+.avatar svg{width:28px;height:28px}
+.prof-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.prof-name{font-size:19px;font-weight:780;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prof-name.empty{color:var(--accent)}
+.prof-sub{font-size:14.5px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prof > svg{color:var(--ink-3);flex:none}
+.prof-sync{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:14px;font-weight:650;color:var(--green)}
+.prof-sync svg{flex:none}
+.prof-sync.wait{color:var(--ink-2)}
+.set-h{margin:22px 8px 8px;font-size:13px;font-weight:750;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.set-list .item{min-height:56px;padding:10px 14px}
+.s-ic{width:34px;height:34px;border-radius:10px;background:var(--c);color:#fff;display:grid;place-items:center;flex:none}
+.s-ic svg{width:19px;height:19px}
+.s-val{color:var(--ink-2);font-weight:600;font-size:15px;max-width:48%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.set-row > svg.chev{color:var(--ink-3);flex:none}
+.set-row.danger .item-name{color:var(--red)}
+.set-list + .set-list{margin-top:12px}
+.opt{width:100%;display:flex;align-items:center;gap:12px;padding:13px 12px;border-radius:12px;text-align:start}
+.opt-main{flex:1;min-width:0}
+.opt-main b{display:block;font-weight:700}
+.opt-main small{display:block;color:var(--ink-2);font-size:13.5px;font-weight:550}
+.opt .tick{color:var(--accent);width:22px;flex:none;display:grid;place-items:center}
+.opt[aria-selected="true"]{background:var(--accent-soft)}
+.opt-list{list-style:none;margin:0;padding:0}
+.opt-sep{height:1px;background:var(--line);margin:6px 4px}
+[dir="rtl"] svg.chev{transform:scaleX(-1)}
 .set{padding:16px 0;border-top:1px solid var(--line)}
 .sheet-top + .set{border-top:0}
 .set-card{padding-top:2px;padding-bottom:4px}
 .set-card .set:first-child{border-top:0}
 .set h3{margin:0 0 10px;font-size:16px}
 .set p{margin:-4px 0 12px;color:var(--ink-2);font-size:14.5px}
-.pick{width:100%;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;background:var(--soft);text-align:left}
+.pick{width:100%;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;background:var(--soft);text-align:start}
 .pick span:first-child{flex:1;font-weight:680}
 .pick small{color:var(--ink-2);font-weight:600;font-size:14.5px}
 .pick svg{color:var(--ink-3)}
@@ -417,7 +454,7 @@ form.compact .quick{margin:-2px 0 12px}
 .cur-search{position:sticky;top:44px;background:var(--card);padding:8px 0 10px;z-index:1}
 .cur-group{font-size:13.5px;font-weight:700;color:var(--ink-3);margin:14px 4px 6px}
 .cur-list{list-style:none;margin:0;padding:0}
-.cur{width:100%;display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:12px;text-align:left}
+.cur{width:100%;display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:12px;text-align:start}
 .cur-name{flex:1;min-width:0}
 .cur-name small{display:block;color:var(--ink-3);font-size:13px;font-weight:600}
 .cur-sym{font-weight:700;color:var(--ink-2);white-space:nowrap}
@@ -480,20 +517,67 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 <main>
   <div class="wrap"><section id="view"></section></div>
 </main>
-<nav class="tabbar" aria-label="Bereiche"><div class="tabbar-in">
-  <button class="tab" data-tab="start"><span class="pill" data-icon="home"></span>Start</button>
-  <button class="tab" data-tab="list"><span class="pill" data-icon="list"></span>Buchungen</button>
-  <button class="tab" data-tab="stats"><span class="pill" data-icon="pie"></span>Analyse</button>
-  <button class="tab" data-tab="goals"><span class="pill" data-icon="target"></span>Ziele</button>
-  <button class="tab" data-tab="settings"><span class="pill" data-icon="gear"></span>Einstellungen</button>
+<nav class="tabbar" aria-label="Bereiche" data-t-aria="nav"><div class="tabbar-in">
+  <button class="tab" data-tab="start"><span class="pill" data-icon="home"></span><span class="tab-l" data-t="tab.start">Start</span></button>
+  <button class="tab" data-tab="list"><span class="pill" data-icon="list"></span><span class="tab-l" data-t="tab.list">Buchungen</span></button>
+  <button class="tab" data-tab="stats"><span class="pill" data-icon="pie"></span><span class="tab-l" data-t="tab.stats">Analyse</span></button>
+  <button class="tab" data-tab="goals"><span class="pill" data-icon="target"></span><span class="tab-l" data-t="tab.goals">Ziele</span></button>
+  <button class="tab" data-tab="settings"><span class="pill" data-icon="gear"></span><span class="tab-l" data-t="tab.settings">Einstellungen</span></button>
 </div></nav>
-<button class="fab" data-add-expense><span data-icon="plus"></span>Eintragen</button>
+<button class="fab" data-add-expense><span data-icon="plus"></span><span data-t="fab">Eintragen</span></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="auth" class="auth" hidden></div>
 
+<script src="lang.js"></script>
 <script>
 "use strict";
-const APP_VERSION='7.5';   // bei jedem Update erhöhen
+const APP_VERSION='7.6';   // bei jedem Update erhöhen
+
+/* =====================================================================
+   Sprachen: Alle Texte stehen in Wörterbüchern. Deutsch steht hier, die anderen Sprachen in lang.js.
+   tr('schlüssel',{wert}) holt den Text in der gewählten Sprache.
+   ===================================================================== */
+/*DE*/const DE={"tab.start":"Start","tab.list":"Buchungen","tab.stats":"Analyse","tab.goals":"Ziele","tab.settings":"Einstellungen","fab":"Eintragen","nav":"Bereiche","cat.essen":"Essen & Trinken","cat.einkauf":"Einkaufen","cat.auto":"Tanken & Auto","cat.freizeit":"Freizeit","cat.kleidung":"Kleidung","cat.technik":"Technik","cat.geschenke":"Geschenke","cat.sonstiges":"Sonstiges","catS.essen":"Essen","catS.einkauf":"Einkaufen","catS.auto":"Auto","catS.freizeit":"Freizeit","catS.kleidung":"Kleidung","catS.technik":"Technik","catS.geschenke":"Geschenke","catS.sonstiges":"Sonstiges","gi.ziel":"Ziel","gi.urlaub":"Urlaub","gi.notgroschen":"Notgroschen","gi.auto":"Auto","gi.fahrrad":"Fahrrad","gi.handy":"Technik","gi.wohnung":"Wohnung","gi.geschenk":"Geschenk","d.today":"Heute","d.yesterday":"Gestern","d.todayL":"heute","d.tomorrowL":"morgen","when.overdue":{"one":"Überfällig seit {n} Tag ({date})","other":"Überfällig seit {n} Tagen ({date})"},"when.today":"Heute ({date})","when.tomorrow":"Morgen ({date})","when.inDays":{"one":"In {n} Tag ({date})","other":"In {n} Tagen ({date})"},"rh.monthly":"Monatlich","rh.quarterly":"Alle 3 Monate","rh.halfyearly":"Alle 6 Monate","rh.yearly":"Jährlich","rhi.monthly":"monatlich","rhi.quarterly":"alle 3 Monate","rhi.halfyearly":"alle 6 Monate","rhi.yearly":"jährlich","migr.cancel":"{name} kündigen","auth.reLogin":"Bitte melde dich neu an.","sync.offline":"Offline: Änderungen kommen ins Konto, sobald du wieder online bist.","sync.saving":"Wird in deinem Konto gespeichert …","sync.ok":"Alles ist in deinem Konto gespeichert.","merge.title":"Welche Daten willst du behalten?","merge.text":"In deinem Konto und auf diesem Gerät sind schon Daten gespeichert. Die anderen werden ersetzt.","merge.account":"Aus dem Konto","merge.device":"Von diesem Gerät","err.offline":"Keine Verbindung zum Internet. Prüfe dein WLAN oder deine mobilen Daten.","err.credentials":"E-Mail oder Passwort ist falsch.","err.notConfirmed":"Bitte bestätige zuerst deine E-Mail. Den Link findest du in deinem Postfach.","err.exists":"Für diese E-Mail gibt es schon ein Konto. Melde dich an.","err.weak":"Das Passwort ist zu schwach. Nimm mindestens 8 Zeichen mit Buchstaben und Zahlen.","err.samePw":"Das neue Passwort muss anders sein als das alte.","err.emailInvalid":"Diese E-Mail-Adresse ist ungültig.","err.rate":"Zu viele Versuche. Bitte warte ein paar Minuten.","err.signupOff":"Neue Konten sind gerade ausgeschaltet.","err.db":"Die Datenbank ist noch nicht fertig eingerichtet (SQL-Schritt in Supabase).","err.generic":"Das hat nicht geklappt. Bitte versuch es nochmal.","auth.subReset":"Wähle ein neues Passwort für dein Konto.","auth.subUp":"Erstelle dein Konto. Dann sind deine Daten sicher gespeichert, auch für ein neues Handy.","auth.subIn":"Melde dich an, um deine Daten zu sehen.","auth.in":"Anmelden","auth.up":"Konto erstellen","auth.name":"Dein Name","auth.namePh":"z. B. Alex","auth.email":"E-Mail","auth.emailPh":"name@beispiel.de","auth.newPw":"Neues Passwort","auth.pw":"Passwort","auth.pwPh":"Dein Passwort","auth.pwMin":"Mindestens 8 Zeichen","auth.pw2":"Passwort wiederholen","auth.savePw":"Passwort speichern","auth.forgot":"Passwort vergessen?","auth.note":"Dein Passwort wird nur verschlüsselt gespeichert. Nur du kannst deine Daten sehen.","busy":"Einen Moment …","auth.needEmail":"Bitte gib deine E-Mail-Adresse ein, zum Beispiel name@beispiel.de.","auth.needPw":"Bitte gib dein Passwort ein.","auth.choosePw":"Bitte wähle ein Passwort.","auth.pwShort":"Das Passwort braucht mindestens 8 Zeichen.","auth.pwMismatch":"Die beiden Passwörter sind nicht gleich.","auth.checkMail":"Fast geschafft: Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und melde dich dann hier an.","toast.created":"Konto erstellt","toast.newPw":"Neues Passwort gespeichert","toast.signedIn":"Angemeldet","auth.forgotNeedEmail":"Gib oben deine E-Mail-Adresse ein. Dann schicken wir dir einen Link.","auth.forgotSent":"Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und wähle ein neues Passwort.","auth.linkExpired":"Der Link ist abgelaufen. Tippe auf „Passwort vergessen?“, dann bekommst du einen neuen.","auth.linkFailed":"Der Link hat nicht geklappt. Bitte versuch es nochmal.","logout.title":"Trotzdem abmelden?","logout.text":"Ein paar Änderungen sind noch nicht in deinem Konto, weil gerade keine Verbindung besteht. Wenn du dich jetzt abmeldest, gehen sie verloren.","logout.ok":"Abmelden","toast.signedOut":"Abgemeldet","delAcc.title":"Konto löschen?","delAcc.text":"Dein Konto und alle Daten darin werden für immer gelöscht. Das kann man nicht rückgängig machen.","delAcc.ok":"Konto löschen","toast.noNet":"Keine Verbindung zum Internet","toast.delFailed":"Löschen hat nicht geklappt","toast.accDeleted":"Konto gelöscht","b.income":"Einnahme","b.contract":"Abo & Vertrag","b.payment":"Zahlung","b.toGoal":"Ins Sparziel gelegt","b.fromGoal":"Aus dem Sparziel genommen","b.abo":"Abo","st.planned":"geplant","st.open":"offen","al.trialTitle":"Probe-Abo: {name}","al.trialText":"Kostenlos bis {date}, danach {amount} {rhythm}. Kündige vorher, wenn du es nicht behalten willst.","al.channel":"Erinnerungen","task.reopenAria":"wieder öffnen","task.doneAria":"als erledigt abhaken","task.doneOn":"Erledigt am {date}","task.done":"Erledigt","start.hello":"Hallo, {name}!","start.helloNo":"Hallo!","start.welcome":"Schön, dass du da bist!","start.money":"Verfügbares Geld","start.noIncome":"Trag dein Gehalt ein. Dann siehst du hier, wie viel Geld du noch ausgeben kannst.","start.addIncome":"Gehalt eintragen","start.payToday":"Heute kommt: {name}","start.payTomorrow":"{name} kommt morgen","start.payIn":{"one":"{name} kommt in {n} Tag","other":"{name} kommt in {n} Tagen"},"start.lastDay":"Letzter Tag im Monat","start.daysLeft":{"one":"Noch {n} Tag im Monat","other":"Noch {n} Tage im Monat"},"start.availPay":"Verfügbar bis zum Gehalt","start.availIn":"Verfügbar im {month}","start.ofIncome":"von {amount} Einnahmen","warn.budget":"Budget überschritten:","warn.ofBudget":"{spent} von {budget}","warn.trial":"Probe-Abo {name}","warn.endsToday":"endet heute.","warn.endsTomorrow":"endet morgen.","warn.endsIn":{"one":"endet in {n} Tag.","other":"endet in {n} Tagen."},"warn.trialAfter":"Danach kostet es {amount}. Kündige vorher, wenn du es nicht willst.","ov.title":"Monatsübersicht","ov.income":"Einnahmen","ov.fixed":"Abos & Verträge","ov.spent":"Ausgaben","ov.pays":"Zahlungen","ov.saved":"Gespart","tasks.title":"Termine","all":"Alle","allN":"Alle {n}","tasks.add":"Termin hinzufügen","tasks.openPay":"Offen zu zahlen:","recent.title":"Letzte Buchungen","recent.empty":"Noch keine Buchungen. Tippe unten rechts auf „Eintragen“.","list.title":"Buchungen","search.close":"Suche schließen","search":"Suchen","search.aria":"Buchungen suchen","f.all":"Alle","f.in":"Einnahmen","f.out":"Ausgaben","n.hits":{"one":"{n} Treffer","other":"{n} Treffer"},"search.none":"Nichts gefunden für „{q}“.","list.noneIn":"Keine Einnahmen im {month}.","list.noneOut":"Keine Ausgaben im {month}.","list.noneAll":"Keine Buchungen im {month}.","month.prev":"Monat zurück","month.pick":"Monat wählen","month.next":"Monat vor","sum.in":"Einnahmen","sum.out":"Ausgaben","mp.title":"Monat wählen","mp.now":"Dieser Monat","g.fixed":"Abos & Verträge","g.pays":"Zahlungen","bud.over":"{amount} über dem Budget","bud.left":"Noch {left} von {budget} übrig","bud.none":"Kein Budget","stats.title":"Analyse","stats.perMonth":"Pro Monat","stats.most":"Meiste Ausgaben","stats.avg":"Ausgaben im Schnitt","stats.in":"Einnahmen","stats.out":"Ausgaben","stats.barAria":"{month}: Einnahmen {i}, Ausgaben {o}","cmp.more":"↑ {amount} mehr ausgegeben als im {month}","cmp.less":"↓ {amount} weniger ausgegeben als im {month}","cmp.same":"Genauso viel ausgegeben wie im {month}","stats.budget":"Budget {amount}","pct":"{n} %","n.entries":{"one":"{n} Eintrag","other":"{n} Einträge"},"stats.saved":"Gespart {amount}","stats.minus":"Minus {amount}","stats.left":"Übrig {amount}","stats.noBooks":"Keine Buchungen in diesem Monat.","stats.setBudgets":"Budgets festlegen ›","cd.none":"Keine Einträge mehr.","tip.past":"Das Datum ist schon vorbei.","tip.today":"Heute noch {amount} sparen","tip.perDay":{"one":"{amount} pro Tag sparen (noch {n} Tag)","other":"{amount} pro Tag sparen (noch {n} Tage)"},"tip.perMonth":"{month} pro Monat · {day} pro Tag","goal.savedOf":"{saved} von {target} gespart","goal.done":"Geschafft!","goal.rest":"Noch {amount}","goal.target":"Ziel: {date}","goal.deposit":"Geld einzahlen","goals.title":"Sparziele","goals.add":"Sparziel hinzufügen","goals.total":"Gespart insgesamt: {amount}","goals.empty":"Noch keine Sparziele","back.stats":"Analyse","back.start":"Start","inc.title":"Einnahmen","inc.perMonth":"Bekommst du im Monat","inc.every":"Jeden Monat","inc.inMonth":"im Monat","inc.add":"Einnahme hinzufügen","abo.trialUntil":"Probe-Abo: gratis bis {date}","abo.after":"Danach {amount} {rhythm}","abo.free":"Gratis","abo.left":{"one":"noch {n} Tag","other":"noch {n} Tage"},"abo.next":"Nächste Abbuchung: {date}","abo.save":"Kündigen spart {amount} im Jahr","abo.title":"Abos & Verträge","abo.add":"Abo oder Vertrag hinzufügen","tasks.page":"Termine & Erinnerungen","tasks.open":"Offen","tasks.toPay":"{amount} zu zahlen","tasks.done":"Erledigt","tasks.none":"Keine Termine","tasks.noneText":"Trag ein, was du nicht vergessen darfst, zum Beispiel eine Rechnung oder eine Kündigung. Finanzo erinnert dich.","bud.title":"Budgets","bud.intro":"Leg fest, wie viel du im Monat pro Kategorie höchstens ausgeben willst. Tipp dazu auf eine Kategorie.","bud.spentIn":"Ausgegeben im {month}","close":"Schließen","cancel":"Abbrechen","remind.label":"Wann erinnern?","remind.aria":"Datum der Erinnerung","save":"Speichern","delete":"Löschen","delQ":"Löschen?","delText":"„{name}“ wird gelöscht.","toast.saved":"Gespeichert","toast.deleted":"Gelöscht","what":"Was?","name":"Name","amount":"Betrag","err.amountEx":"Bitte gib einen Betrag ein, zum Beispiel {ex}.","err.date":"Bitte wähle ein Datum.","inc.edit":"Einnahme ändern","inc.new":"Neue Einnahme","inc.namePh":"z. B. Gehalt","inc.amount":"Wie viel bekommst du im Monat?","inc.hint":"Der Betrag, der wirklich auf deinem Konto ankommt.","inc.delete":"Einnahme löschen","inc.errName":"Bitte gib ein, was es ist, zum Beispiel „Gehalt“.","inc.delQ":"Einnahme löschen?","q.salary":"Gehalt","q.sidejob":"Nebenjob","q.childben":"Kindergeld","q.other":"Sonstiges","abo.edit":"Abo ändern","abo.new":"Neues Abo oder Vertrag","abo.namePh":"z. B. Handyvertrag","q.phone":"Handyvertrag","q.gym":"Fitnessstudio","q.insurance":"Versicherung","abo.how":"Wie oft wird abgebucht?","abo.trial":"Kostenloses Probe-Abo","abo.freeUntil":"Kostenlos bis","abo.trialHint":"Finanzo erinnert dich 3 Tage vorher, damit du rechtzeitig kündigen kannst.","abo.nextDate":"Nächste Abbuchung","abo.errName":"Bitte gib einen Namen ein.","abo.errTrialAmount":"Bitte gib ein, was es nach dem Probe-Abo kostet, zum Beispiel {ex}.","abo.errTrialEnd":"Bitte wähle, bis wann das Probe-Abo kostenlos ist.","abo.errNext":"Bitte wähle das Datum der nächsten Abbuchung.","exp.whatIs":"Was ist es?","exp.whatFor":"Wofür genau?","exp.note":"Notiz","exp.editIn":"Einnahme ändern","exp.editOut":"Ausgabe ändern","exp.new":"Neue Buchung","exp.out":"Ausgabe","exp.in":"Einnahme","exp.howMuch":"Wie viel?","exp.for":"Wofür?","exp.date":"Datum","q.gift":"Geschenk","q.refund":"Rückzahlung","q.sale":"Verkauf","q.tip":"Trinkgeld","exp.delIn":"Einnahme löschen","exp.delOut":"Ausgabe löschen","exp.delInQ":"Einnahme löschen?","exp.delOutQ":"Ausgabe löschen?","exp.delText":"Die Buchung wird gelöscht.","toast.budgetOver":"Gespeichert. Budget für {cat} überschritten!","toast.budgetLeft":"Gespeichert. Noch {amount} im Budget für {cat}.","bud.set":"Budget festlegen","bud.for":"Budget: {cat}","bud.which":"Für welche Kategorie?","bud.already":"Im {month} schon ausgegeben: {amount}","bud.max":"Höchstens pro Monat","bud.remove":"Budget entfernen","toast.budSaved":"Budget für {cat} gespeichert","toast.budRemoved":"Budget entfernt","task.edit":"Termin ändern","task.new":"Neuer Termin","task.titlePh":"z. B. Strafzettel bezahlen","task.when":"Wann?","task.pay":"Muss ich etwas bezahlen?","task.reopen":"Wieder öffnen","task.errTitle":"Bitte gib ein, worum es geht.","task.errAmount":"Bitte gib den Betrag ein, zum Beispiel {ex}.","task.errRemind":"Bitte wähle, wann du erinnert werden willst.","task.errRemindAfter":"Die Erinnerung muss vor dem Termin oder am selben Tag sein.","task.delQ":"Termin löschen?","toast.paid":"Als bezahlt abgehakt","toast.done":"Erledigt","toast.reopened":"Wieder offen","goal.edit":"Sparziel ändern","goal.new":"Neues Sparziel","goal.for":"Wofür sparst du?","goal.namePh":"z. B. Urlaub","q.car":"Auto","q.vacation":"Urlaub","q.emergency":"Notgroschen","q.phone2":"Handy","goal.icon":"Symbol","goal.need":"Wie viel brauchst du?","goal.have":"Hast du schon etwas gespart?","goal.untilLbl":"Bis wann?","goal.untilHint":"Mit Datum rechnet Finanzo aus, wie viel du pro Tag oder pro Monat sparen musst.","goal.delete":"Sparziel löschen","goal.errName":"Bitte gib ein, wofür du sparst.","goal.errTarget":"Bitte gib ein, wie viel du brauchst, zum Beispiel {ex}.","goal.errStart":"Bitte gib eine Zahl ein, zum Beispiel 0 oder {ex}.","goal.delQ":"Sparziel löschen?","dep.saved":"Gespart: {saved} von {target}","dep.hint":"Eingezahltes Geld zählt auf der Startseite als „Gespart“ und ist nicht mehr zum Ausgeben übrig.","dep.out":"Rausnehmen","dep.in":"Einzahlen","dep.errOnly":"Du hast hier nur {amount} gespart.","toast.goalDone":"Geschafft! Ziel erreicht.","toast.depIn":"{amount} eingezahlt","toast.depOut":"{amount} rausgenommen","pw.title":"Passwort ändern","pw.current":"Aktuelles Passwort","pw.new":"Neues Passwort","pw.new2":"Neues Passwort wiederholen","pw.forgot":"Aktuelles Passwort vergessen?","pw.needOld":"Bitte gib dein aktuelles Passwort ein.","pw.short":"Das neue Passwort braucht mindestens 8 Zeichen.","pw.mismatch":"Die beiden neuen Passwörter sind nicht gleich.","pw.wrongOld":"Das aktuelle Passwort stimmt nicht.","pw.mailSent":"Wir haben dir eine E-Mail an {email} geschickt. Tippe auf den Link darin und wähle ein neues Passwort.","cur.title":"Währung","cur.searchPh":"Suchen, z. B. Dollar oder USD","cur.note":"Die Beträge werden dabei nicht umgerechnet, nur das Zeichen ändert sich.","cur.popular":"Häufig","cur.all":"Alle Währungen","cur.none":"Keine Währung gefunden.","toast.cur":"Währung: {name}","set.title":"Einstellungen","set.general":"Allgemein","set.yourName":"Dein Name","set.addName":"Name hinzufügen","set.lang":"Sprache","set.cur":"Währung","set.theme":"Aussehen","theme.light":"Hell","theme.dark":"Dunkel","theme.system":"System","theme.systemSub":"Wie bei deinem Handy","set.account":"Konto","set.pw":"Passwort ändern","set.logout":"Abmelden","set.delete":"Konto löschen","set.version":"Finanzo Version {v}","lang.auto":"Automatisch","lang.autoSub":"Sprache deines Handys: {name}","lang.searchPh":"Sprache suchen","lang.none":"Keine Sprache gefunden.","toast.lang":"Sprache: {name}","name.placeholder":"Dein Vorname"};/*/DE*/
+const LANGS=[['de','Deutsch'],['en','English'],['es','Español'],['fr','Français'],['it','Italiano'],['pt','Português'],['nl','Nederlands'],['pl','Polski'],
+  ['tr','Türkçe'],['ru','Русский'],['uk','Українська'],['ar','العربية'],['hi','हिन्दी'],['bn','বাংলা'],['ur','اردو'],['zh','中文'],['ja','日本語'],['ko','한국어'],
+  ['id','Bahasa Indonesia'],['vi','Tiếng Việt']];
+const RTL=['ar','ur'];                                             // Sprachen, die von rechts nach links geschrieben werden
+const LOCALES={de:'de-DE',en:'en-US',es:'es-ES',fr:'fr-FR',it:'it-IT',pt:'pt-BR',nl:'nl-NL',pl:'pl-PL',tr:'tr-TR',ru:'ru-RU',uk:'uk-UA',ar:'ar',
+  hi:'hi-IN',bn:'bn-BD',ur:'ur-PK',zh:'zh-CN',ja:'ja-JP',ko:'ko-KR',id:'id-ID',vi:'vi-VN'};
+const DICT=Object.assign({},(typeof window!=='undefined'&&window.FINANZO_LANGS)||{},{de:DE});
+let LANG='de', LOC='de-DE', LOCX='de-DE-u-nu-latn', PLURAL=null;
+const langName=c=>(LANGS.find(l=>l[0]===c)||['',c])[1];
+// Sprache des Handys (wenn Finanzo sie kann), sonst Englisch
+function phoneLang(){
+  const list=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'de'];
+  for(const l of list){ const c=String(l).toLowerCase().split(/[-_]/)[0]; if(DICT[c]) return c; }
+  return DICT.en?'en':'de';
+}
+function setLang(pref){
+  const c=pref&&pref!=='auto'&&DICT[pref]?pref:phoneLang();
+  LANG=c;
+  const list=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||''];
+  const nav=list.find(l=>String(l).toLowerCase().split(/[-_]/)[0]===c);
+  let loc=(nav&&/[-_]/.test(nav)?String(nav).replace('_','-'):LOCALES[c]||c).split('-u-')[0];
+  try{ new Intl.NumberFormat(loc); }catch(e){ loc=LOCALES[c]||c; }
+  LOC=loc; LOCX=loc+'-u-nu-latn';                                 // Zahlen immer mit 0–9
+  try{ PLURAL=new Intl.PluralRules(LOC); }catch(e){ PLURAL=null; }
+  document.documentElement.lang=c; document.documentElement.dir=RTL.includes(c)?'rtl':'ltr';
+}
+function tr(key,p){
+  let s=DICT[LANG]&&DICT[LANG][key];
+  if(s==null) s=DE[key];
+  if(s==null) return key;
+  if(typeof s==='object'){ const n=p?Number(p.n):NaN; let cat='other';
+    try{ cat=PLURAL?PLURAL.select(n):(n===1?'one':'other'); }catch(e){}
+    s=s[cat]!=null?s[cat]:s.other; }
+  return p?String(s).replace(/\{(\w+)\}/g,(m,k)=>p[k]!=null?p[k]:m):s;
+}
+// Feste Texte im HTML (untere Leiste, Eintragen-Knopf)
+function paintStatic(){
+  document.querySelectorAll('[data-t]').forEach(el=>{ el.textContent=tr(el.dataset.t); });
+  document.querySelectorAll('[data-t-aria]').forEach(el=>{ el.setAttribute('aria-label',tr(el.dataset.tAria)); });
+}
 
 /* =====================================================================
    Symbole
@@ -503,8 +587,8 @@ const ICON={
   gear:sv('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'),
   plus:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
   x:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>',
-  right:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
-  left:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+  right:'<svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
+  left:'<svg class="chev" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   down:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
   check:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   bell:sv('<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>'),
@@ -532,6 +616,12 @@ const ICON={
   gift:sv('<rect x="3.5" y="8" width="17" height="4.5" rx="1"/><path d="M5 12.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7.5M12 8v13"/><path d="M12 8C10.5 5 7 4.2 7 6.4 7 8 9.5 8 12 8zm0 0c1.5-3 5-3.8 5-1.6C17 8 14.5 8 12 8z"/>'),
   umbrella:sv('<path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v6.5a2 2 0 0 0 4 0"/>'),
   shield:sv('<path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.4-7.5 9.5-4.3-1.1-7.5-4.9-7.5-9.5V6L12 3z"/><path d="M9 12l2.2 2.2L15.5 10"/>'),
+  globe:sv('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+  moon:sv('<path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/>'),
+  key:sv('<circle cx="8" cy="15" r="4"/><path d="M10.8 12.2L20 3M16.5 6.5l3 3M14 9l2 2"/>'),
+  logout:sv('<path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5M5 12h11"/>'),
+  trash:sv('<path d="M4 7h16M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/>'),
+  cloud:sv('<path d="M7 18a5 5 0 1 1 .9-9.9A6 6 0 0 1 19 10a4 4 0 0 1-1 8z"/><path d="M9.5 13.5l2 2 3.5-3.5"/>',18),
   bike:sv('<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5L9 9h7l2.5 7.5M9 9l3.5 7.5h-7M14.5 5.5h2l-.5 3.5"/>'),
 };
 const paintIcons=()=>document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=ICON[el.dataset.icon]||'');
@@ -541,16 +631,9 @@ const paintIcons=()=>document.querySelectorAll('[data-icon]').forEach(el=>el.inn
    ===================================================================== */
 const COLORS=['#4C6EF5','#F59F00','#E64980','#7950F2','#15AABF','#FA5252','#FD7E14','#BE4BDB','#1C7ED6','#868E96'];
 const PART={fixed:'#4C6EF5',pays:'#F59F00'};
-const EXP_CATS=[
-  {id:'essen',label:'Essen & Trinken',color:'#F76707',icon:'food',short:'Essen'},
-  {id:'einkauf',label:'Einkaufen',color:'#12B886',icon:'bag',short:'Einkaufen'},
-  {id:'auto',label:'Tanken & Auto',color:'#E03131',icon:'car',short:'Auto'},
-  {id:'freizeit',label:'Freizeit',color:'#7048E8',icon:'ticket',short:'Freizeit'},
-  {id:'kleidung',label:'Kleidung',color:'#D6336C',icon:'shirt',short:'Kleidung'},
-  {id:'technik',label:'Technik',color:'#15AABF',icon:'phone',short:'Technik'},
-  {id:'geschenke',label:'Geschenke',color:'#F59F00',icon:'gift',short:'Geschenke'},
-  {id:'sonstiges',label:'Sonstiges',color:'#868E96',icon:'dots',short:'Sonstiges'},
-];
+const EXP_CATS=[['essen','#F76707','food'],['einkauf','#12B886','bag'],['auto','#E03131','car'],['freizeit','#7048E8','ticket'],
+  ['kleidung','#D6336C','shirt'],['technik','#15AABF','phone'],['geschenke','#F59F00','gift'],['sonstiges','#868E96','dots']]
+  .map(([id,color,icon])=>({id,color,icon,get label(){return tr('cat.'+id);},get short(){return tr('catS.'+id);}}));
 const catOf=id=>EXP_CATS.find(c=>c.id===id)||EXP_CATS[EXP_CATS.length-1];
 const GOAL_COLORS=['#12B886','#4C6EF5','#F59F00','#E64980','#7950F2','#15AABF'];
 const GOAL_ICONS=[['ziel','Ziel','target'],['urlaub','Urlaub','umbrella'],['notgroschen','Notgroschen','shield'],['auto','Auto','car'],
@@ -558,11 +641,11 @@ const GOAL_ICONS=[['ziel','Ziel','target'],['urlaub','Urlaub','umbrella'],['notg
 const goalIconSvg=id=>ICON[(GOAL_ICONS.find(g=>g[0]===id)||GOAL_ICONS[0])[2]];
 function guessGoalIcon(name){
   const n=String(name||'').toLowerCase();
-  if(/urlaub|reise|ferien|trip/.test(n)) return 'urlaub';
+  if(/urlaub|reise|ferien|trip|vacation|holiday|travel|viaje|vacaciones|voyage|vacances|viaggio|vacanza|férias|viagem|vakantie|wakacje|tatil|отпуск|отпустка|відпустк|إجازة|سفر|旅行|휴가|여행|liburan|du lịch/.test(n)) return 'urlaub';
   if(/notgroschen|notfall|reserve|puffer/.test(n)) return 'notgroschen';
-  if(/auto|wagen|führerschein|fuehrerschein|motorrad/.test(n)) return 'auto';
+  if(/auto|wagen|führerschein|fuehrerschein|motorrad|\bcar\b|coche|carro|voiture|macchina|araba|samochód|машин|автомоб|سيارة|汽车|車|자동차|mobil|xe hơi|ô tô/.test(n)) return 'auto';
   if(/fahrrad|bike|e-bike|rad\b/.test(n)) return 'fahrrad';
-  if(/handy|iphone|smartphone|laptop|pc|konsole|ps5|playstation|xbox|tablet/.test(n)) return 'handy';
+  if(/handy|iphone|smartphone|laptop|pc|konsole|ps5|playstation|xbox|tablet|phone|móvil|celular|téléphone|telefono|telefon|телефон|هاتف|手机|携帯|휴대폰|điện thoại/.test(n)) return 'handy';
   if(/wohnung|haus|umzug|möbel|moebel|kaution/.test(n)) return 'wohnung';
   if(/geschenk|geburtstag|weihnacht/.test(n)) return 'geschenk';
   return 'ziel';
@@ -577,14 +660,18 @@ const CURRENCIES=('AED AFN ALL AMD AOA ARS AUD AWG AZN BAM BBD BDT BHD BIF BMD B
   'NZD OMR PAB PEN PGK PHP PKR PLN PYG QAR RON RSD RUB RWF SAR SBD SCR SDG SEK SGD SHP SLE SOS SRD SSP STN SYP SZL THB TJS TMT TND TOP TRY '+
   'TTD TWD TZS UAH UGX USD UYU UZS VES VND VUV WST XAF XCD XCG XOF XPF YER ZAR ZMW ZWG').split(' ');
 const POPULAR=['EUR','USD','GBP','CHF','TRY','PLN','JPY'];
-const curNames=(()=>{try{return new Intl.DisplayNames(['de'],{type:'currency'});}catch(e){return null;}})();
 const EXTRA_NAMES={XCG:'Karibischer Gulden',ZWG:'Simbabwe-Gold',SLE:'Sierra-leonischer Leone',VES:'Venezolanischer Bolívar',STN:'São-toméischer Dobra',MRU:'Mauretanischer Ouguiya'};
-const curName=code=>{try{const n=curNames&&curNames.of(code);return n&&n!==code?n:(EXTRA_NAMES[code]||code);}catch(e){return EXTRA_NAMES[code]||code;}};
+let curNamesFor='', curNames=null;                               // Namen der Währungen in der gewählten Sprache
+const curName=code=>{
+  if(curNamesFor!==LOC){ curNamesFor=LOC; try{ curNames=new Intl.DisplayNames([LOC],{type:'currency'}); }catch(e){ curNames=null; } }
+  const extra=LANG==='de'&&EXTRA_NAMES[code]||code;
+  try{ const n=curNames&&curNames.of(code); return n&&n!==code?n:extra; }catch(e){ return extra; }
+};
 function numberFormat(code,digits){
   const o={style:'currency',currency:code,currencyDisplay:'narrowSymbol'};
   if(digits===0){o.minimumFractionDigits=0;o.maximumFractionDigits=0;}
-  try{ return new Intl.NumberFormat('de-DE',o); }
-  catch(e){ delete o.currencyDisplay; try{ return new Intl.NumberFormat('de-DE',o); }catch(e2){ return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'}); } }
+  try{ return new Intl.NumberFormat(LOCX,o); }
+  catch(e){ delete o.currencyDisplay; try{ return new Intl.NumberFormat(LOCX,o); }catch(e2){ return new Intl.NumberFormat(LOCX,{style:'currency',currency:'EUR'}); } }
 }
 function curSymbol(code){ try{const p=numberFormat(code).formatToParts(1).find(x=>x.type==='currency');return p?p.value:code;}catch(e){return code;} }
 
@@ -594,8 +681,14 @@ function curSymbol(code){ try{const p=numberFormat(code).formatToParts(1).find(x
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
-let fmt, fmt0;
-function setCurrency(code){ fmt=numberFormat(code); fmt0=numberFormat(code,0); }
+let fmt, fmt0, fmtNum, fmtIn, DEC=',';
+function setCurrency(code){
+  fmt=numberFormat(code); fmt0=numberFormat(code,0);
+  fmtNum=new Intl.NumberFormat(LOCX,{minimumFractionDigits:2,maximumFractionDigits:2});                  // Beispiele: 1.200,00
+  fmtIn=new Intl.NumberFormat(LOCX,{minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:false});  // im Eingabefeld: 1200,00
+  try{ DEC=(fmtNum.formatToParts(1.5).find(x=>x.type==='decimal')||{value:','}).value; }catch(e){ DEC=','; }
+}
+const exNum=n=>fmtNum.format(n);
 const round2=n=>Math.round((Number(n)||0)*100)/100;
 const eur=n=>fmt.format(round2(n));          // Betrag mit Cent
 const eur0=n=>fmt0.format(Math.round(n));    // Betrag ohne Cent (Grafik)
@@ -608,25 +701,41 @@ const today=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth()
 const addDays=(d,n)=>new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);
 function addMonths(d,n){const f=new Date(d.getFullYear(),d.getMonth()+n,1);const last=new Date(f.getFullYear(),f.getMonth()+1,0).getDate();return new Date(f.getFullYear(),f.getMonth(),Math.min(d.getDate(),last));}
 const daysBetween=(a,b)=>Math.round((b-a)/86400000);
-const shortDate=d=>d.toLocaleDateString('de-DE',{day:'numeric',month:'short'});
-const longDate=d=>d.toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'});
-const numDate=d=>d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'});
-const monthName=(y,m)=>new Date(y,m,1).toLocaleDateString('de-DE',{month:'long'});
-const shortMonth=(y,m)=>new Date(y,m,1).toLocaleDateString('de-DE',{month:'short'}).replace('.','');
-const dayText=d=>{const n=daysBetween(today(),d);return n===0?'heute':n===1?'morgen':shortDate(d);};
-const plural=(n,one,many)=>`${n} ${n===1?one:many}`;
-function parseMoney(s){let t=String(s||'').replace(/\s/g,'').replace(/[^\d.,-]/g,'');t=t.replace(/\.(?=\d{3}(\D|$))/g,'').replace(',','.');const n=Number(t);return isFinite(n)&&t!==''&&t!=='-'?round2(n):NaN;}
-const moneyInput=n=>n?Number(n).toFixed(2).replace('.',','):'';
+const shortDate=d=>d.toLocaleDateString(LOCX,{day:'numeric',month:'short'});
+const longDate=d=>d.toLocaleDateString(LOCX,{day:'numeric',month:'long',year:'numeric'});
+const numDate=d=>d.toLocaleDateString(LOCX,{day:'2-digit',month:'2-digit',year:'numeric'});
+const monthName=(y,m)=>new Date(y,m,1).toLocaleDateString(LOCX,{month:'long'});
+const monthYear=(y,m)=>new Date(y,m,1).toLocaleDateString(LOCX,{month:'long',year:'numeric'});   // „Oktober 2026“
+const DE_MONTHS=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+const shortMonth=m=>LANG==='de'?DE_MONTHS[m]:new Date(2000,m,1).toLocaleDateString(LOCX,{month:'short'}).replace(/\.$/,'');
+// Monatsnamen unter den Balken: kurz genug? Sonst Zahlen (1–12). Alle Monate gleich behandeln.
+let chartFor='', chartM=null;
+function chartMonths(){
+  if(chartFor===LOC+LANG) return chartM; chartFor=LOC+LANG;
+  const s=[0,1,2,3,4,5,6,7,8,9,10,11].map(shortMonth), max=Math.max(...s.map(x=>x.length));
+  chartM={labels:max<=4?s:s.map((x,m)=>String(m+1)),small:max===4}; return chartM;
+}
+const chartMonth=m=>chartMonths().labels[m];
+const dayText=d=>{const n=daysBetween(today(),d);return n===0?tr('d.todayL'):n===1?tr('d.tomorrowL'):shortDate(d);};
+// Betrag aus einem Eingabefeld lesen (12,50 oder 12.50, auch 1.200,00 bzw. 1,200.00)
+function parseMoney(s){
+  let t=String(s||'').replace(/[٠-٩]/g,c=>String(c.charCodeAt(0)-1632)).replace(/[۰-۹]/g,c=>String(c.charCodeAt(0)-1776)).replace(/٫/g,'.').replace(/٬/g,',');
+  t=t.replace(/\s/g,'').replace(/[^\d.,-]/g,'');
+  if(DEC==='.'){ t=t.replace(/,(?=\d{3}(\D|$))/g,''); t=/,\d{1,2}$/.test(t)&&!t.includes('.')?t.replace(',','.'):t.replace(/,/g,''); }
+  else t=t.replace(/\.(?=\d{3}(\D|$))/g,'').replace(',','.');
+  const n=Number(t); return isFinite(n)&&t!==''&&t!=='-'?round2(n):NaN;
+}
+const moneyInput=n=>n?fmtIn.format(Number(n)):'';
 // „Heute“, „Morgen“, „In 3 Tagen“, „Überfällig seit 2 Tagen“ (jeweils mit Datum)
 function whenText(iso){
-  const d=fromISO(iso), n=daysBetween(today(),d), s=shortDate(d);
-  if(n<0) return `Überfällig seit ${plural(-n,'Tag','Tagen')} (${s})`;
-  if(n===0) return `Heute (${s})`;
-  if(n===1) return `Morgen (${s})`;
-  return `In ${n} Tagen (${s})`;
+  const d=fromISO(iso), n=daysBetween(today(),d), date=shortDate(d);
+  if(n<0) return tr('when.overdue',{n:-n,date});
+  if(n===0) return tr('when.today',{date});
+  if(n===1) return tr('when.tomorrow',{date});
+  return tr('when.inDays',{n,date});
 }
-const dayShort=iso=>{const d=fromISO(iso),n=daysBetween(d,today());if(n===0)return 'Heute';if(n===1)return 'Gestern';
-  return d.getFullYear()===today().getFullYear()?shortDate(d):d.toLocaleDateString('de-DE',{day:'numeric',month:'short',year:'numeric'});};
+const dayShort=iso=>{const d=fromISO(iso),n=daysBetween(d,today());if(n===0)return tr('d.today');if(n===1)return tr('d.yesterday');
+  return d.getFullYear()===today().getFullYear()?shortDate(d):d.toLocaleDateString(LOCX,{day:'numeric',month:'short',year:'numeric'});};
 
 /* =====================================================================
    Speichern und Laden
@@ -635,12 +744,10 @@ const KEY='finanzo-v1';
 const mem={};
 const store={get(k){try{return localStorage.getItem(k);}catch(e){return k in mem?mem[k]:null;}},set(k,v){try{localStorage.setItem(k,v);}catch(e){mem[k]=v;}},
   del(k){try{localStorage.removeItem(k);}catch(e){} delete mem[k];}};
-const RHYTHM={
-  monthly:{label:'Monatlich',months:1},
-  quarterly:{label:'Alle 3 Monate',months:3},
-  halfyearly:{label:'Alle 6 Monate',months:6},
-  yearly:{label:'Jährlich',months:12},
-};
+const RHYTHM={};
+[['monthly',1],['quarterly',3],['halfyearly',6],['yearly',12]].forEach(([k,months])=>{
+  RHYTHM[k]={months,get label(){return tr('rh.'+k);},get inline(){return tr('rhi.'+k);}};    // „Monatlich“ / „monatlich“ im Satz
+});
 const NOTIFY_HOUR=9;   // Uhrzeit der Nachrichten
 // Erinnerungstag: X Tage vor dem Datum, aber nicht in der Vergangenheit und nicht nach dem Datum
 function remindDefault(dateISO,daysBefore,notPast=true){
@@ -649,7 +756,7 @@ function remindDefault(dateISO,daysBefore,notPast=true){
   return toISO(c);
 }
 const empty=()=>({version:11,updatedAt:0,owner:'',incomes:[],contracts:[],tasks:[],expenses:[],budgets:{},goals:[],
-  settings:{theme:'system',currency:'EUR',name:'',lastBackup:''}});
+  settings:{theme:'system',currency:'EUR',name:'',lastBackup:'',lang:'auto'}});
 function freeColor(list){const used=list.map(c=>c.color);for(let i=0;i<COLORS.length;i++)if(!used.includes(i))return i;return list.length%COLORS.length;}
 const mkTask=o=>({id:o.id||uid(),title:String(o.title||'').slice(0,60),date:o.date,amount:Number(o.amount)>0?round2(o.amount):0,
   note:String(o.note||'').slice(0,300),remindOn:isISO(o.remindOn)?o.remindOn:remindDefault(o.date,3,false),
@@ -664,6 +771,7 @@ function clean(raw){
     currency:CURRENCIES.includes(st.currency)?st.currency:'EUR',
     name:typeof st.name==='string'?st.name.trim().slice(0,30):'',
     lastBackup:isISO(st.lastBackup)?st.lastBackup:'',
+    lang:LANGS.some(l=>l[0]===st.lang)?st.lang:'auto',
   };
   for(const i of arr('incomes')){
     if(!i||!i.name||!(i.amount>0)) continue;
@@ -677,7 +785,7 @@ function clean(raw){
       const e=fromISO(c.endDate),n=Number(c.noticeValue);
       cancelBy=toISO(c.noticeUnit==='weeks'?addDays(e,-7*n):addMonths(e,-n));
     }
-    if(cancelBy) s.tasks.push(mkTask({title:`${String(c.name).slice(0,40)} kündigen`,date:cancelBy,remindOn:remindDefault(cancelBy,7,false)}));
+    if(cancelBy) s.tasks.push(mkTask({title:tr('migr.cancel',{name:String(c.name).slice(0,40)}),date:cancelBy,remindOn:remindDefault(cancelBy,7,false)}));
     s.contracts.push({id:c.id||uid(),name:String(c.name).slice(0,40),amount:round2(c.amount),
       rhythm:RHYTHM[c.rhythm]?c.rhythm:(RHYTHM[c.cycle]?c.cycle:'monthly'),nextDate:c.nextDate,
       color:Number.isInteger(c.color)&&c.color>=0&&c.color<COLORS.length?c.color:freeColor(s.contracts),
@@ -711,6 +819,7 @@ function load(){try{const r=store.get(KEY);return r?clean(JSON.parse(r)):empty()
 const saveLocal=()=>store.set(KEY,JSON.stringify(data));          // nur auf dem Gerät speichern
 function save(){ data.updatedAt=Date.now(); saveLocal(); syncSoon(); } // Änderung: speichern und ins Konto schicken
 let data=load();
+setLang(data.settings.lang);
 setCurrency(data.settings.currency);
 const TABS=['start','list','stats','goals','settings'];
 let tab='start'; store.del('finanzo-tab');   // beim Öffnen immer auf Start
@@ -811,6 +920,7 @@ async function push(){
 function applyRemote(raw,ts){
   const fresh=clean(raw); fresh.updatedAt=ts; fresh.owner=session?session.user.id:fresh.owner;
   data=fresh; fillSince(); setCurrency(data.settings.currency); saveLocal(); store.del(DIRTY_KEY);
+  setLang(data.settings.lang); setCurrency(data.settings.currency); paintStatic();
   applyTheme(); draw(); updateSyncInfo();
 }
 // Neuere Daten aus dem Konto holen oder eigene Änderungen hochladen (die neuere Version gewinnt)
@@ -830,22 +940,21 @@ async function pull(){
   finally{ pulling=false; }
 }
 function syncError(e){
-  if(e&&e.noSession&&!e.offline){ saveSession(null); showAuth('in','Bitte melde dich neu an.'); }
+  if(e&&e.noSession&&!e.offline){ saveSession(null); showAuth('in',tr('auth.reLogin')); }
   updateSyncInfo();
 }
-const syncText=()=>!navigator.onLine?'Offline: Änderungen kommen ins Konto, sobald du wieder online bist.'
-  :isDirty()?'Wird in deinem Konto gespeichert …':'Alles ist in deinem Konto gespeichert.';
+const syncText=()=>!navigator.onLine?tr('sync.offline'):isDirty()?tr('sync.saving'):tr('sync.ok');
 function updateSyncInfo(){ const el=document.querySelector('[data-sync]'); if(el) el.textContent=syncText(); }
 
 // Nach dem Anmelden: Daten vom Gerät und aus dem Konto zusammenbringen
 async function afterLogin(){
   const uid=session.user.id;
-  if(data.owner&&data.owner!==uid){ const th=data.settings.theme; data=empty(); data.settings.theme=th; setCurrency('EUR'); saveLocal(); store.del(DIRTY_KEY); }
+  if(data.owner&&data.owner!==uid){ const th=data.settings.theme, lg=data.settings.lang; data=empty(); data.settings.theme=th; data.settings.lang=lg; setCurrency('EUR'); saveLocal(); store.del(DIRTY_KEY); }
   let row=null, offline=false;
   try{ row=await fetchRow(); }catch(e){ if(e.offline) offline=true; else throw e; }
   hideAuth();
   if(!data.owner&&hasContent(data)&&row&&hasContent(row.data)){
-    const pick=await choose('Welche Daten willst du behalten?','In deinem Konto und auf diesem Gerät sind schon Daten gespeichert. Die anderen werden ersetzt.','Aus dem Konto','Von diesem Gerät');
+    const pick=await choose(tr('merge.title'),tr('merge.text'),tr('merge.account'),tr('merge.device'));
     if(pick==='b'){ data.owner=uid; save(); await push(); }
     else applyRemote(row.data,Date.parse(row.updated_at)||Date.now());
   } else if(row&&(!hasContent(data)||data.owner===uid)){
@@ -868,36 +977,36 @@ function showAuth(mode='in',err='',ok=''){
 }
 function hideAuth(){ const a=$('#auth'); a.hidden=true; a.innerHTML=''; document.body.classList.remove('locked'); }
 function authMsg(e){
-  if(e&&e.offline) return 'Keine Verbindung zum Internet. Prüfe dein WLAN oder deine mobilen Daten.';
+  if(e&&e.offline) return tr('err.offline');
   const c=String(e&&e.code||''), m=String(e&&e.message||'').toLowerCase();
-  if(c==='invalid_credentials'||c==='invalid_grant'||m.includes('invalid login')) return 'E-Mail oder Passwort ist falsch.';
-  if(c==='email_not_confirmed'||m.includes('not confirmed')) return 'Bitte bestätige zuerst deine E-Mail. Den Link findest du in deinem Postfach.';
-  if(c==='user_already_exists'||c==='email_exists'||m.includes('already registered')) return 'Für diese E-Mail gibt es schon ein Konto. Melde dich an.';
-  if(c==='weak_password'||m.includes('password should')) return 'Das Passwort ist zu schwach. Nimm mindestens 8 Zeichen mit Buchstaben und Zahlen.';
-  if(c==='same_password') return 'Das neue Passwort muss anders sein als das alte.';
-  if(c==='email_address_invalid'||m.includes('invalid format')) return 'Diese E-Mail-Adresse ist ungültig.';
-  if(e&&e.status===429||c.includes('rate_limit')) return 'Zu viele Versuche. Bitte warte ein paar Minuten.';
-  if(c==='signup_disabled') return 'Neue Konten sind gerade ausgeschaltet.';
-  if(c.startsWith('PGRST')||c==='42P01'||(e&&e.status===404)) return 'Die Datenbank ist noch nicht fertig eingerichtet (SQL-Schritt in Supabase).';
-  return 'Das hat nicht geklappt. Bitte versuch es nochmal.';
+  if(c==='invalid_credentials'||c==='invalid_grant'||m.includes('invalid login')) return tr('err.credentials');
+  if(c==='email_not_confirmed'||m.includes('not confirmed')) return tr('err.notConfirmed');
+  if(c==='user_already_exists'||c==='email_exists'||m.includes('already registered')) return tr('err.exists');
+  if(c==='weak_password'||m.includes('password should')) return tr('err.weak');
+  if(c==='same_password') return tr('err.samePw');
+  if(c==='email_address_invalid'||m.includes('invalid format')) return tr('err.emailInvalid');
+  if(e&&e.status===429||c.includes('rate_limit')) return tr('err.rate');
+  if(c==='signup_disabled') return tr('err.signupOff');
+  if(c.startsWith('PGRST')||c==='42P01'||(e&&e.status===404)) return tr('err.db');
+  return tr('err.generic');
 }
 function renderAuth(err='',ok=''){
   const m=authMode;
   $('#auth').innerHTML=`<div class="auth-in">
     <div class="auth-hero"><span class="auth-logo">${ICON.wallet}</span><h1>Finanzo</h1>
-      <p>${m==='reset'?'Wähle ein neues Passwort für dein Konto.':m==='up'?'Erstelle dein Konto. Dann sind deine Daten sicher gespeichert, auch für ein neues Handy.':'Melde dich an, um deine Daten zu sehen.'}</p></div>
+      <p>${esc(m==='reset'?tr('auth.subReset'):m==='up'?tr('auth.subUp'):tr('auth.subIn'))}</p></div>
     <div class="auth-card">
-      ${m==='reset'?'':`<div class="seg" role="group"><button type="button" data-auth-mode="in" aria-pressed="${m==='in'}">Anmelden</button><button type="button" data-auth-mode="up" aria-pressed="${m==='up'}">Konto erstellen</button></div>`}
+      ${m==='reset'?'':`<div class="seg" role="group"><button type="button" data-auth-mode="in" aria-pressed="${m==='in'}">${esc(tr('auth.in'))}</button><button type="button" data-auth-mode="up" aria-pressed="${m==='up'}">${esc(tr('auth.up'))}</button></div>`}
       <form novalidate data-auth-form>
-        ${m==='up'?'<label class="field"><span class="label">Dein Name</span><input class="input" name="name" maxlength="30" autocomplete="given-name" placeholder="z. B. Alex"></label>':''}
-        ${m==='reset'?'':`<label class="field"><span class="label">E-Mail</span><input class="input" name="email" type="email" inputmode="email" autocomplete="${m==='up'?'email':'username'}" autocapitalize="off" spellcheck="false" placeholder="name@beispiel.de"></label>`}
-        <label class="field"><span class="label">${m==='reset'?'Neues Passwort':'Passwort'}</span><input class="input" name="password" type="password" autocomplete="${m==='in'?'current-password':'new-password'}" placeholder="${m==='in'?'Dein Passwort':'Mindestens 8 Zeichen'}"></label>
-        ${m==='in'?'':'<label class="field"><span class="label">Passwort wiederholen</span><input class="input" name="password2" type="password" autocomplete="new-password"></label>'}
+        ${m==='up'?`<label class="field"><span class="label">${esc(tr('auth.name'))}</span><input class="input" name="name" maxlength="30" autocomplete="given-name" placeholder="${esc(tr('auth.namePh'))}"></label>`:''}
+        ${m==='reset'?'':`<label class="field"><span class="label">${esc(tr('auth.email'))}</span><input class="input" name="email" type="email" inputmode="email" autocomplete="${m==='up'?'email':'username'}" autocapitalize="off" spellcheck="false" placeholder="${esc(tr('auth.emailPh'))}"></label>`}
+        <label class="field"><span class="label">${esc(m==='reset'?tr('auth.newPw'):tr('auth.pw'))}</span><input class="input" name="password" type="password" autocomplete="${m==='in'?'current-password':'new-password'}" placeholder="${esc(m==='in'?tr('auth.pwPh'):tr('auth.pwMin'))}"></label>
+        ${m==='in'?'':`<label class="field"><span class="label">${esc(tr('auth.pw2'))}</span><input class="input" name="password2" type="password" autocomplete="new-password"></label>`}
         <p class="err" ${err?'':'hidden'}>${esc(err)}</p><p class="ok-msg" ${ok?'':'hidden'}>${esc(ok)}</p>
-        <button class="btn btn-main btn-full" type="submit" data-auth-submit>${m==='in'?'Anmelden':m==='up'?'Konto erstellen':'Passwort speichern'}</button>
-        ${m==='in'?'<button type="button" class="link-btn auth-forgot" data-forgot>Passwort vergessen?</button>':''}
+        <button class="btn btn-main btn-full" type="submit" data-auth-submit>${esc(m==='in'?tr('auth.in'):m==='up'?tr('auth.up'):tr('auth.savePw'))}</button>
+        ${m==='in'?`<button type="button" class="link-btn auth-forgot" data-forgot>${esc(tr('auth.forgot'))}</button>`:''}
       </form></div>
-    <p class="auth-note">${ICON.shield}<span>Dein Passwort wird nur verschlüsselt gespeichert. Nur du kannst deine Daten sehen.</span></p></div>`;
+    <p class="auth-note">${ICON.shield}<span>${esc(tr('auth.note'))}</span></p></div>`;
   const a=$('#auth'), f=a.querySelector('[data-auth-form]');
   if(f.email) f.email.value=authEmail;
   a.querySelectorAll('[data-auth-mode]').forEach(b=>b.addEventListener('click',()=>{ if(f.email) authEmail=f.email.value.trim(); authMode=b.dataset.authMode; renderAuth(); }));
@@ -908,14 +1017,14 @@ function authInfo(f,err,ok){
   const e=f.querySelector('.err'), o=f.querySelector('.ok-msg');
   e.textContent=err||''; e.hidden=!err; o.textContent=ok||''; o.hidden=!ok;
 }
-function authBusy(f,on){ const b=f.querySelector('[data-auth-submit]'); b.disabled=on; if(on){ b.dataset.label=b.textContent; b.textContent='Einen Moment …'; } else if(b.dataset.label) b.textContent=b.dataset.label; }
+function authBusy(f,on){ const b=f.querySelector('[data-auth-submit]'); b.disabled=on; if(on){ b.dataset.label=b.textContent; b.textContent=tr('busy'); } else if(b.dataset.label) b.textContent=b.dataset.label; }
 async function authSubmit(f){
   const m=authMode, email=f.email?f.email.value.trim().toLowerCase():'', pw=f.password.value, pw2=f.password2?f.password2.value:'';
   if(f.email) authEmail=email;
-  if(m!=='reset'&&!emailOk(email)) return authInfo(f,'Bitte gib deine E-Mail-Adresse ein, zum Beispiel name@beispiel.de.');
-  if(!pw) return authInfo(f,m==='in'?'Bitte gib dein Passwort ein.':'Bitte wähle ein Passwort.');
-  if(m!=='in'&&pw.length<8) return authInfo(f,'Das Passwort braucht mindestens 8 Zeichen.');
-  if(m!=='in'&&pw!==pw2) return authInfo(f,'Die beiden Passwörter sind nicht gleich.');
+  if(m!=='reset'&&!emailOk(email)) return authInfo(f,tr('auth.needEmail'));
+  if(!pw) return authInfo(f,m==='in'?tr('auth.needPw'):tr('auth.choosePw'));
+  if(m!=='in'&&pw.length<8) return authInfo(f,tr('auth.pwShort'));
+  if(m!=='in'&&pw!==pw2) return authInfo(f,tr('auth.pwMismatch'));
   authInfo(f,''); authBusy(f,true);
   try{
     let name='';
@@ -923,21 +1032,21 @@ async function authSubmit(f){
     else if(m==='up'){
       name=f.name.value.trim().slice(0,30);
       const j=await sbFetch('/auth/v1/signup',{method:'POST',body:{email,password:pw,data:{name}}});
-      if(!j||!j.access_token){ authMode='in'; renderAuth('','Fast geschafft: Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und melde dich dann hier an.'); return; }
+      if(!j||!j.access_token){ authMode='in'; renderAuth('',tr('auth.checkMail')); return; }
       saveSession(toSession(j));
     }
     else await sbUser('/auth/v1/user',{method:'PUT',body:{password:pw}});
     await afterLogin();
     if(name&&!data.settings.name){ data.settings.name=name; save(); draw(); }
-    toast(m==='up'?'Konto erstellt':m==='reset'?'Neues Passwort gespeichert':'Angemeldet');
+    toast(m==='up'?tr('toast.created'):m==='reset'?tr('toast.newPw'):tr('toast.signedIn'));
   }catch(e){ if(!$('#auth').hidden){ authBusy(f,false); authInfo(f,authMsg(e)); } else { showAuth('in',authMsg(e)); } }
 }
 async function forgot(f){
   const email=f.email.value.trim().toLowerCase(); authEmail=email;
-  if(!emailOk(email)) return authInfo(f,'Gib oben deine E-Mail-Adresse ein. Dann schicken wir dir einen Link.');
+  if(!emailOk(email)) return authInfo(f,tr('auth.forgotNeedEmail'));
   try{
     await sbFetch('/auth/v1/recover?redirect_to='+encodeURIComponent(appUrl()),{method:'POST',body:{email}});
-    authInfo(f,'','Wir haben dir eine E-Mail geschickt. Tippe auf den Link darin und wähle ein neues Passwort.');
+    authInfo(f,'',tr('auth.forgotSent'));
   }catch(e){ authInfo(f,authMsg(e)); }
 }
 // Wenn die App über einen Link aus einer E-Mail geöffnet wird (z. B. Passwort zurücksetzen)
@@ -950,13 +1059,13 @@ function readAuthHash(){
 async function bootAccount(){
   if(!ACCOUNTS) return;
   const h=readAuthHash();
-  if(h&&(h.error||h.error_code)){ showAuth('in',h.error_code==='otp_expired'?'Der Link ist abgelaufen. Tippe auf „Passwort vergessen?“, dann bekommst du einen neuen.':'Der Link hat nicht geklappt. Bitte versuch es nochmal.'); return; }
+  if(h&&(h.error||h.error_code)){ showAuth('in',h.error_code==='otp_expired'?tr('auth.linkExpired'):tr('auth.linkFailed')); return; }
   if(h&&h.access_token){
     const tmp={access_token:h.access_token,refresh_token:h.refresh_token||'',expires_at:Number(h.expires_at)||Math.floor(Date.now()/1000)+(Number(h.expires_in)||3600),user:{id:'',email:''}};
     try{ const u=await sbFetch('/auth/v1/user',{token:h.access_token}); tmp.user={id:u.id,email:u.email||''}; saveSession(tmp); }
     catch(e){ saveSession(null); showAuth('in',authMsg(e)); return; }
     if(h.type==='recovery'){ showAuth('reset'); return; }
-    try{ await afterLogin(); toast('Angemeldet'); }catch(e){ showAuth('in',authMsg(e)); }
+    try{ await afterLogin(); toast(tr('toast.signedIn')); }catch(e){ showAuth('in',authMsg(e)); }
     return;
   }
   if(!session){ showAuth('in'); return; }
@@ -966,21 +1075,21 @@ async function bootAccount(){
 async function logout(){
   if(isDirty()) await push();
   if(isDirty()){
-    const ok=await ask('Trotzdem abmelden?','Ein paar Änderungen sind noch nicht in deinem Konto, weil gerade keine Verbindung besteht. Wenn du dich jetzt abmeldest, gehen sie verloren.','Abmelden');
+    const ok=await ask(tr('logout.title'),tr('logout.text'),tr('logout.ok'));
     if(!ok) return;
   }
   const tok=session&&session.access_token;
-  saveSession(null); clearLocal(); showAuth('in'); toast('Abgemeldet');
+  saveSession(null); clearLocal(); showAuth('in'); toast(tr('toast.signedOut'));
   if(tok) sbFetch('/auth/v1/logout',{method:'POST',token:tok}).catch(()=>{});
 }
 async function deleteAccount(){
-  if(!await ask('Konto löschen?','Dein Konto und alle Daten darin werden für immer gelöscht. Das kann man nicht rückgängig machen.','Konto löschen')) return;
+  if(!await ask(tr('delAcc.title'),tr('delAcc.text'),tr('delAcc.ok'))) return;
   try{ await sbUser('/rest/v1/rpc/delete_my_account',{method:'POST',body:{}}); }
-  catch(e){ closeWin(1); toast(e.offline?'Keine Verbindung zum Internet':'Löschen hat nicht geklappt'); return; }
-  saveSession(null); clearLocal(); showAuth('in'); toast('Konto gelöscht');
+  catch(e){ closeWin(1); toast(e.offline?tr('toast.noNet'):tr('toast.delFailed')); return; }
+  saveSession(null); clearLocal(); showAuth('in'); toast(tr('toast.accDeleted'));
 }
 function clearLocal(){
-  const th=data.settings.theme; data=empty(); data.settings.theme=th; setCurrency('EUR'); saveLocal(); store.del(DIRTY_KEY);
+  const th=data.settings.theme, lg=data.settings.lang; data=empty(); data.settings.theme=th; data.settings.lang=lg; setCurrency('EUR'); saveLocal(); store.del(DIRTY_KEY);
   applyTheme(); tab='start'; sub=null; draw();
 }
 
@@ -1096,23 +1205,23 @@ function bookings(from,to){
   // ab wann automatisch gebucht wird (ohne Zahltag: ab dem 1. des Monats, so wie auch gerechnet wird)
   const startOf=x=>{let s=x.since?fromISO(x.since):from; if(!mainIncome()) s=new Date(s.getFullYear(),s.getMonth(),1); return s>from?s:from;};
   for(const x of data.expenses) if(inR(x.date)){
-    if(x.kind==='in') out.push({iso:x.date,dir:'in',type:'extra',name:x.note||'Einnahme',sub:'Einnahme',amount:x.amount,icon:'arrowIn',color:'var(--green)',open:'expense:'+x.id,t:x.createdAt});
+    if(x.kind==='in') out.push({iso:x.date,dir:'in',type:'extra',name:x.note||tr('b.income'),sub:tr('b.income'),amount:x.amount,icon:'arrowIn',color:'var(--green)',open:'expense:'+x.id,t:x.createdAt});
     else { const c=catOf(x.cat); out.push({iso:x.date,dir:'out',type:'spent',cat:c.id,name:x.note||c.label,sub:c.label,amount:x.amount,icon:c.icon,color:c.color,open:'expense:'+x.id,t:x.createdAt}); }
   }
   for(const i of data.incomes){
     const a=startOf(i); if(a>to) continue;
-    (payOf(i)?paydaysBetween(i,a,to):periodStarts(a,to)).forEach(d=>out.push({iso:toISO(d),dir:'in',type:'income',name:i.name,sub:'Einnahme',amount:i.amount,icon:'arrowIn',color:'var(--green)',open:'income:'+i.id,t:1}));
+    (payOf(i)?paydaysBetween(i,a,to):periodStarts(a,to)).forEach(d=>out.push({iso:toISO(d),dir:'in',type:'income',name:i.name,sub:tr('b.income'),amount:i.amount,icon:'arrowIn',color:'var(--green)',open:'income:'+i.id,t:1}));
   }
   for(const c of data.contracts){
     const a=startOf(c); if(a>to) continue;
-    paymentsBetween(c,a,to).forEach(d=>out.push({iso:toISO(d),dir:'out',type:'fixed',name:c.name,sub:'Abo & Vertrag',amount:c.amount,icon:'repeat',color:COLORS[c.color],open:'contract:'+c.id,t:0}));
+    paymentsBetween(c,a,to).forEach(d=>out.push({iso:toISO(d),dir:'out',type:'fixed',name:c.name,sub:tr('b.contract'),amount:c.amount,icon:'repeat',color:COLORS[c.color],open:'contract:'+c.id,t:0}));
   }
   for(const x of data.tasks) if(x.done&&x.amount>0){
     const iso=x.doneAt&&x.doneAt<x.date?x.doneAt:x.date;
-    if(inR(iso)) out.push({iso,dir:'out',type:'pays',name:x.title,sub:'Zahlung',amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0});
+    if(inR(iso)) out.push({iso,dir:'out',type:'pays',name:x.title,sub:tr('b.payment'),amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0});
   }
   for(const g of data.goals) for(const m of g.moves) if(inR(m.date))
-    out.push({iso:m.date,dir:'save',type:'saved',name:g.name,sub:m.amount>0?'Ins Sparziel gelegt':'Aus dem Sparziel genommen',amount:Math.abs(m.amount),
+    out.push({iso:m.date,dir:'save',type:'saved',name:g.name,sub:m.amount>0?tr('b.toGoal'):tr('b.fromGoal'),amount:Math.abs(m.amount),
       sign:m.amount>0?'−':'+',icon:(GOAL_ICONS.find(z=>z[0]===g.icon)||GOAL_ICONS[0])[2],color:GOAL_COLORS[g.color%GOAL_COLORS.length],open:'goal:'+g.id,t:0});
   return out.sort((a,b)=>a.iso<b.iso?1:a.iso>b.iso?-1:(b.t||0)-(a.t||0));
 }
@@ -1125,9 +1234,9 @@ function alerts(){
   return [
     ...data.tasks.filter(x=>!x.done).map(x=>({id:x.id,ref:x,title:x.title,remindOn:x.remindOn,due:today()>=remindDay(x),
       text:()=>(x.amount?`${eur(x.amount)} – `:'')+whenText(x.date)+(x.note?` – ${x.note}`:'')})),
-    ...data.contracts.filter(inTrial).map(c=>({id:c.id+'-probe',ref:c,title:`Probe-Abo: ${c.name}`,remindOn:remindDefault(c.trialEnd,3),
+    ...data.contracts.filter(inTrial).map(c=>({id:c.id+'-probe',ref:c,title:tr('al.trialTitle',{name:c.name}),remindOn:remindDefault(c.trialEnd,3),
       due:today()>=addDays(fromISO(c.trialEnd),-3),
-      text:()=>`Kostenlos bis ${shortDate(fromISO(c.trialEnd))}, danach ${eur(c.amount)} ${RHYTHM[c.rhythm].label.toLowerCase()}. Kündige vorher, wenn du es nicht behalten willst.`})),
+      text:()=>tr('al.trialText',{date:shortDate(fromISO(c.trialEnd)),amount:eur(c.amount),rhythm:RHYTHM[c.rhythm].inline})})),
   ];
 }
 const isIOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
@@ -1142,7 +1251,7 @@ async function syncNotifications(ask){
       let perm=await LN.checkPermissions();
       if(perm.display!=='granted'&&ask) perm=await LN.requestPermissions();
       if(perm.display!=='granted') return;
-      if(!channelReady){ try{ await LN.createChannel({id:'erinnerungen',name:'Erinnerungen',importance:4}); }catch(e){} channelReady=true; }
+      if(!channelReady){ try{ await LN.createChannel({id:'erinnerungen',name:tr('al.channel'),importance:4}); }catch(e){} channelReady=true; }
       const pending=await LN.getPending();
       if(pending&&pending.notifications&&pending.notifications.length) await LN.cancel({notifications:pending.notifications.map(n=>({id:n.id}))});
       const now=new Date();
@@ -1184,12 +1293,12 @@ function go(t,s=null){ tab=t; sub=s; draw(); scrollTo({top:0}); }
 
 // Eine Buchung als Zeile
 function bookSub(b){
-  const kind=b.type==='spent'?(b.name===b.sub?'':b.sub):b.type==='fixed'?'Abo':b.type==='pays'?'Zahlung':b.type==='saved'?b.sub:'';
-  return [kind,dayShort(b.iso),b.state].filter(Boolean).join(' · ');
+  const kind=b.type==='spent'?(b.name===b.sub?'':b.sub):b.type==='fixed'?tr('b.abo'):b.type==='pays'?tr('b.payment'):b.type==='saved'?b.sub:'';
+  return [kind,dayShort(b.iso),b.state?tr('st.'+b.state):''].filter(Boolean).join(' · ');
 }
 function bookRow(b,mode=''){
   const sign=b.dir==='in'?'+':b.dir==='out'?'−':b.sign, cls=b.dir==='in'?'plus':b.dir==='out'?'neg':'';
-  const sub=mode==='planned'?`geplant · ${dayText(fromISO(b.iso))}`:bookSub(b);
+  const sub=mode==='planned'?`${tr('st.planned')} · ${dayText(fromISO(b.iso))}`:bookSub(b);
   return `<li><button class="item book ${mode==='planned'||b.state?'planned':''}" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
     <span class="item-main"><div class="item-name">${esc(b.name)}</div><div class="item-sub">${esc(sub)}</div></span>
     <span class="item-amt ${cls}">${sign}${eur(b.amount)}</span></button></li>`;
@@ -1197,37 +1306,37 @@ function bookRow(b,mode=''){
 // Termin mit Haken zum Abhaken
 function taskRow(x){
   const late=!x.done&&x.date<toISO(today()), rem=!x.done&&today()>=remindDay(x);
-  return `<li class="pay-row ${x.done?'done':''}"><button type="button" class="check" data-check="${x.id}" aria-pressed="${x.done}" aria-label="${esc(x.title)}: ${x.done?'wieder öffnen':'als erledigt abhaken'}"><span class="ring">${ICON.check}</span></button>
+  return `<li class="pay-row ${x.done?'done':''}"><button type="button" class="check" data-check="${x.id}" aria-pressed="${x.done}" aria-label="${esc(x.title)}: ${esc(x.done?tr('task.reopenAria'):tr('task.doneAria'))}"><span class="ring">${ICON.check}</span></button>
     <button class="item" data-task="${x.id}"><span class="item-main"><div class="item-name">${esc(x.title)}</div>
-      <div class="item-sub ${x.done?'':late?'late':rem?'soon':''}">${x.done?`Erledigt${x.doneAt?' am '+shortDate(fromISO(x.doneAt)):''}`:esc(whenText(x.date))}</div>
+      <div class="item-sub ${x.done?'':late?'late':rem?'soon':''}">${esc(x.done?(x.doneAt?tr('task.doneOn',{date:shortDate(fromISO(x.doneAt))}):tr('task.done')):whenText(x.date))}</div>
       ${x.note?`<div class="item-sub">${esc(x.note)}</div>`:''}</span>
       ${x.amount?`<span class="item-amt neg">−${eur(x.amount)}</span>`:''}</button></li>`;
 }
-const addRow=(attr,label)=>`<li><button class="item add-row" ${attr}><span class="plus-ic">${ICON.plus}</span>${label}</button></li>`;
+const addRow=(attr,label)=>`<li><button class="item add-row" ${attr}><span class="plus-ic">${ICON.plus}</span>${esc(label)}</button></li>`;
 const openTasks=()=>data.tasks.filter(x=>!x.done).sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0);
 const doneTasks=()=>data.tasks.filter(x=>x.done).sort((a,b)=>(a.doneAt||a.date)<(b.doneAt||b.date)?1:-1).slice(0,20);
 
 /* ---------- Reiter: Start ---------- */
 function drawStart(){
   const P=plan(), t=today(), ty=t.getFullYear(), tm=t.getMonth(), name=data.settings.name;
-  const hello=`<header class="hello"><div><h1>Hallo${name?`, ${esc(name)}`:''}!</h1><p>Schön, dass du da bist!</p></div></header>`;
+  const hello=`<header class="hello"><div><h1>${name?tr('start.hello',{name:esc(name)}):esc(tr('start.helloNo'))}</h1><p>${esc(tr('start.welcome'))}</p></div></header>`;
 
   // Geld-Karte: wie viel noch übrig ist
   let card;
   if(!data.incomes.length){
-    card=`<section class="budget"><span class="b-top"><span class="b-label">Verfügbares Geld</span><span class="b-ic">${ICON.wallet}</span></span>
-      <p class="b-empty">Trag dein Gehalt ein. Dann siehst du hier, wie viel Geld du noch ausgeben kannst.</p>
-      <button type="button" class="btn btn-main btn-full" data-add-income>${ICON.plus}Gehalt eintragen</button></section>`;
+    card=`<section class="budget"><span class="b-top"><span class="b-label">${esc(tr('start.money'))}</span><span class="b-ic">${ICON.wallet}</span></span>
+      <p class="b-empty">${esc(tr('start.noIncome'))}</p>
+      <button type="button" class="btn btn-main btn-full" data-add-income>${ICON.plus}${esc(tr('start.addIncome'))}</button></section>`;
   } else {
     const isPayday=P.main&&toISO(P.start)===toISO(t);
     const when=P.main
-      ?(isPayday?`Heute kommt: ${esc(P.main.name)}`:P.days===1?`${esc(P.main.name)} kommt morgen`:`${esc(P.main.name)} kommt in ${P.days} Tagen`)
-      :(P.days===1?'Letzter Tag im Monat':`Noch ${P.days} Tage im Monat`);
+      ?(isPayday?tr('start.payToday',{name:esc(P.main.name)}):P.days===1?tr('start.payTomorrow',{name:esc(P.main.name)}):tr('start.payIn',{name:esc(P.main.name),n:P.days}))
+      :(P.days===1?esc(tr('start.lastDay')):esc(tr('start.daysLeft',{n:P.days})));
     const pct=P.income>0?Math.max(0,Math.min(1,P.left/P.income)):0;
     card=`<section class="budget">
-      <span class="b-top"><span class="b-label">${P.main?'Verfügbar bis zum Gehalt':`Verfügbar im ${esc(monthName(ty,tm))}`}</span><span class="b-ic">${ICON.wallet}</span></span>
+      <span class="b-top"><span class="b-label">${esc(P.main?tr('start.availPay'):tr('start.availIn',{month:monthName(ty,tm)}))}</span><span class="b-ic">${ICON.wallet}</span></span>
       <span class="b-num ${P.left<0?'minus':''}">${P.left<0?'−':''}${eur(Math.abs(P.left))}</span>
-      <span class="b-of">von ${eur(P.income)} Einnahmen</span>
+      <span class="b-of">${esc(tr('start.ofIncome',{amount:eur(P.income)}))}</span>
       <span class="bar b-bar" aria-hidden="true"><span style="width:${P.left<0?100:(pct*100).toFixed(1)}%"></span></span>
       <span class="b-foot"><span>${when}</span></span></section>`;
   }
@@ -1235,38 +1344,38 @@ function drawStart(){
   // Hinweise: Budget überschritten, Probe-Abo endet bald
   const over=EXP_CATS.filter(c=>data.budgets[c.id]&&catSpent(ty,tm,c.id)>data.budgets[c.id]);
   const trials=data.contracts.filter(c=>inTrial(c)&&daysBetween(t,fromISO(c.trialEnd))<=3);
-  const warns=over.map(c=>`<button type="button" class="warn-card" data-tab-go="stats">${ICON.alert}<span><b>Budget überschritten:</b> ${esc(c.label)}
-      (${eur(catSpent(ty,tm,c.id))} von ${eur(data.budgets[c.id])})</span></button>`).join('')
+  const warns=over.map(c=>`<button type="button" class="warn-card" data-tab-go="stats">${ICON.alert}<span><b>${esc(tr('warn.budget'))}</b> ${esc(c.label)}
+      (${esc(tr('warn.ofBudget',{spent:eur(catSpent(ty,tm,c.id)),budget:eur(data.budgets[c.id])}))})</span></button>`).join('')
     +trials.map(c=>{const n=daysBetween(t,fromISO(c.trialEnd));
-      return `<button type="button" class="warn-card yellow" data-contract="${c.id}">${ICON.bell}<span><b>Probe-Abo ${esc(c.name)}</b> endet ${n===0?'heute':n===1?'morgen':`in ${n} Tagen`}.
-        Danach kostet es ${eur(c.amount)}. Kündige vorher, wenn du es nicht willst.</span></button>`;}).join('');
+      return `<button type="button" class="warn-card yellow" data-contract="${c.id}">${ICON.bell}<span><b>${esc(tr('warn.trial',{name:c.name}))}</b> ${esc(n===0?tr('warn.endsToday'):n===1?tr('warn.endsTomorrow'):tr('warn.endsIn',{n}))}
+        ${esc(tr('warn.trialAfter',{amount:eur(c.amount)}))}</span></button>`;}).join('');
 
   // Monatsübersicht
   // Einnahmen grün, Ausgaben rot (Gespart bleibt neutral)
   const ov=(icon,cls,label,val,sign,attr,tone=sign==='+'?'plus':'neg')=>`<li><button type="button" class="ov" ${attr}><span class="ic ${cls}">${ICON[icon]}</span>
-    <span class="ov-name">${label}</span><b class="${val?tone:''}">${val?sign:''}${eur(Math.abs(val))}</b>${ICON.right}</button></li>`;
+    <span class="ov-name">${esc(label)}</span><b class="${val?tone:''}">${val?sign:''}${eur(Math.abs(val))}</b>${ICON.right}</button></li>`;
   const overview=`<section class="card">
-    <div class="card-head"><h2>Monatsübersicht</h2><small>${esc(shortDate(P.start))} – ${esc(shortDate(P.last))}</small></div>
+    <div class="card-head"><h2>${esc(tr('ov.title'))}</h2><small>${esc(shortDate(P.start))} – ${esc(shortDate(P.last))}</small></div>
     <ul class="ov-list">
-      ${ov('arrowIn','ic-green','Einnahmen',P.income,'+','data-sub="incomes"')}
-      ${ov('repeat','ic-blue','Abos &amp; Verträge',P.fixed,'−','data-sub="abos"')}
-      ${ov('cart','ic-red','Ausgaben',P.spent,'−','data-tab-go="stats"')}
-      ${P.pays?ov('calendar','ic-orange','Zahlungen',P.pays,'−','data-sub="tasks"'):''}
-      ${ov('coins','ic-teal','Gespart',P.saved,P.saved<0?'+':'−','data-tab-go="goals"','')}
+      ${ov('arrowIn','ic-green',tr('ov.income'),P.income,'+','data-sub="incomes"')}
+      ${ov('repeat','ic-blue',tr('ov.fixed'),P.fixed,'−','data-sub="abos"')}
+      ${ov('cart','ic-red',tr('ov.spent'),P.spent,'−','data-tab-go="stats"')}
+      ${P.pays?ov('calendar','ic-orange',tr('ov.pays'),P.pays,'−','data-sub="tasks"'):''}
+      ${ov('coins','ic-teal',tr('ov.saved'),P.saved,P.saved<0?'+':'−','data-tab-go="goals"','')}
     </ul></section>`;
 
   // Termine
   const open=openTasks(), shown=open.slice(0,3);
   const openSum=round2(sum(open.map(x=>x.amount)));
-  const tasks=`<div class="sec-head"><h2>Termine</h2>${data.tasks.length?`<button class="sec-link" data-sub="tasks">${open.length>3?`Alle ${open.length}`:'Alle'}</button>`:''}</div>
-    <ul class="list">${shown.map(taskRow).join('')}${addRow('data-add-task','Termin hinzufügen')}</ul>
-    ${openSum?`<p class="page-sub" style="margin:8px 6px 0">Offen zu zahlen: <b class="neg">−${eur(openSum)}</b></p>`:''}`;
+  const tasks=`<div class="sec-head"><h2>${esc(tr('tasks.title'))}</h2>${data.tasks.length?`<button class="sec-link" data-sub="tasks">${esc(open.length>3?tr('allN',{n:open.length}):tr('all'))}</button>`:''}</div>
+    <ul class="list">${shown.map(taskRow).join('')}${addRow('data-add-task',tr('tasks.add'))}</ul>
+    ${openSum?`<p class="page-sub" style="margin:8px 6px 0">${esc(tr('tasks.openPay'))} <b class="neg">−${eur(openSum)}</b></p>`:''}`;
 
   // Letzte Buchungen
   const last=bookings(addDays(t,-92),t).slice(0,5);
-  const recent=`<div class="sec-head"><h2>Letzte Buchungen</h2>${last.length?'<button class="sec-link" data-tab-go="list">Alle</button>':''}</div>
+  const recent=`<div class="sec-head"><h2>${esc(tr('recent.title'))}</h2>${last.length?`<button class="sec-link" data-tab-go="list">${esc(tr('all'))}</button>`:''}</div>
     ${last.length?`<ul class="list">${last.map(b=>bookRow(b,'date')).join('')}</ul>`
-      :'<p class="empty-line">Noch keine Buchungen. Tippe unten rechts auf „Eintragen“.</p>'}`;
+      :`<p class="empty-line">${esc(tr('recent.empty'))}</p>`}`;
 
   $('#view').innerHTML=hello+card+warns+overview+tasks+recent;
 }
@@ -1275,9 +1384,9 @@ function drawStart(){
 let searchOpen=false;
 function drawList(){
   const open=searchOpen||!!listQuery;
-  $('#view').innerHTML=`<div class="page-head"><h1 class="page-title">Buchungen</h1>
-      <button type="button" class="icon-round" data-search-toggle aria-label="${open?'Suche schließen':'Suchen'}" aria-pressed="${open}">${open?ICON.x:ICON.search}</button></div>
-    ${open?`<label class="search">${ICON.search}<input type="search" data-search placeholder="Suchen" value="${esc(listQuery)}" autocomplete="off" enterkeyhint="search" aria-label="Buchungen suchen"></label>`:''}
+  $('#view').innerHTML=`<div class="page-head"><h1 class="page-title">${esc(tr('list.title'))}</h1>
+      <button type="button" class="icon-round" data-search-toggle aria-label="${esc(open?tr('search.close'):tr('search'))}" aria-pressed="${open}">${open?ICON.x:ICON.search}</button></div>
+    ${open?`<label class="search">${ICON.search}<input type="search" data-search placeholder="${esc(tr('search'))}" value="${esc(listQuery)}" autocomplete="off" enterkeyhint="search" aria-label="${esc(tr('search.aria'))}"></label>`:''}
     <div id="blist"></div>`;
   const inp=$('[data-search]');
   if(inp){ inp.addEventListener('input',()=>{ listQuery=inp.value; renderList(); }); if(!listQuery) setTimeout(()=>{try{inp.focus();}catch(e){}},60); }
@@ -1287,43 +1396,42 @@ function renderList(){
   const box=$('#blist'); if(!box) return;
   const q=listQuery.trim().toLowerCase(), t=today();
   const pass=b=>(listFilter==='all'||b.dir===listFilter)&&(!q||b.name.toLowerCase().includes(q)||b.sub.toLowerCase().includes(q));
-  const filters=`<div class="seg list-seg" role="group" aria-label="Filter">${[['all','Alle'],['in','Einnahmen'],['out','Ausgaben']].map(([v,l])=>
-    `<button type="button" data-filter="${v}" aria-pressed="${listFilter===v}">${l}</button>`).join('')}</div>`;
+  const filters=`<div class="seg list-seg" role="group" aria-label="Filter">${[['all',tr('f.all')],['in',tr('f.in')],['out',tr('f.out')]].map(([v,l])=>
+    `<button type="button" data-filter="${v}" aria-pressed="${listFilter===v}">${esc(l)}</button>`).join('')}</div>`;
   if(q){
     const hits=[...monthBooks(t.getFullYear(),t.getMonth()).filter(b=>b.state),...bookings(new Date(2000,0,1),t)].filter(pass);
-    box.innerHTML=filters+(hits.length?`<p class="page-sub">${plural(hits.length,'Treffer','Treffer')}</p><ul class="list">${hits.map(b=>bookRow(b)).join('')}</ul>`
-      :`<p class="empty-line">Nichts gefunden für „${esc(listQuery.trim())}“.</p>`);
+    box.innerHTML=filters+(hits.length?`<p class="page-sub">${esc(tr('n.hits',{n:hits.length}))}</p><ul class="list">${hits.map(b=>bookRow(b)).join('')}</ul>`
+      :`<p class="empty-line">${tr('search.none',{q:esc(listQuery.trim())})}</p>`);
     return;
   }
   const {y,m}=listMonth, from=new Date(y,m,1), lastDay=new Date(y,m+1,0), isNow=y===t.getFullYear()&&m===t.getMonth();
   const all=monthBooks(y,m);   // alles im Monat: Ausgaben, Einnahmen, Abos, Zahlungen, Gespart – auch was noch kommt
   const inSum=round2(sum(all.filter(b=>b.dir==='in').map(b=>b.amount))), outSum=round2(sum(all.filter(b=>b.dir==='out').map(b=>b.amount)));
   const list=all.filter(pass);
-  const none=listFilter==='in'?'Keine Einnahmen':listFilter==='out'?'Keine Ausgaben':'Keine Buchungen';
+  const none=listFilter==='in'?'list.noneIn':listFilter==='out'?'list.noneOut':'list.noneAll';
   box.innerHTML=`<section class="card month-card">
-      <div class="mc-nav"><button class="icon-btn" data-month="-1" aria-label="Monat zurück">${ICON.left}</button>
-        <button type="button" class="mc-title" data-pick-month aria-label="Monat wählen">${esc(monthName(y,m))} ${y}${ICON.down}</button><button class="icon-btn" data-month="1" aria-label="Monat vor" ${isNow?'disabled':''}>${ICON.right}</button></div>
-      <div class="mc-sums"><div><span>Einnahmen</span><b class="${inSum?'plus':''}">${inSum?'+':''}${eur(inSum)}</b></div><div><span>Ausgaben</span><b class="${outSum?'neg':''}">${outSum?'−':''}${eur(outSum)}</b></div></div></section>
+      <div class="mc-nav"><button class="icon-btn" data-month="-1" aria-label="${esc(tr('month.prev'))}">${ICON.left}</button>
+        <button type="button" class="mc-title" data-pick-month aria-label="${esc(tr('month.pick'))}">${esc(monthYear(y,m))}${ICON.down}</button><button class="icon-btn" data-month="1" aria-label="${esc(tr('month.next'))}" ${isNow?'disabled':''}>${ICON.right}</button></div>
+      <div class="mc-sums"><div><span>${esc(tr('sum.in'))}</span><b class="${inSum?'plus':''}">${inSum?'+':''}${eur(inSum)}</b></div><div><span>${esc(tr('sum.out'))}</span><b class="${outSum?'neg':''}">${outSum?'−':''}${eur(outSum)}</b></div></div></section>
     ${filters}
-    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${none} im ${esc(monthName(y,m))}${y!==t.getFullYear()?' '+y:''}.</p>`}`;
+    ${list.length?`<ul class="list">${list.map(b=>bookRow(b)).join('')}</ul>`:`<p class="empty-line">${esc(tr(none,{month:y!==t.getFullYear()?monthYear(y,m):monthName(y,m)}))}</p>`}`;
 }
 
 // Schnell zu einem Monat springen: Jahr wählen, dann Monat antippen
-const MONTHS_SHORT=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
 const WHEEL_ROW=44;   // Höhe einer Zeile im Jahres-Drehrad
 function monthPickerWin(){
   const t=today(), years=[]; for(let y=2000;y<=t.getFullYear();y++) years.push(y);
   let year=listMonth.y, wheelOpen=false;
-  win('Monat wählen',`<button type="button" class="yp-btn" data-yp-toggle aria-expanded="false"><span data-year></span>${ICON.down}</button>
+  win(tr('mp.title'),`<button type="button" class="yp-btn" data-yp-toggle aria-expanded="false"><span data-year></span>${ICON.down}</button>
     <div class="wheel" data-wheel hidden><div class="wheel-band"></div>
       <div class="wheel-scroll" data-wheel-scroll><div class="wheel-pad"></div>${years.map(y=>`<div class="wheel-item" data-wy="${y}">${y}</div>`).join('')}<div class="wheel-pad"></div></div></div>
     <div class="mp" data-months></div>
-    <button type="button" class="btn btn-soft btn-full" data-mp-now>Dieser Monat</button>`,s=>{
+    <button type="button" class="btn btn-soft btn-full" data-mp-now>${esc(tr('mp.now'))}</button>`,s=>{
     const wheel=s.querySelector('[data-wheel]'), sc=s.querySelector('[data-wheel-scroll]'), tg=s.querySelector('[data-yp-toggle]');
     const render=()=>{
       s.querySelector('[data-year]').textContent=year;
-      s.querySelector('[data-months]').innerHTML=MONTHS_SHORT.map((l,i)=>`<button type="button" data-m="${i}" aria-label="${esc(monthName(year,i))} ${year}"
-        aria-pressed="${year===listMonth.y&&i===listMonth.m}" ${year===t.getFullYear()&&i>t.getMonth()?'disabled':''}>${l}</button>`).join('');
+      s.querySelector('[data-months]').innerHTML=[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>`<button type="button" data-m="${i}" aria-label="${esc(monthYear(year,i))}"
+        aria-pressed="${year===listMonth.y&&i===listMonth.m}" ${year===t.getFullYear()&&i>t.getMonth()?'disabled':''}>${esc(shortMonth(i))}</button>`).join('');
     };
     const mark=()=>{ const idx=Math.max(0,Math.min(years.length-1,Math.round(sc.scrollTop/WHEEL_ROW)));
       sc.querySelectorAll('.wheel-item').forEach((el,k)=>el.classList.toggle('on',k===idx)); return years[idx]; };
@@ -1352,11 +1460,11 @@ function monthPickerWin(){
 function monthBooks(y,m){
   const t=today(), from=new Date(y,m,1), last=new Date(y,m+1,0);
   if(from>t) return [];
-  const T=toISO(t), list=bookings(from,last).map(b=>b.iso>T?{...b,state:'geplant'}:b);   // kommt noch in diesem Monat
+  const T=toISO(t), list=bookings(from,last).map(b=>b.iso>T?{...b,state:'planned'}:b);   // kommt noch in diesem Monat
   if(y===t.getFullYear()&&m===t.getMonth()){
     const L=toISO(last);
     for(const x of data.tasks) if(!x.done&&x.amount>0&&x.date<=L)    // offene Zahlungen: diesen Monat oder überfällig
-      list.push({iso:x.date,dir:'out',type:'pays',name:x.title,sub:'Zahlung',amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0,state:x.date>T?'geplant':'offen'});
+      list.push({iso:x.date,dir:'out',type:'pays',name:x.title,sub:tr('b.payment'),amount:x.amount,icon:'calendar',color:PART.pays,open:'task:'+x.id,t:0,state:x.date>T?'planned':'open'});
   }
   return list.sort((a,b)=>a.iso<b.iso?1:a.iso>b.iso?-1:(b.t||0)-(a.t||0));
 }
@@ -1367,8 +1475,8 @@ const monthTotals=list=>{ let i=0,o=0,sv=0;
 const groupKey=b=>b.dir==='in'?(b.type==='income'?b.open:'x:'+b.name):b.type==='spent'?b.cat:b.type;
 function groupMeta(k,b){
   if(b&&b.dir==='in') return {label:b.name,color:'var(--green)',icon:'arrowIn'};
-  if(k==='fixed') return {label:'Abos & Verträge',color:PART.fixed,icon:'repeat'};
-  if(k==='pays') return {label:'Zahlungen',color:PART.pays,icon:'calendar'};
+  if(k==='fixed') return {label:tr('g.fixed'),color:PART.fixed,icon:'repeat'};
+  if(k==='pays') return {label:tr('g.pays'),color:PART.pays,icon:'calendar'};
   const c=catOf(k); return {label:c.label,color:c.color,icon:c.icon};
 }
 function groupParts(list){
@@ -1380,8 +1488,8 @@ function catRow(c,y,m){
   const sp=catSpent(y,m,c.id), b=data.budgets[c.id];
   let fill=0, color=c.color, note;
   if(b){ const r=sp/b; fill=Math.min(1,r); color=r>1?'var(--red)':r>=0.8?'var(--warn)':c.color;
-    note=r>1?`<span class="cat-note over">${eur(round2(sp-b))} über dem Budget</span>`:`<span class="cat-note ${r>=0.8?'warn':''}">Noch ${eur(round2(b-sp))} von ${eur(b)} übrig</span>`; }
-  else note=`<span class="cat-note">Kein Budget</span>`;
+    note=r>1?`<span class="cat-note over">${esc(tr('bud.over',{amount:eur(round2(sp-b))}))}</span>`:`<span class="cat-note ${r>=0.8?'warn':''}">${esc(tr('bud.left',{left:eur(round2(b-sp)),budget:eur(b)}))}</span>`; }
+  else note=`<span class="cat-note">${esc(tr('bud.none'))}</span>`;
   return `<button type="button" class="cat-row" data-budget="${c.id}"><span class="cat-top"><span class="dot" style="background:${c.color}"></span>
     <span class="name">${esc(c.label)}</span><b>${eur(sp)}</b>${b?`<small>/ ${eur(b)}</small>`:''}</span>
     <span class="bar"><span style="width:${(fill*100).toFixed(1)}%;background:${color}"></span></span>${note}</button>`;
@@ -1394,36 +1502,36 @@ function drawStats(){
   const maxV=Math.max(0,...months.map(x=>Math.max(x.i,x.o))), top=months.reduce((a,b)=>b.o>a.o?b:a,months[0]);
   const past=months.slice(0,11).filter(x=>x.o>0), avg=past.length?round2(sum(past.map(x=>x.o))/past.length):0;
   const h=v=>v>0&&maxV?Math.max(3,v/maxV*100).toFixed(1):0;
-  const chart=`<section class="card"><h2>Pro Monat</h2>
-    ${top.o>0?`<div class="mstats"><button type="button" data-stat-month="${top.y}-${top.m}"><span>Meiste Ausgaben</span><b>${esc(monthName(top.y,top.m))} · <span class="neg">−${eur(top.o)}</span></b></button>
-      ${avg?`<div><span>Ausgaben im Schnitt</span><b class="neg">−${eur(avg)}</b></div>`:''}</div>`:''}
-    <div class="mlegend"><span><i class="in"></i>Einnahmen</span><span><i class="out"></i>Ausgaben</span></div>
-    <div class="mchart">${months.map(x=>`<button type="button" class="mcol ${x.y===sy&&x.m===sm?'sel':''}" data-stat-month="${x.y}-${x.m}" aria-label="${esc(monthName(x.y,x.m))} ${x.y}: Einnahmen ${eur(x.i)}, Ausgaben ${eur(x.o)}">
+  const chart=`<section class="card"><h2>${esc(tr('stats.perMonth'))}</h2>
+    ${top.o>0?`<div class="mstats"><button type="button" data-stat-month="${top.y}-${top.m}"><span>${esc(tr('stats.most'))}</span><b>${esc(monthName(top.y,top.m))} · <span class="neg">−${eur(top.o)}</span></b></button>
+      ${avg?`<div><span>${esc(tr('stats.avg'))}</span><b class="neg">−${eur(avg)}</b></div>`:''}</div>`:''}
+    <div class="mlegend"><span><i class="in"></i>${esc(tr('stats.in'))}</span><span><i class="out"></i>${esc(tr('stats.out'))}</span></div>
+    <div class="mchart ${chartMonths().small?'small':''}">${months.map(x=>`<button type="button" class="mcol ${x.y===sy&&x.m===sm?'sel':''}" data-stat-month="${x.y}-${x.m}" aria-label="${esc(tr('stats.barAria',{month:monthYear(x.y,x.m),i:eur(x.i),o:eur(x.o)}))}">
       <span class="mcol-wrap"><span class="mcol-bar in" style="height:${h(x.i)}%"></span><span class="mcol-bar out" style="height:${h(x.o)}%"></span></span>
-      <span class="mcol-lbl">${MONTHS_SHORT[x.m]}</span></button>`).join('')}</div></section>`;
+      <span class="mcol-lbl">${esc(chartMonth(x.m))}</span></button>`).join('')}</div></section>`;
   // 2) Der gewählte Monat genauer
   const books=monthBooks(sy,sm), T=monthTotals(books), left=round2(T.i-T.o-T.s);
   const pd=new Date(sy,sm-1,1), prev=monthTotals(monthBooks(pd.getFullYear(),pd.getMonth())).o, diff=round2(T.o-prev), pName=monthName(pd.getFullYear(),pd.getMonth());
-  const cmp=!T.o||!prev?'':diff>0?`<span class="cmp up">↑ ${eur(diff)} mehr ausgegeben als im ${esc(pName)}</span>`
-    :diff<0?`<span class="cmp down">↓ ${eur(-diff)} weniger ausgegeben als im ${esc(pName)}</span>`:`<span class="cmp same">Genauso viel ausgegeben wie im ${esc(pName)}</span>`;
+  const cmp=!T.o||!prev?'':diff>0?`<span class="cmp up">${esc(tr('cmp.more',{amount:eur(diff),month:pName}))}</span>`
+    :diff<0?`<span class="cmp down">${esc(tr('cmp.less',{amount:eur(-diff),month:pName}))}</span>`:`<span class="cmp same">${esc(tr('cmp.same',{month:pName}))}</span>`;
   const rows=(parts,total,dir)=>`<ul class="crows">${parts.map(p=>{
     const pct=total?Math.round(p.v/total*100):0, b=dir==='out'&&data.budgets[p.k];
-    const bud=b?(p.v>b?`<span class="over">${eur(round2(p.v-b))} über dem Budget</span>`:`Budget ${eur(b)}`):'';
+    const bud=b?(p.v>b?`<span class="over">${esc(tr('bud.over',{amount:eur(round2(p.v-b))}))}</span>`:esc(tr('stats.budget',{amount:eur(b)}))):'';
     return `<li><button type="button" class="crow" data-cat-detail="${esc(p.k)}"><span class="b-icon" style="--c:${p.color}">${ICON[p.icon]||ICON.dots}</span>
       <span class="crow-main"><span class="crow-top"><span class="crow-name">${esc(p.label)}</span><b class="${dir==='in'?'plus':'neg'}">${dir==='in'?'+':'−'}${eur(p.v)}</b></span>
         <span class="bar"><span style="width:${pct}%;background:${p.color}"></span></span>
-        <span class="crow-sub">${pct} % · ${plural(p.n,'Eintrag','Einträge')}${bud?' · '+bud:''}</span></span>${ICON.right}</button></li>`;
+        <span class="crow-sub">${esc(tr('pct',{n:pct}))} · ${esc(tr('n.entries',{n:p.n}))}${bud?' · '+bud:''}</span></span>${ICON.right}</button></li>`;
   }).join('')}</ul>`;
   const inParts=groupParts(books.filter(b=>b.dir==='in')), outParts=groupParts(books.filter(b=>b.dir==='out'));
-  const detail=`<section class="card"><h2>${esc(monthName(sy,sm))} ${sy}</h2>
-    <div class="msum"><div><span>Einnahmen</span><b class="plus">+${eur(T.i)}</b></div><div><span>Ausgaben</span><b class="neg">−${eur(T.o)}</b></div></div>
-    <p class="mleft">${T.s?`Gespart ${eur(T.s)} · `:''}${left<0?`<span class="neg">Minus ${eur(-left)}</span>`:`Übrig <b>${eur(left)}</b>`}</p>
+  const detail=`<section class="card"><h2>${esc(monthYear(sy,sm))}</h2>
+    <div class="msum"><div><span>${esc(tr('stats.in'))}</span><b class="plus">+${eur(T.i)}</b></div><div><span>${esc(tr('stats.out'))}</span><b class="neg">−${eur(T.o)}</b></div></div>
+    <p class="mleft">${T.s?`${esc(tr('stats.saved',{amount:eur(T.s)}))} · `:''}${left<0?`<span class="neg">${esc(tr('stats.minus',{amount:eur(-left)}))}</span>`:tr('stats.left',{amount:`<b>${eur(left)}</b>`})}</p>
     ${cmp}
-    ${!books.length?'<p class="muted" style="margin:14px 0 4px">Keine Buchungen in diesem Monat.</p>':''}
-    ${inParts.length?`<h3 class="sec-h">Einnahmen</h3>${rows(inParts,T.i,'in')}`:''}
-    ${outParts.length?`<h3 class="sec-h">Ausgaben</h3>${rows(outParts,T.o,'out')}`:''}</section>
-    <button type="button" class="link-btn budget-link" data-sub="budgets">${ICON.bars}Budgets festlegen ›</button>`;
-  $('#view').innerHTML=`<h1 class="page-title">Analyse</h1>${chart}${detail}`;
+    ${!books.length?`<p class="muted" style="margin:14px 0 4px">${esc(tr('stats.noBooks'))}</p>`:''}
+    ${inParts.length?`<h3 class="sec-h">${esc(tr('stats.in'))}</h3>${rows(inParts,T.i,'in')}`:''}
+    ${outParts.length?`<h3 class="sec-h">${esc(tr('stats.out'))}</h3>${rows(outParts,T.o,'out')}`:''}</section>
+    <button type="button" class="link-btn budget-link" data-sub="budgets">${ICON.bars}${esc(tr('stats.setBudgets'))}</button>`;
+  $('#view').innerHTML=`<h1 class="page-title">${esc(tr('stats.title'))}</h1>${chart}${detail}`;
 }
 // Alle Einträge einer Gruppe im gewählten Monat
 function catDetailWin(k){
@@ -1431,11 +1539,11 @@ function catDetailWin(k){
   const first=all()[0]; if(!first) return; const meta=groupMeta(k,first);
   const body=()=>{ const list=all().sort((a,b)=>b.amount-a.amount), total=round2(sum(list.map(b=>b.amount)));
     const inG=first.dir==='in';
-    return list.length?`<p class="text">${esc(monthName(y,m))} ${y}: <b class="${inG?'plus':'neg'}">${inG?'+':'−'}${eur(total)}</b> · ${plural(list.length,'Eintrag','Einträge')}</p>
-      <ul class="list">${list.map(b=>{ const own=b.name!==meta.label, when=dayShort(b.iso)+(b.state?' · '+b.state:'');   // ohne eigenen Namen steht nur das Datum da
+    return list.length?`<p class="text">${esc(monthYear(y,m))}: <b class="${inG?'plus':'neg'}">${inG?'+':'−'}${eur(total)}</b> · ${esc(tr('n.entries',{n:list.length}))}</p>
+      <ul class="list">${list.map(b=>{ const own=b.name!==meta.label, when=dayShort(b.iso)+(b.state?' · '+tr('st.'+b.state):'');   // ohne eigenen Namen steht nur das Datum da
         return `<li><button class="item book" data-open="${b.open}"><span class="b-icon" style="--c:${b.color}">${ICON[b.icon]||ICON.dots}</span>
           <span class="item-main"><div class="item-name">${esc(own?b.name:when)}</div>${own?`<div class="item-sub">${esc(when)}</div>`:''}</span>
-          <span class="item-amt ${b.dir==='in'?'plus':'neg'}">${b.dir==='in'?'+':'−'}${eur(b.amount)}</span></button></li>`; }).join('')}</ul>`:'<p class="text">Keine Einträge mehr.</p>'; };
+          <span class="item-amt ${b.dir==='in'?'plus':'neg'}">${b.dir==='in'?'+':'−'}${eur(b.amount)}</span></button></li>`; }).join('')}</ul>`:`<p class="text">${esc(tr('cd.none'))}</p>`; };
   const w=win(meta.label,`<div class="cd-body">${body()}</div>`,s=>{
     // Eintrag antippen: Bearbeiten-Fenster öffnet sich darüber, danach bleibt man in der Liste
     s.addEventListener('click',e=>{ const b=e.target.closest('[data-open]'); if(!b) return; const [kk,id]=b.dataset.open.split(':'); if(OPEN[kk]) OPEN[kk](id); });
@@ -1450,12 +1558,12 @@ function catDetailWin(k){
 function saveTip(g,rest){
   if(!g.until||!(rest>0)) return '';
   const days=daysBetween(today(),fromISO(g.until))+1;
-  if(days<1) return 'Das Datum ist schon vorbei.';
+  if(days<1) return tr('tip.past');
   const up=x=>Math.ceil(x*100-1e-6)/100;
-  if(days===1) return `Heute noch ${eur(rest)} sparen`;
+  if(days===1) return tr('tip.today',{amount:eur(rest)});
   const perDay=up(rest/days);
-  if(days<=31) return `${eur(perDay)} pro Tag sparen (noch ${days} Tage)`;
-  return `${eur(up(rest/(days/30.4375)))} pro Monat · ${eur(perDay)} pro Tag`;
+  if(days<=31) return tr('tip.perDay',{amount:eur(perDay),n:days});
+  return tr('tip.perMonth',{month:eur(up(rest/(days/30.4375))),day:eur(perDay)});
 }
 function goalCard(g){
   const col=GOAL_COLORS[g.color%GOAL_COLORS.length], sv0=goalSaved(g), done=sv0>=g.target, pct=Math.min(100,Math.floor(sv0/g.target*100)), rest=round2(Math.max(0,g.target-sv0));
@@ -1463,31 +1571,31 @@ function goalCard(g){
   return `<section class="goal"><button type="button" class="goal-head" data-goal="${g.id}"><span class="g-ic" style="--c:${col}">${goalIconSvg(g.icon)}</span>
       <span class="g-txt"><span class="g-name">${esc(g.name)}</span><span class="g-target">${eur(g.target)}</span></span>${ICON.right}</button>
     <span class="bar"><span style="width:${pct}%;background:${col}"></span></span>
-    <div class="goal-line"><span><b>${eur(sv0)}</b> von ${eur(g.target)} gespart</span><span><b>${pct} %</b></span></div>
-    <div class="goal-line small"><span>${done?'<span class="goal-done">Geschafft!</span>':`Noch ${eur(rest)}`}</span><span>${g.until?`Ziel: ${numDate(fromISO(g.until))}`:''}</span></div>
+    <div class="goal-line"><span>${tr('goal.savedOf',{saved:`<b>${eur(sv0)}</b>`,target:eur(g.target)})}</span><span><b>${esc(tr('pct',{n:pct}))}</b></span></div>
+    <div class="goal-line small"><span>${done?`<span class="goal-done">${esc(tr('goal.done'))}</span>`:esc(tr('goal.rest',{amount:eur(rest)}))}</span><span>${g.until?esc(tr('goal.target',{date:numDate(fromISO(g.until))})):''}</span></div>
     ${tip?`<div class="goal-tip">${esc(tip)}</div>`:''}
-    <button type="button" class="btn btn-soft" data-deposit="${g.id}">${ICON.plus}Geld einzahlen</button></section>`;
+    <button type="button" class="btn btn-soft" data-deposit="${g.id}">${ICON.plus}${esc(tr('goal.deposit'))}</button></section>`;
 }
 function drawGoals(){
   const goals=data.goals, total=round2(sum(goals.map(goalSaved)));
-  $('#view').innerHTML=`<div class="page-head"><h1 class="page-title">Sparziele</h1><button class="round-btn" data-add-goal aria-label="Sparziel hinzufügen">${ICON.plus}</button></div>
-    ${goals.length?`<p class="page-sub">Gespart insgesamt: <b>${eur(total)}</b></p>${goals.map(goalCard).join('')}`
-      :`<div class="empty"><div class="empty-ic">${ICON.target}</div><p><strong>Noch keine Sparziele</strong></p>
-        <button class="btn btn-main" data-add-goal>${ICON.plus}Sparziel hinzufügen</button></div>`}`;
+  $('#view').innerHTML=`<div class="page-head"><h1 class="page-title">${esc(tr('goals.title'))}</h1><button class="round-btn" data-add-goal aria-label="${esc(tr('goals.add'))}">${ICON.plus}</button></div>
+    ${goals.length?`<p class="page-sub">${tr('goals.total',{amount:`<b>${eur(total)}</b>`})}</p>${goals.map(goalCard).join('')}`
+      :`<div class="empty"><div class="empty-ic">${ICON.target}</div><p><strong>${esc(tr('goals.empty'))}</strong></p>
+        <button class="btn btn-main" data-add-goal>${ICON.plus}${esc(tr('goals.add'))}</button></div>`}`;
 }
 
 /* ---------- Unterseiten: Einnahmen, Abos & Verträge, Termine, Budgets ---------- */
 function drawSub(){ const f={incomes:drawIncomes,abos:drawAbos,tasks:drawTasks,budgets:drawBudgets}[sub]; if(f) f(); else { sub=null; draw(); } }
-const subHead=title=>`<button class="back-btn" data-back>${ICON.left}${tab==='stats'?'Analyse':'Start'}</button><h1 class="page-title">${title}</h1>`;
+const subHead=title=>`<button class="back-btn" data-back>${ICON.left}${esc(tab==='stats'?tr('back.stats'):tr('back.start'))}</button><h1 class="page-title">${esc(title)}</h1>`;
 function drawIncomes(){
   const incomes=[...data.incomes].sort((a,b)=>b.amount-a.amount), inSum=round2(sum(incomes.map(i=>i.amount)));
-  $('#view').innerHTML=subHead('Einnahmen')+`
-    <section class="card"><div class="stats one"><div><span>Bekommst du im Monat</span><b class="plus">+${eur(inSum)}</b></div></div></section>
+  $('#view').innerHTML=subHead(tr('inc.title'))+`
+    <section class="card"><div class="stats one"><div><span>${esc(tr('inc.perMonth'))}</span><b class="plus">+${eur(inSum)}</b></div></div></section>
     <ul class="list">${incomes.map(i=>`<li><button class="item" data-income="${i.id}"><span class="b-icon" style="--c:var(--green)">${ICON.arrowIn}</span>
         <span class="item-main"><div class="item-name">${esc(i.name)}</div>
-          <div class="item-sub">Jeden Monat</div></span>
-        <span class="item-amt plus">+${eur(i.amount)}<small>im Monat</small></span></button></li>`).join('')}
-      ${addRow('data-add-income','Einnahme hinzufügen')}</ul>`;
+          <div class="item-sub">${esc(tr('inc.every'))}</div></span>
+        <span class="item-amt plus">+${eur(i.amount)}<small>${esc(tr('inc.inMonth'))}</small></span></button></li>`).join('')}
+      ${addRow('data-add-income',tr('inc.add'))}</ul>`;
 }
 function drawAbos(){
   const contracts=[...data.contracts].sort((a,b)=>(inTrial(a)-inTrial(b))||monthlyOf(b)-monthlyOf(a));
@@ -1495,32 +1603,32 @@ function drawAbos(){
     if(inTrial(c)){ const soon=today()>=addDays(fromISO(c.trialEnd),-3);
       return `<li><button class="item" data-contract="${c.id}"><span class="b-icon" style="--c:${COLORS[c.color]}">${ICON.repeat}</span>
         <span class="item-main"><div class="item-name">${esc(c.name)}</div>
-          <div class="item-sub ${soon?'soon':''}">Probe-Abo: gratis bis ${shortDate(fromISO(c.trialEnd))}</div>
-          <div class="item-sub">Danach ${eur(c.amount)} ${RHYTHM[c.rhythm].label.toLowerCase()}</div></span>
-        <span class="item-amt plus">Gratis<small>noch ${plural(daysBetween(today(),fromISO(c.trialEnd)),'Tag','Tage')}</small></span></button></li>`; }
+          <div class="item-sub ${soon?'soon':''}">${esc(tr('abo.trialUntil',{date:shortDate(fromISO(c.trialEnd))}))}</div>
+          <div class="item-sub">${esc(tr('abo.after',{amount:eur(c.amount),rhythm:RHYTHM[c.rhythm].inline}))}</div></span>
+        <span class="item-amt plus">${esc(tr('abo.free'))}<small>${esc(tr('abo.left',{n:daysBetween(today(),fromISO(c.trialEnd))}))}</small></span></button></li>`; }
     const np=nextPay(c);
     return `<li><button class="item" data-contract="${c.id}"><span class="b-icon" style="--c:${COLORS[c.color]}">${ICON.repeat}</span>
       <span class="item-main"><div class="item-name">${esc(c.name)}</div>
-        <div class="item-sub">Nächste Abbuchung: ${np?dayText(np):'–'}</div>
-        <div class="item-sub save">Kündigen spart ${eur(monthlyOf(c)*12)} im Jahr</div></span>
-      <span class="item-amt neg">−${eur(c.amount)}<small>${RHYTHM[c.rhythm].label.toLowerCase()}</small></span></button></li>`;
+        <div class="item-sub">${esc(tr('abo.next',{date:np?dayText(np):'–'}))}</div>
+        <div class="item-sub save">${esc(tr('abo.save',{amount:eur(monthlyOf(c)*12)}))}</div></span>
+      <span class="item-amt neg">−${eur(c.amount)}<small>${esc(RHYTHM[c.rhythm].inline)}</small></span></button></li>`;
   };
-  $('#view').innerHTML=subHead('Abos &amp; Verträge')+`
-    <ul class="list">${contracts.map(cRow).join('')}${addRow('data-add-contract','Abo oder Vertrag hinzufügen')}</ul>`;
+  $('#view').innerHTML=subHead(tr('abo.title'))+`
+    <ul class="list">${contracts.map(cRow).join('')}${addRow('data-add-contract',tr('abo.add'))}</ul>`;
 }
 function drawTasks(){
   const open=openTasks(), done=doneTasks(), openSum=round2(sum(open.map(x=>x.amount)));
-  $('#view').innerHTML=subHead('Termine &amp; Erinnerungen')+(open.length||done.length?`
-    <div class="sec-head" style="margin-top:4px"><h2>Offen</h2>${openSum?`<small><b class="neg">−${eur(openSum)}</b> zu zahlen</small>`:''}</div>
-    <ul class="list">${open.map(taskRow).join('')}${addRow('data-add-task','Termin hinzufügen')}</ul>
-    ${done.length?`<div class="sec-head"><h2>Erledigt</h2></div><ul class="list">${done.map(taskRow).join('')}</ul>`:''}`
-    :`<div class="empty"><div class="empty-ic">${ICON.calendar}</div><p><strong>Keine Termine</strong>Trag ein, was du nicht vergessen darfst, zum Beispiel eine Rechnung oder eine Kündigung. Finanzo erinnert dich.</p>
-      <button class="btn btn-main" data-add-task>${ICON.plus}Termin hinzufügen</button></div>`);
+  $('#view').innerHTML=subHead(tr('tasks.page'))+(open.length||done.length?`
+    <div class="sec-head" style="margin-top:4px"><h2>${esc(tr('tasks.open'))}</h2>${openSum?`<small>${tr('tasks.toPay',{amount:`<b class="neg">−${eur(openSum)}</b>`})}</small>`:''}</div>
+    <ul class="list">${open.map(taskRow).join('')}${addRow('data-add-task',tr('tasks.add'))}</ul>
+    ${done.length?`<div class="sec-head"><h2>${esc(tr('tasks.done'))}</h2></div><ul class="list">${done.map(taskRow).join('')}</ul>`:''}`
+    :`<div class="empty"><div class="empty-ic">${ICON.calendar}</div><p><strong>${esc(tr('tasks.none'))}</strong>${esc(tr('tasks.noneText'))}</p>
+      <button class="btn btn-main" data-add-task>${ICON.plus}${esc(tr('tasks.add'))}</button></div>`);
 }
 function drawBudgets(){
   const t=today(), y=t.getFullYear(), m=t.getMonth();
-  $('#view').innerHTML=subHead('Budgets')+`<p class="page-sub">Leg fest, wie viel du im Monat pro Kategorie höchstens ausgeben willst. Tipp dazu auf eine Kategorie.</p>
-    <section class="card"><div class="card-head"><h2>Ausgegeben im ${esc(monthName(y,m))}</h2></div>${EXP_CATS.map(c=>catRow(c,y,m)).join('')}</section>`;
+  $('#view').innerHTML=subHead(tr('bud.title'))+`<p class="page-sub">${esc(tr('bud.intro'))}</p>
+    <section class="card"><div class="card-head"><h2>${esc(tr('bud.spentIn',{month:monthName(y,m)}))}</h2></div>${EXP_CATS.map(c=>catRow(c,y,m)).join('')}</section>`;
 }
 
 /* =====================================================================
@@ -1540,7 +1648,7 @@ function win(title,body,setup){
   splashHide(true);
   const el=document.createElement('div'); el.className='scrim';
   el.innerHTML=`<div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(title)}">
-    <div class="sheet-top"><h2>${esc(title)}</h2><button type="button" class="icon-btn" data-close aria-label="Schließen">${ICON.x}</button></div>${body}</div>`;
+    <div class="sheet-top"><h2>${esc(title)}</h2><button type="button" class="icon-btn" data-close aria-label="${esc(tr('close'))}">${ICON.x}</button></div>${body}</div>`;
   document.body.appendChild(el);
   const w={el}; stack.push(w);
   if(useHistory){ try{ history.pushState({w:stack.length},''); }catch(e){ useHistory=false; } }
@@ -1557,7 +1665,7 @@ function win(title,body,setup){
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&stack.length){e.preventDefault();closeWin(1);}});
 function ask(title,text,okText){
   return new Promise(res=>{let done=false;
-    win(title,`<p class="text">${esc(text)}</p><div class="btns"><button type="button" class="btn btn-soft" data-close>Abbrechen</button><button type="button" class="btn btn-red" data-ok>${esc(okText)}</button></div>`,(s,w)=>{
+    win(title,`<p class="text">${esc(text)}</p><div class="btns"><button type="button" class="btn btn-soft" data-close>${esc(tr('cancel'))}</button><button type="button" class="btn btn-red" data-ok>${esc(okText)}</button></div>`,(s,w)=>{
       w.onClose=()=>{if(!done){done=true;res(false);}};
       s.querySelector('[data-ok]').addEventListener('click',()=>{if(done)return;done=true;res(true);});
     });});
@@ -1576,7 +1684,7 @@ function choose(title,text,aLabel,bLabel){
 let toastT;
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2400);}
 const showErr=(s,msg)=>{const e=s.querySelector('.err');e.textContent=msg;e.hidden=false;};
-const moneyField=(label,value,focus,name='amount')=>`<label class="field"><span class="label">${label}</span><span class="money"><input class="input" name="${name}" value="${esc(moneyInput(value))}" inputmode="decimal" placeholder="0,00" autocomplete="off" ${focus?'data-focus':''}><span>${esc(curSymbol(data.settings.currency))}</span></span></label>`;
+const moneyField=(label,value,focus,name='amount')=>`<label class="field"><span class="label">${esc(label)}</span><span class="money"><input class="input" name="${name}" value="${esc(moneyInput(value))}" inputmode="decimal" placeholder="${esc(exNum(0))}" autocomplete="off" ${focus?'data-focus':''}><span>${esc(curSymbol(data.settings.currency))}</span></span></label>`;
 const choice=(name,options,current,cls='')=>`<div class="choice ${cls}" data-choice="${name}">${options.map(o=>
   `<button type="button" data-v="${o.v}" aria-pressed="${String(o.v)===String(current)}">${o.icon?`<span class="c-ic" style="color:${o.dot}">${ICON[o.icon]}</span>`:o.dot?`<span class="dot" style="background:${o.dot}"></span>`:''}${esc(o.l)}</button>`).join('')}</div>`;
 function wireChoice(root){root.querySelectorAll('[data-choice]').forEach(box=>box.addEventListener('click',e=>{
@@ -1585,8 +1693,8 @@ const choiceValue=(root,name)=>{const b=root.querySelector(`[data-choice="${name
 const quick=list=>`<div class="quick">${list.map(q=>`<button type="button" data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div>`;
 function wireQuick(s,input,next){s.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();input.value=b.dataset.q;if(next)next.focus();}));}
 function wireSwitch(s,attr,onChange){const b=s.querySelector(`[${attr}]`);b.addEventListener('click',()=>{const on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);onChange(on);});return ()=>b.getAttribute('aria-pressed')==='true';}
-const remindField=v=>`<label class="field"><span class="label">Wann erinnern?</span>
-  <span class="date-btn"><span class="date-ic">${ICON.bell}</span><input class="input" type="date" name="remindOn" value="${esc(v)}" aria-label="Datum der Erinnerung"></span></label>`;
+const remindField=v=>`<label class="field"><span class="label">${esc(tr('remind.label'))}</span>
+  <span class="date-btn"><span class="date-ic">${ICON.bell}</span><input class="input" type="date" name="remindOn" value="${esc(v)}" aria-label="${esc(tr('remind.aria'))}"></span></label>`;
 // Ändert man das Datum, wandert der Erinnerungstag mit – bis man ihn selbst ändert
 function linkRemindOn(dateInput,remindInput,gap){
   let touched=false;
@@ -1603,27 +1711,27 @@ function linkRemindOn(dateInput,remindInput,gap){
 function incomeWin(id){
   const it=id?data.incomes.find(x=>x.id===id):null; if(id&&!it) return;
   const v=it||{name:'',amount:0,payday:0};
-  win(it?'Einnahme ändern':'Neue Einnahme',`<form novalidate>
-    <div class="field"><label><span class="label">Was?</span><input class="input" name="name" value="${esc(v.name)}" placeholder="z. B. Gehalt" maxlength="40" autocomplete="off" ${it?'':'data-focus'}></label>
-      ${quick(['Gehalt','Nebenjob','Kindergeld','Sonstiges'])}</div>
-    ${moneyField('Wie viel bekommst du im Monat?',v.amount)}
-    <p class="hint" style="margin-top:-8px">Der Betrag, der wirklich auf deinem Konto ankommt.</p>
+  win(it?tr('inc.edit'):tr('inc.new'),`<form novalidate>
+    <div class="field"><label><span class="label">${esc(tr('what'))}</span><input class="input" name="name" value="${esc(v.name)}" placeholder="${esc(tr('inc.namePh'))}" maxlength="40" autocomplete="off" ${it?'':'data-focus'}></label>
+      ${quick([tr('q.salary'),tr('q.sidejob'),tr('q.childben'),tr('q.other')])}</div>
+    ${moneyField(tr('inc.amount'),v.amount)}
+    <p class="hint" style="margin-top:-8px">${esc(tr('inc.hint'))}</p>
     <p class="err" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Speichern</button>
-    ${it?'<div class="btns"><button type="button" class="btn btn-red" data-del>Einnahme löschen</button></div>':''}
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+    ${it?`<div class="btns"><button type="button" class="btn btn-red" data-del>${esc(tr('inc.delete'))}</button></div>`:''}
   </form>`,s=>{
     const f=s.querySelector('form'); wireQuick(s,f.name,f.amount);
     f.addEventListener('submit',e=>{e.preventDefault();
       const name=f.name.value.trim(), amount=parseMoney(f.amount.value);
-      if(!name) return showErr(s,'Bitte gib ein, was es ist, zum Beispiel „Gehalt“.');
-      if(!(amount>0)) return showErr(s,'Bitte gib einen Betrag ein, zum Beispiel 1.200,00.');
+      if(!name) return showErr(s,tr('inc.errName'));
+      if(!(amount>0)) return showErr(s,tr('err.amountEx',{ex:exNum(1200)}));
       if(it) Object.assign(it,{name,amount}); else data.incomes.push({id:uid(),name,amount,payday:0,since:''});
-      fillSince(); save(); closeWin(1); draw(); toast('Gespeichert');
+      fillSince(); save(); closeWin(1); draw(); toast(tr('toast.saved'));
     });
     const del=s.querySelector('[data-del]');
     if(del) del.addEventListener('click',async()=>{
-      if(!await ask('Einnahme löschen?',`„${it.name}“ wird gelöscht.`,'Löschen')) return;
-      data.incomes=data.incomes.filter(x=>x!==it); save(); closeWin(2); draw(); toast('Gelöscht');
+      if(!await ask(tr('inc.delQ'),tr('delText',{name:it.name}),tr('delete'))) return;
+      data.incomes=data.incomes.filter(x=>x!==it); save(); closeWin(2); draw(); toast(tr('toast.deleted'));
     });
   });
 }
@@ -1632,39 +1740,39 @@ function incomeWin(id){
 function contractWin(id){
   const c=id?data.contracts.find(x=>x.id===id):null; if(id&&!c) return;
   const v=c||{name:'',amount:0,rhythm:'monthly',nextDate:toISO(today()),trialEnd:''};
-  win(c?'Abo ändern':'Neues Abo oder Vertrag',`<form novalidate>
-    <div class="field"><label><span class="label">Name</span><input class="input" name="name" value="${esc(v.name)}" placeholder="z. B. Handyvertrag" maxlength="40" autocomplete="off" ${c?'':'data-focus'}></label>
-      ${c?'':quick(['Handyvertrag','Spotify','Netflix','Fitnessstudio','Versicherung'])}</div>
-    ${moneyField('Betrag',v.amount)}
-    <div class="field"><span class="label">Wie oft wird abgebucht?</span>${choice('rhythm',Object.entries(RHYTHM).map(([k,r])=>({v:k,l:r.label})),v.rhythm)}</div>
-    <button type="button" class="switch-row" data-trial aria-pressed="${!!v.trialEnd}"><span>Kostenloses Probe-Abo</span><span class="switch"></span></button>
-    <label class="field" data-trial-on ${v.trialEnd?'':'hidden'}><span class="label">Kostenlos bis</span><input class="input" type="date" name="trialEnd" value="${esc(v.trialEnd||toISO(addDays(today(),30)))}">
-      <span class="hint">Finanzo erinnert dich 3 Tage vorher, damit du rechtzeitig kündigen kannst.</span></label>
-    <label class="field" data-trial-off ${v.trialEnd?'hidden':''}><span class="label">Nächste Abbuchung</span><input class="input" type="date" name="nextDate" value="${esc(v.nextDate)}"></label>
+  win(c?tr('abo.edit'):tr('abo.new'),`<form novalidate>
+    <div class="field"><label><span class="label">${esc(tr('name'))}</span><input class="input" name="name" value="${esc(v.name)}" placeholder="${esc(tr('abo.namePh'))}" maxlength="40" autocomplete="off" ${c?'':'data-focus'}></label>
+      ${c?'':quick([tr('q.phone'),'Spotify','Netflix',tr('q.gym'),tr('q.insurance')])}</div>
+    ${moneyField(tr('amount'),v.amount)}
+    <div class="field"><span class="label">${esc(tr('abo.how'))}</span>${choice('rhythm',Object.entries(RHYTHM).map(([k,r])=>({v:k,l:r.label})),v.rhythm)}</div>
+    <button type="button" class="switch-row" data-trial aria-pressed="${!!v.trialEnd}"><span>${esc(tr('abo.trial'))}</span><span class="switch"></span></button>
+    <label class="field" data-trial-on ${v.trialEnd?'':'hidden'}><span class="label">${esc(tr('abo.freeUntil'))}</span><input class="input" type="date" name="trialEnd" value="${esc(v.trialEnd||toISO(addDays(today(),30)))}">
+      <span class="hint">${esc(tr('abo.trialHint'))}</span></label>
+    <label class="field" data-trial-off ${v.trialEnd?'hidden':''}><span class="label">${esc(tr('abo.nextDate'))}</span><input class="input" type="date" name="nextDate" value="${esc(v.nextDate)}"></label>
     <p class="err" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Speichern</button>
-    ${c?'<div class="btns"><button type="button" class="btn btn-red" data-del>Löschen</button></div>':''}
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+    ${c?`<div class="btns"><button type="button" class="btn btn-red" data-del>${esc(tr('delete'))}</button></div>`:''}
   </form>`,s=>{
     wireChoice(s);
     const f=s.querySelector('form'); wireQuick(s,f.name,f.amount);
     const trialOn=wireSwitch(s,'data-trial',on=>{ s.querySelector('[data-trial-on]').hidden=!on; s.querySelector('[data-trial-off]').hidden=on; });
     f.addEventListener('submit',e=>{e.preventDefault();
       const trial=trialOn(), name=f.name.value.trim(), amount=parseMoney(f.amount.value), trialEnd=trial?f.trialEnd.value:'';
-      if(!name) return showErr(s,'Bitte gib einen Namen ein.');
-      if(!(amount>0)) return showErr(s,trial?'Bitte gib ein, was es nach dem Probe-Abo kostet, zum Beispiel 9,99.':'Bitte gib einen Betrag ein, zum Beispiel 9,99.');
-      if(trial&&!isISO(trialEnd)) return showErr(s,'Bitte wähle, bis wann das Probe-Abo kostenlos ist.');
+      if(!name) return showErr(s,tr('abo.errName'));
+      if(!(amount>0)) return showErr(s,trial?tr('abo.errTrialAmount',{ex:exNum(9.99)}):tr('err.amountEx',{ex:exNum(9.99)}));
+      if(trial&&!isISO(trialEnd)) return showErr(s,tr('abo.errTrialEnd'));
       const nextDate=trial?toISO(addDays(fromISO(trialEnd),1)):f.nextDate.value;
-      if(!isISO(nextDate)) return showErr(s,'Bitte wähle das Datum der nächsten Abbuchung.');
+      if(!isISO(nextDate)) return showErr(s,tr('abo.errNext'));
       const d={name,amount,rhythm:choiceValue(s,'rhythm')||'monthly',nextDate,trialEnd};
       if(c){ if(c.trialEnd!==trialEnd) d.notified=''; Object.assign(c,d); }
       else data.contracts.push(Object.assign({id:uid(),color:freeColor(data.contracts),notified:'',since:''},d));
-      fillSince(); save(); closeWin(1); draw(); toast('Gespeichert');
+      fillSince(); save(); closeWin(1); draw(); toast(tr('toast.saved'));
       syncNotifications(trial);
     });
     const del=s.querySelector('[data-del]');
     if(del) del.addEventListener('click',async()=>{
-      if(!await ask('Löschen?',`„${c.name}“ wird gelöscht.`,'Löschen')) return;
-      data.contracts=data.contracts.filter(x=>x!==c); save(); closeWin(2); draw(); toast('Gelöscht'); syncNotifications(false);
+      if(!await ask(tr('delQ'),tr('delText',{name:c.name}),tr('delete'))) return;
+      data.contracts=data.contracts.filter(x=>x!==c); save(); closeWin(2); draw(); toast(tr('toast.deleted')); syncNotifications(false);
     });
   });
 }
@@ -1677,18 +1785,18 @@ function expenseWin(id){
   const v=x||{kind:'out',amount:0,cat:EXP_CATS.some(c=>c.id===last)?last:'essen',date:otherMonth?toISO(new Date(listMonth.y,listMonth.m,1)):toISO(t),note:''};
   let kind=v.kind;
   let cat0=v.cat;
-  const noteLabel=k=>k==='in'?'Was ist es?':cat0==='sonstiges'?'Wofür genau?':'Notiz', notePh=()=>'';   // kein Beispieltext im Feld
-  win(x?(x.kind==='in'?'Einnahme ändern':'Ausgabe ändern'):'Neue Buchung',`<form novalidate class="compact">
-    ${x?'':`<div class="seg kind-seg" data-kind role="group">${[['out','Ausgabe'],['in','Einnahme']].map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${kind===k}">${l}</button>`).join('')}</div>`}
-    ${moneyField('Wie viel?',v.amount,!x)}
-    <div class="field" data-out-only ${kind==='in'?'hidden':''}><span class="label">Wofür?</span>${choice('cat',EXP_CATS.map(c=>({v:c.id,l:c.short,dot:c.color,icon:c.icon})),v.cat,'cats4')}</div>
+  const noteLabel=k=>k==='in'?tr('exp.whatIs'):cat0==='sonstiges'?tr('exp.whatFor'):tr('exp.note'), notePh=()=>'';   // kein Beispieltext im Feld
+  win(x?(x.kind==='in'?tr('exp.editIn'):tr('exp.editOut')):tr('exp.new'),`<form novalidate class="compact">
+    ${x?'':`<div class="seg kind-seg" data-kind role="group">${[['out',tr('exp.out')],['in',tr('exp.in')]].map(([k,l])=>`<button type="button" data-k="${k}" aria-pressed="${kind===k}">${esc(l)}</button>`).join('')}</div>`}
+    ${moneyField(tr('exp.howMuch'),v.amount,!x)}
+    <div class="field" data-out-only ${kind==='in'?'hidden':''}><span class="label">${esc(tr('exp.for'))}</span>${choice('cat',EXP_CATS.map(c=>({v:c.id,l:c.short,dot:c.color,icon:c.icon})),v.cat,'cats4')}</div>
     <div class="row2">
-      <label class="field"><span class="label" data-note-label>${noteLabel(kind)}</span><input class="input" name="note" value="${esc(v.note)}" placeholder="${notePh(kind)}" maxlength="60" autocomplete="off"></label>
-      <label class="field"><span class="label">Datum</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label></div>
-    <div data-in-only ${kind==='in'?'':'hidden'}>${quick(['Geschenk','Rückzahlung','Verkauf','Trinkgeld'])}</div>
+      <label class="field"><span class="label" data-note-label>${esc(noteLabel(kind))}</span><input class="input" name="note" value="${esc(v.note)}" placeholder="${notePh(kind)}" maxlength="60" autocomplete="off"></label>
+      <label class="field"><span class="label">${esc(tr('exp.date'))}</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label></div>
+    <div data-in-only ${kind==='in'?'':'hidden'}>${quick([tr('q.gift'),tr('q.refund'),tr('q.sale'),tr('q.tip')])}</div>
     <p class="err" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Speichern</button>
-    ${x?`<div class="btns"><button type="button" class="btn btn-red" data-del>${x.kind==='in'?'Einnahme':'Ausgabe'} löschen</button></div>`:''}
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+    ${x?`<div class="btns"><button type="button" class="btn btn-red" data-del>${esc(x.kind==='in'?tr('exp.delIn'):tr('exp.delOut'))}</button></div>`:''}
   </form>`,s=>{
     wireChoice(s);
     const f=s.querySelector('form'); wireQuick(s,f.note,null);
@@ -1708,22 +1816,22 @@ function expenseWin(id){
     f.addEventListener('submit',e=>{e.preventDefault();
       const amount=parseMoney(f.amount.value), date=f.date.value, note=f.note.value.trim();
       const cat=kind==='in'?'sonstiges':(choiceValue(s,'cat')||'sonstiges');
-      if(!(amount>0)) return showErr(s,'Bitte gib einen Betrag ein, zum Beispiel 12,50.');
-      if(!isISO(date)) return showErr(s,'Bitte wähle ein Datum.');
+      if(!(amount>0)) return showErr(s,tr('err.amountEx',{ex:exNum(12.5)}));
+      if(!isISO(date)) return showErr(s,tr('err.date'));
       if(x) Object.assign(x,{amount,date,cat,note}); else data.expenses.push({id:uid(),kind,amount,date,cat,note,createdAt:Date.now()});
       if(kind!=='in') store.set('finanzo-lastcat',cat);
       const d=fromISO(date); if(tab==='list') listMonth={y:d.getFullYear(),m:d.getMonth()};
       save(); closeWin(1); draw();
-      if(kind==='in') return toast('Gespeichert');
+      if(kind==='in') return toast(tr('toast.saved'));
       const b=data.budgets[cat], sp=catSpent(d.getFullYear(),d.getMonth(),cat), c=catOf(cat);
-      if(b&&sp>b) toast(`Gespeichert. Budget für ${c.label} überschritten!`);
-      else if(b&&sp>=b*0.8) toast(`Gespeichert. Noch ${eur(round2(b-sp))} im Budget für ${c.label}.`);
-      else toast('Gespeichert');
+      if(b&&sp>b) toast(tr('toast.budgetOver',{cat:c.label}));
+      else if(b&&sp>=b*0.8) toast(tr('toast.budgetLeft',{amount:eur(round2(b-sp)),cat:c.label}));
+      else toast(tr('toast.saved'));
     });
     const del=s.querySelector('[data-del]');
     if(del) del.addEventListener('click',async()=>{
-      if(!await ask(x.kind==='in'?'Einnahme löschen?':'Ausgabe löschen?','Die Buchung wird gelöscht.','Löschen')) return;
-      data.expenses=data.expenses.filter(e=>e!==x); save(); closeWin(2); draw(); toast('Gelöscht');
+      if(!await ask(x.kind==='in'?tr('exp.delInQ'):tr('exp.delOutQ'),tr('exp.delText'),tr('delete'))) return;
+      data.expenses=data.expenses.filter(e=>e!==x); save(); closeWin(2); draw(); toast(tr('toast.deleted'));
     });
   });
 }
@@ -1734,24 +1842,24 @@ function budgetWin(catId){
   const first=catId||(EXP_CATS.find(c=>!data.budgets[c.id])||EXP_CATS[0]).id;
   const c=catOf(first), b=data.budgets[first]||0;
   const y=t.getFullYear(), m=t.getMonth();
-  win(pick?'Budget festlegen':`Budget: ${c.label}`,`<form novalidate>
-    ${pick?`<div class="field"><span class="label">Für welche Kategorie?</span>${choice('cat',EXP_CATS.map(k=>({v:k.id,l:k.label,dot:k.color,icon:k.icon})),first,'cats')}</div>`
-      :`<p class="text">Im ${esc(monthName(y,m))} schon ausgegeben: <b>${eur(catSpent(y,m,first))}</b></p>`}
-    ${moneyField('Höchstens pro Monat',b,!pick)}
+  win(pick?tr('bud.set'):tr('bud.for',{cat:c.label}),`<form novalidate>
+    ${pick?`<div class="field"><span class="label">${esc(tr('bud.which'))}</span>${choice('cat',EXP_CATS.map(k=>({v:k.id,l:k.label,dot:k.color,icon:k.icon})),first,'cats')}</div>`
+      :`<p class="text">${tr('bud.already',{month:esc(monthName(y,m)),amount:`<b>${eur(catSpent(y,m,first))}</b>`})}</p>`}
+    ${moneyField(tr('bud.max'),b,!pick)}
     <p class="err" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Speichern</button>
-    ${!pick&&b?'<div class="btns"><button type="button" class="btn btn-red" data-del>Budget entfernen</button></div>':''}
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+    ${!pick&&b?`<div class="btns"><button type="button" class="btn btn-red" data-del>${esc(tr('bud.remove'))}</button></div>`:''}
   </form>`,s=>{
     wireChoice(s);
     const f=s.querySelector('form'), box=s.querySelector('[data-choice="cat"]');
     if(box) box.addEventListener('click',()=>{ const v=data.budgets[choiceValue(s,'cat')]; f.amount.value=v?moneyInput(v):''; });
     f.addEventListener('submit',e=>{e.preventDefault();
       const cat=pick?choiceValue(s,'cat'):first, amount=parseMoney(f.amount.value);
-      if(!(amount>0)) return showErr(s,'Bitte gib einen Betrag ein, zum Beispiel 150,00.');
-      data.budgets[cat]=amount; save(); closeWin(1); draw(); toast(`Budget für ${catOf(cat).label} gespeichert`);
+      if(!(amount>0)) return showErr(s,tr('err.amountEx',{ex:exNum(150)}));
+      data.budgets[cat]=amount; save(); closeWin(1); draw(); toast(tr('toast.budSaved',{cat:catOf(cat).label}));
     });
     const del=s.querySelector('[data-del]');
-    if(del) del.addEventListener('click',()=>{ delete data.budgets[first]; save(); closeWin(1); draw(); toast('Budget entfernt'); });
+    if(del) del.addEventListener('click',()=>{ delete data.budgets[first]; save(); closeWin(1); draw(); toast(tr('toast.budRemoved')); });
   });
 }
 
@@ -1760,16 +1868,16 @@ function taskWin(id){
   const x=id?data.tasks.find(t=>t.id===id):null; if(id&&!x) return;
   const d0=toISO(addDays(today(),7));
   const v=x||{title:'',date:d0,amount:0,note:'',remindOn:remindDefault(d0,3)};
-  win(x?'Termin ändern':'Neuer Termin',`<form novalidate>
-    <label class="field"><span class="label">Was?</span><input class="input" name="title" value="${esc(v.title)}" placeholder="z. B. Strafzettel bezahlen" maxlength="60" autocomplete="off" ${x?'':'data-focus'}></label>
-    <label class="field"><span class="label">Wann?</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label>
-    <button type="button" class="switch-row" data-money aria-pressed="${v.amount>0}"><span>Muss ich etwas bezahlen?</span><span class="switch"></span></button>
-    <div data-money-on ${v.amount>0?'':'hidden'}>${moneyField('Betrag',v.amount)}</div>
-    <label class="field"><span class="label">Notiz</span><textarea class="input" name="note" maxlength="300">${esc(v.note)}</textarea></label>
+  win(x?tr('task.edit'):tr('task.new'),`<form novalidate>
+    <label class="field"><span class="label">${esc(tr('what'))}</span><input class="input" name="title" value="${esc(v.title)}" placeholder="${esc(tr('task.titlePh'))}" maxlength="60" autocomplete="off" ${x?'':'data-focus'}></label>
+    <label class="field"><span class="label">${esc(tr('task.when'))}</span><input class="input" type="date" name="date" value="${esc(v.date)}"></label>
+    <button type="button" class="switch-row" data-money aria-pressed="${v.amount>0}"><span>${esc(tr('task.pay'))}</span><span class="switch"></span></button>
+    <div data-money-on ${v.amount>0?'':'hidden'}>${moneyField(tr('amount'),v.amount)}</div>
+    <label class="field"><span class="label">${esc(tr('exp.note'))}</span><textarea class="input" name="note" maxlength="300">${esc(v.note)}</textarea></label>
     ${remindField(v.remindOn)}
     <p class="err" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Speichern</button>
-    ${x?`<div class="btns"><button type="button" class="btn btn-soft" data-done>${x.done?'Wieder öffnen':'Erledigt'}</button><button type="button" class="btn btn-red" data-del>Löschen</button></div>`:''}
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+    ${x?`<div class="btns"><button type="button" class="btn btn-soft" data-done>${esc(x.done?tr('task.reopen'):tr('task.done'))}</button><button type="button" class="btn btn-red" data-del>${esc(tr('delete'))}</button></div>`:''}
   </form>`,s=>{
     const f=s.querySelector('form');
     const moneyOn=wireSwitch(s,'data-money',on=>{ s.querySelector('[data-money-on]').hidden=!on; if(on) f.amount.focus(); });
@@ -1777,29 +1885,29 @@ function taskWin(id){
     f.addEventListener('submit',e=>{e.preventDefault();
       const title=f.title.value.trim(), date=f.date.value, note=f.note.value.trim(), remindOn=f.remindOn.value;
       const amount=moneyOn()?parseMoney(f.amount.value):0;
-      if(!title) return showErr(s,'Bitte gib ein, worum es geht.');
-      if(!isISO(date)) return showErr(s,'Bitte wähle ein Datum.');
-      if(moneyOn()&&!(amount>0)) return showErr(s,'Bitte gib den Betrag ein, zum Beispiel 30,00.');
-      if(!isISO(remindOn)) return showErr(s,'Bitte wähle, wann du erinnert werden willst.');
-      if(remindOn>date) return showErr(s,'Die Erinnerung muss vor dem Termin oder am selben Tag sein.');
+      if(!title) return showErr(s,tr('task.errTitle'));
+      if(!isISO(date)) return showErr(s,tr('err.date'));
+      if(moneyOn()&&!(amount>0)) return showErr(s,tr('task.errAmount',{ex:exNum(30)}));
+      if(!isISO(remindOn)) return showErr(s,tr('task.errRemind'));
+      if(remindOn>date) return showErr(s,tr('task.errRemindAfter'));
       const d={title,date,amount:round2(amount),note,remindOn};
       if(x){ if(x.date!==date||x.remindOn!==remindOn) d.notified=''; Object.assign(x,d); }
       else data.tasks.push(mkTask(d));
-      save(); closeWin(1); draw(); toast('Gespeichert');
+      save(); closeWin(1); draw(); toast(tr('toast.saved'));
       syncNotifications(true);
     });
     const dn=s.querySelector('[data-done]');
     if(dn) dn.addEventListener('click',()=>{ closeWin(1); setDone(x,!x.done); });
     const del=s.querySelector('[data-del]');
     if(del) del.addEventListener('click',async()=>{
-      if(!await ask('Termin löschen?',`„${x.title}“ wird gelöscht.`,'Löschen')) return;
-      data.tasks=data.tasks.filter(t=>t!==x); save(); closeWin(2); draw(); toast('Gelöscht'); syncNotifications(false);
+      if(!await ask(tr('task.delQ'),tr('delText',{name:x.title}),tr('delete'))) return;
+      data.tasks=data.tasks.filter(t=>t!==x); save(); closeWin(2); draw(); toast(tr('toast.deleted')); syncNotifications(false);
     });
   });
 }
 function setDone(x,done){
   x.done=done; x.doneAt=done?toISO(today()):'';
-  save(); draw(); toast(done?(x.amount?'Als bezahlt abgehakt':'Erledigt'):'Wieder offen');
+  save(); draw(); toast(done?(x.amount?tr('toast.paid'):tr('toast.done')):tr('toast.reopened'));
   syncNotifications(false);
 }
 
@@ -1807,18 +1915,18 @@ function setDone(x,done){
 function goalWin(id){
   const g=id?data.goals.find(x=>x.id===id):null; if(id&&!g) return;
   const v=g||{name:'',target:0,until:'',icon:'ziel'};
-  win(g?'Sparziel ändern':'Neues Sparziel',`<form novalidate>
-    <div class="field"><label><span class="label">Wofür sparst du?</span><input class="input" name="name" value="${esc(v.name)}" placeholder="z. B. Urlaub" maxlength="40" autocomplete="off" ${g?'':'data-focus'}></label>
-      ${g?'':quick(['Auto','Urlaub','Notgroschen','Handy'])}</div>
-    <div class="field"><span class="label">Symbol</span><div class="icon-pick" data-choice="icon">${GOAL_ICONS.map(([k,l,ic])=>
-      `<button type="button" data-v="${k}" aria-pressed="${k===v.icon}" aria-label="${l}" title="${l}">${ICON[ic]}</button>`).join('')}</div></div>
-    ${moneyField('Wie viel brauchst du?',v.target,false,'target')}
-    ${g?'':moneyField('Hast du schon etwas gespart?',0,false,'start')}
-    <label class="field"><span class="label">Bis wann?</span><input class="input" type="date" name="until" value="${esc(v.until)}">
-      <span class="hint">Mit Datum rechnet Finanzo aus, wie viel du pro Tag oder pro Monat sparen musst.</span></label>
+  win(g?tr('goal.edit'):tr('goal.new'),`<form novalidate>
+    <div class="field"><label><span class="label">${esc(tr('goal.for'))}</span><input class="input" name="name" value="${esc(v.name)}" placeholder="${esc(tr('goal.namePh'))}" maxlength="40" autocomplete="off" ${g?'':'data-focus'}></label>
+      ${g?'':quick([tr('q.car'),tr('q.vacation'),tr('q.emergency'),tr('q.phone2')])}</div>
+    <div class="field"><span class="label">${esc(tr('goal.icon'))}</span><div class="icon-pick" data-choice="icon">${GOAL_ICONS.map(([k,l,ic])=>
+      `<button type="button" data-v="${k}" aria-pressed="${k===v.icon}" aria-label="${esc(tr('gi.'+k))}" title="${esc(tr('gi.'+k))}">${ICON[ic]}</button>`).join('')}</div></div>
+    ${moneyField(tr('goal.need'),v.target,false,'target')}
+    ${g?'':moneyField(tr('goal.have'),0,false,'start')}
+    <label class="field"><span class="label">${esc(tr('goal.untilLbl'))}</span><input class="input" type="date" name="until" value="${esc(v.until)}">
+      <span class="hint">${esc(tr('goal.untilHint'))}</span></label>
     <p class="err" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Speichern</button>
-    ${g?'<div class="btns"><button type="button" class="btn btn-red" data-del>Sparziel löschen</button></div>':''}
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+    ${g?`<div class="btns"><button type="button" class="btn btn-red" data-del>${esc(tr('goal.delete'))}</button></div>`:''}
   </form>`,s=>{
     wireChoice(s);
     const f=s.querySelector('form'); wireQuick(s,f.name,f.target);
@@ -1830,37 +1938,37 @@ function goalWin(id){
     f.addEventListener('submit',e=>{e.preventDefault();
       const name=f.name.value.trim(), target=parseMoney(f.target.value), until=f.until.value, icon=choiceValue(s,'icon')||guessGoalIcon(name);
       const st=f.start?f.start.value.trim():'', start=st?parseMoney(st):0;
-      if(!name) return showErr(s,'Bitte gib ein, wofür du sparst.');
-      if(!(target>0)) return showErr(s,'Bitte gib ein, wie viel du brauchst, zum Beispiel 2.000,00.');
-      if(!(start>=0)) return showErr(s,'Bitte gib eine Zahl ein, zum Beispiel 0 oder 150,00.');
+      if(!name) return showErr(s,tr('goal.errName'));
+      if(!(target>0)) return showErr(s,tr('goal.errTarget',{ex:exNum(2000)}));
+      if(!(start>=0)) return showErr(s,tr('goal.errStart',{ex:exNum(150)}));
       if(g) Object.assign(g,{name,target,icon,until:isISO(until)?until:''});
       else data.goals.push({id:uid(),name,target,start,moves:[],until:isISO(until)?until:'',color:data.goals.length%GOAL_COLORS.length,icon});
-      save(); closeWin(1); draw(); toast('Gespeichert');
+      save(); closeWin(1); draw(); toast(tr('toast.saved'));
     });
     const del=s.querySelector('[data-del]');
     if(del) del.addEventListener('click',async()=>{
-      if(!await ask('Sparziel löschen?',`„${g.name}“ wird gelöscht.`,'Löschen')) return;
-      data.goals=data.goals.filter(x=>x!==g); save(); closeWin(2); draw(); toast('Gelöscht');
+      if(!await ask(tr('goal.delQ'),tr('delText',{name:g.name}),tr('delete'))) return;
+      data.goals=data.goals.filter(x=>x!==g); save(); closeWin(2); draw(); toast(tr('toast.deleted'));
     });
   });
 }
 function depositWin(id){
   const g=data.goals.find(x=>x.id===id); if(!g) return;
   win(g.name,`<form novalidate>
-    <p class="text">Gespart: <b>${eur(goalSaved(g))}</b> von ${eur(g.target)}</p>
-    ${moneyField('Betrag',0,true)}
-    <p class="hint" style="margin-top:-8px">Eingezahltes Geld zählt auf der Startseite als „Gespart“ und ist nicht mehr zum Ausgeben übrig.</p>
+    <p class="text">${tr('dep.saved',{saved:`<b>${eur(goalSaved(g))}</b>`,target:eur(g.target)})}</p>
+    ${moneyField(tr('amount'),0,true)}
+    <p class="hint" style="margin-top:-8px">${esc(tr('dep.hint'))}</p>
     <p class="err" hidden></p>
-    <div class="btns"><button type="button" class="btn btn-soft" data-out>Rausnehmen</button><button class="btn btn-main" type="submit">Einzahlen</button></div>
+    <div class="btns"><button type="button" class="btn btn-soft" data-out>${esc(tr('dep.out'))}</button><button class="btn btn-main" type="submit">${esc(tr('dep.in'))}</button></div>
   </form>`,s=>{
     const f=s.querySelector('form');
     const apply=sign=>{
       const a=parseMoney(f.amount.value), sv0=goalSaved(g);
-      if(!(a>0)) return showErr(s,'Bitte gib einen Betrag ein, zum Beispiel 50,00.');
-      if(sign<0&&a>sv0) return showErr(s,`Du hast hier nur ${eur(sv0)} gespart.`);
+      if(!(a>0)) return showErr(s,tr('err.amountEx',{ex:exNum(50)}));
+      if(sign<0&&a>sv0) return showErr(s,tr('dep.errOnly',{amount:eur(sv0)}));
       const was=sv0>=g.target;
       g.moves.push({id:uid(),date:toISO(today()),amount:round2(sign*a)}); save(); closeWin(1); draw();
-      toast(sign>0&&!was&&goalSaved(g)>=g.target?'Geschafft! Ziel erreicht.':sign>0?`${eur(a)} eingezahlt`:`${eur(a)} rausgenommen`);
+      toast(sign>0&&!was&&goalSaved(g)>=g.target?tr('toast.goalDone'):sign>0?tr('toast.depIn',{amount:eur(a)}):tr('toast.depOut',{amount:eur(a)}));
     };
     f.addEventListener('submit',e=>{e.preventDefault();apply(1);});
     s.querySelector('[data-out]').addEventListener('click',()=>apply(-1));
@@ -1870,54 +1978,94 @@ function depositWin(id){
 /* =====================================================================
    Einstellungen
    ===================================================================== */
-const seg=(key,options)=>`<div class="seg" role="group" data-set="${key}">${options.map(([v,l])=>
-  `<button type="button" data-v="${v}" aria-pressed="${String(data.settings[key])===String(v)}">${l}</button>`).join('')}</div>`;
-function curLabel(){ const code=data.settings.currency, sym=curSymbol(code); return `<span>${esc(curName(code))}</span><small>${esc(code)}${sym!==code?' '+esc(sym):''}</small>${ICON.right}`; }
+const curLabel=()=>{ const code=data.settings.currency; return `${curName(code)} (${code})`; };
+const themeLabel=()=>tr('theme.'+(data.settings.theme||'system'));
+const langLabel=()=>langName(LANG);
+const setRow=(attr,icon,color,label,value,cls='')=>`<li><button type="button" class="item set-row ${cls}" ${attr}><span class="s-ic" style="--c:${color}">${ICON[icon]}</span>
+  <span class="item-main"><div class="item-name">${esc(label)}</div></span>${value!=null?`<span class="s-val">${esc(value)}</span>`:''}${cls==='danger'?'':ICON.right}</button></li>`;
 /* ---------- Reiter: Einstellungen ---------- */
 function drawSettings(){
-  $('#view').innerHTML=`<h1 class="page-title">Einstellungen</h1>
-    <section class="card set-card">
-    <div class="set"><h3>Dein Name</h3><input class="input" data-name value="${esc(data.settings.name)}" placeholder="z. B. Alex" maxlength="30" autocomplete="given-name" aria-label="Dein Name"></div>
-    <div class="set"><h3>Aussehen</h3>${seg('theme',[['light','Hell'],['dark','Dunkel'],['system','System']])}</div>
-    <div class="set"><h3>Währung</h3><button type="button" class="pick" data-currency>${curLabel()}</button></div>
-    ${ACCOUNTS&&session?`<div class="set"><h3>Konto</h3><p>Angemeldet als <b>${esc(session.user.email)}</b></p><p class="sync-info" data-sync>${esc(syncText())}</p>
-      <button type="button" class="pick pw-pick" data-pwchange><span>Passwort ändern</span>${ICON.right}</button>
-      <div class="btns" style="margin-top:0"><button type="button" class="btn btn-soft" data-logout>Abmelden</button><button type="button" class="btn btn-red" data-delacc>Konto löschen</button></div></div>`:''}
+  const name=data.settings.name, acc=ACCOUNTS&&session;
+  const avatar=name?esc(Array.from(name.trim())[0]||''):ICON.dots;
+  $('#view').innerHTML=`<h1 class="page-title">${esc(tr('set.title'))}</h1>
+    <section class="card prof-card">
+      <button type="button" class="prof" data-edit-name><span class="avatar">${avatar}</span>
+        <span class="prof-main"><span class="prof-name ${name?'':'empty'}">${esc(name||tr('set.addName'))}</span>${acc?`<span class="prof-sub">${esc(session.user.email)}</span>`:''}</span>${ICON.right}</button>
+      ${acc?`<p class="prof-sync" data-sync-box>${ICON.cloud}<span data-sync>${esc(syncText())}</span></p>`:''}
     </section>
-    <p class="version">Finanzo Version ${APP_VERSION}</p>`;
+    <h2 class="set-h">${esc(tr('set.general'))}</h2>
+    <ul class="list set-list">
+      ${setRow('data-lang','globe','#4C6EF5',tr('set.lang'),langLabel())}
+      ${setRow('data-currency','coins','#12B886',tr('set.cur'),curLabel())}
+      ${setRow('data-theme-pick','moon','#7048E8',tr('set.theme'),themeLabel())}
+    </ul>
+    ${acc?`<h2 class="set-h">${esc(tr('set.account'))}</h2>
+    <ul class="list set-list">
+      ${setRow('data-pwchange','key','#F59F00',tr('set.pw'))}
+      ${setRow('data-logout','logout','#868E96',tr('set.logout'))}
+    </ul>
+    <ul class="list set-list">${setRow('data-delacc','trash','#E03131',tr('set.delete'),null,'danger')}</ul>`:''}
+    <p class="version">${esc(tr('set.version',{v:APP_VERSION}))}</p>`;
   const s=$('#view');
-  const lo=s.querySelector('[data-logout]'); if(lo) lo.addEventListener('click',logout);
-  const da=s.querySelector('[data-delacc]'); if(da) da.addEventListener('click',deleteAccount);
-  const pc=s.querySelector('[data-pwchange]'); if(pc) pc.addEventListener('click',passwordWin);
-  const nm=s.querySelector('[data-name]');
-  nm.addEventListener('input',()=>{ data.settings.name=nm.value.trim().slice(0,30); save(); });
-  s.querySelectorAll('[data-set]').forEach(g=>g.addEventListener('click',e=>{
-    const b=e.target.closest('button'); if(!b) return;
-    data.settings[g.dataset.set]=b.dataset.v; g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
-    save(); applyTheme();
-  }));
-  s.querySelector('[data-currency]').addEventListener('click',()=>currencyWin());
+  const on=(sel,fn)=>{ const b=s.querySelector(sel); if(b) b.addEventListener('click',fn); };
+  on('[data-logout]',logout); on('[data-delacc]',deleteAccount); on('[data-pwchange]',passwordWin);
+  on('[data-edit-name]',nameWin); on('[data-lang]',langWin); on('[data-theme-pick]',themeWin); on('[data-currency]',()=>currencyWin());
+}
+// Name ändern (so begrüßt dich Finanzo auf der Startseite)
+function nameWin(){
+  win(tr('set.yourName'),`<form novalidate>
+    <label class="field"><span class="label">${esc(tr('set.yourName'))}</span><input class="input" name="name" value="${esc(data.settings.name)}" placeholder="${esc(tr('name.placeholder'))}" maxlength="30" autocomplete="given-name" data-focus></label>
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('save'))}</button>
+  </form>`,s=>{
+    const f=s.querySelector('form');
+    setTimeout(()=>{ try{ f.name.focus(); }catch(e){} },80);
+    f.addEventListener('submit',e=>{ e.preventDefault(); data.settings.name=f.name.value.trim().slice(0,30); save(); closeWin(1); draw(); toast(tr('toast.saved')); });
+  });
+}
+// Liste zum Auswählen (Sprache, Aussehen)
+const optRow=(attr,v,title,sub,sel)=>`<li><button type="button" class="opt" ${attr}="${esc(v)}" aria-selected="${sel}"><span class="opt-main"><b>${esc(title)}</b>${sub?`<small>${esc(sub)}</small>`:''}</span><span class="tick">${sel?ICON.check:''}</span></button></li>`;
+function langWin(){
+  let names=null; try{ names=new Intl.DisplayNames([LOC],{type:'language'}); }catch(e){}
+  const local=c=>{ try{ const n=names&&names.of(c==='zh'?'zh-Hans':c); return n&&n.toLowerCase()!==langName(c).toLowerCase()?n.charAt(0).toLocaleUpperCase(LOC)+n.slice(1):''; }catch(e){ return ''; } };
+  const cur=data.settings.lang;
+  win(tr('set.lang'),`<ul class="opt-list">${optRow('data-l','auto',tr('lang.auto'),tr('lang.autoSub',{name:langName(phoneLang())}),cur==='auto')}</ul><div class="opt-sep"></div>
+    <ul class="opt-list">${LANGS.map(([c,n])=>optRow('data-l',c,n,local(c),cur===c)).join('')}</ul>`,s=>{
+    s.addEventListener('click',e=>{
+      const b=e.target.closest('[data-l]'); if(!b) return;
+      data.settings.lang=b.dataset.l; setLang(data.settings.lang); setCurrency(data.settings.currency); save();
+      closeWin(1); paintStatic(); draw(); toast(tr('toast.lang',{name:langName(LANG)}));
+    });
+  });
+}
+function themeWin(){
+  const cur=data.settings.theme||'system';
+  win(tr('set.theme'),`<ul class="opt-list" data-set="theme">${['light','dark','system'].map(v=>optRow('data-v',v,tr('theme.'+v),v==='system'?tr('theme.systemSub'):'',cur===v)).join('')}</ul>`,s=>{
+    s.addEventListener('click',e=>{
+      const b=e.target.closest('[data-v]'); if(!b) return;
+      data.settings.theme=b.dataset.v; save(); applyTheme(); closeWin(1); draw();
+    });
+  });
 }
 // Passwort ändern: erst das aktuelle Passwort prüfen, dann das neue speichern
 function passwordWin(){
   if(!ACCOUNTS||!session) return;
-  win('Passwort ändern',`<form novalidate>
-    <label class="field"><span class="label">Aktuelles Passwort</span><input class="input" name="old" type="password" autocomplete="current-password" data-focus></label>
-    <label class="field"><span class="label">Neues Passwort</span><input class="input" name="pw" type="password" autocomplete="new-password" placeholder="Mindestens 8 Zeichen"></label>
-    <label class="field"><span class="label">Neues Passwort wiederholen</span><input class="input" name="pw2" type="password" autocomplete="new-password"></label>
+  win(tr('pw.title'),`<form novalidate>
+    <label class="field"><span class="label">${esc(tr('pw.current'))}</span><input class="input" name="old" type="password" autocomplete="current-password" data-focus></label>
+    <label class="field"><span class="label">${esc(tr('pw.new'))}</span><input class="input" name="pw" type="password" autocomplete="new-password" placeholder="${esc(tr('auth.pwMin'))}"></label>
+    <label class="field"><span class="label">${esc(tr('pw.new2'))}</span><input class="input" name="pw2" type="password" autocomplete="new-password"></label>
     <p class="err" hidden></p><p class="ok-msg" hidden></p>
-    <button class="btn btn-main btn-full" type="submit">Passwort speichern</button>
-    <button type="button" class="link-btn" data-pw-forgot>Aktuelles Passwort vergessen?</button>
+    <button class="btn btn-main btn-full" type="submit">${esc(tr('auth.savePw'))}</button>
+    <button type="button" class="link-btn" data-pw-forgot>${esc(tr('pw.forgot'))}</button>
   </form>`,s=>{
     const f=s.querySelector('form'), btn=f.querySelector('[type=submit]'), err=s.querySelector('.err'), ok=s.querySelector('.ok-msg');
     const info=(e,o)=>{ err.textContent=e||''; err.hidden=!e; ok.textContent=o||''; ok.hidden=!o; };
-    const busy=on=>{ btn.disabled=on; btn.textContent=on?'Einen Moment …':'Passwort speichern'; };
+    const busy=on=>{ btn.disabled=on; btn.textContent=on?tr('busy'):tr('auth.savePw'); };
     f.addEventListener('submit',async e=>{ e.preventDefault();
       const old=f.old.value, pw=f.pw.value, pw2=f.pw2.value;
-      if(!old) return info('Bitte gib dein aktuelles Passwort ein.');
-      if(pw.length<8) return info('Das neue Passwort braucht mindestens 8 Zeichen.');
-      if(pw!==pw2) return info('Die beiden neuen Passwörter sind nicht gleich.');
-      if(pw===old) return info('Das neue Passwort muss anders sein als das alte.');
+      if(!old) return info(tr('pw.needOld'));
+      if(pw.length<8) return info(tr('pw.short'));
+      if(pw!==pw2) return info(tr('pw.mismatch'));
+      if(pw===old) return info(tr('err.samePw'));
       info(); busy(true);
       try{
         let j;
@@ -1925,36 +2073,36 @@ function passwordWin(){
         catch(x){ if(!x.offline&&x.status===400&&(x.code==='invalid_credentials'||x.code==='invalid_grant'||!x.code)) x.wrongOld=true; throw x; }
         saveSession(toSession(j));                                   // frisch angemeldet: darf das Passwort ändern
         await sbFetch('/auth/v1/user',{method:'PUT',body:{password:pw},token:session.access_token});
-        closeWin(1); toast('Neues Passwort gespeichert');
-      }catch(x){ busy(false); info(x&&x.wrongOld?'Das aktuelle Passwort stimmt nicht.':authMsg(x)); }
+        closeWin(1); toast(tr('toast.newPw'));
+      }catch(x){ busy(false); info(x&&x.wrongOld?tr('pw.wrongOld'):authMsg(x)); }
     });
     s.querySelector('[data-pw-forgot]').addEventListener('click',async()=>{
       info();
       try{ await sbFetch('/auth/v1/recover?redirect_to='+encodeURIComponent(appUrl()),{method:'POST',body:{email:session.user.email}});
-        info('',`Wir haben dir eine E-Mail an ${session.user.email} geschickt. Tippe auf den Link darin und wähle ein neues Passwort.`); }
+        info('',tr('pw.mailSent',{email:session.user.email})); }
       catch(x){ info(authMsg(x)); }
     });
   });
 }
 function currencyWin(onPick){
-  const all=CURRENCIES.map(code=>({code,name:curName(code),sym:curSymbol(code)})).sort((a,b)=>a.name.localeCompare(b.name,'de'));
+  const all=CURRENCIES.map(code=>({code,name:curName(code),sym:curSymbol(code)})).sort((a,b)=>a.name.localeCompare(b.name,LOC));
   const row=c=>`<li><button type="button" class="cur" data-code="${c.code}" aria-selected="${c.code===data.settings.currency}">
     <span class="cur-name">${esc(c.name)}<small>${c.code}</small></span><span class="cur-sym">${c.code===data.settings.currency?ICON.check:(c.sym!==c.code?esc(c.sym):'')}</span></button></li>`;
-  win('Währung',`<div class="cur-search"><input class="input" type="search" placeholder="Suchen, z. B. Dollar oder USD" data-q autocomplete="off"></div>
-    <p class="text" style="margin-top:0">Die Beträge werden dabei nicht umgerechnet, nur das Zeichen ändert sich.</p><div data-results></div>`,s=>{
+  win(tr('cur.title'),`<div class="cur-search"><input class="input" type="search" placeholder="${esc(tr('cur.searchPh'))}" data-q autocomplete="off"></div>
+    <p class="text" style="margin-top:0">${esc(tr('cur.note'))}</p><div data-results></div>`,s=>{
     const box=s.querySelector('[data-results]'), q=s.querySelector('[data-q]');
     const render=()=>{
       const t=q.value.trim().toLowerCase();
-      if(!t) box.innerHTML=`<div class="cur-group">Häufig</div><ul class="cur-list">${POPULAR.map(c=>all.find(x=>x.code===c)).filter(Boolean).map(row).join('')}</ul>
-        <div class="cur-group">Alle Währungen</div><ul class="cur-list">${all.map(row).join('')}</ul>`;
+      if(!t) box.innerHTML=`<div class="cur-group">${esc(tr('cur.popular'))}</div><ul class="cur-list">${POPULAR.map(c=>all.find(x=>x.code===c)).filter(Boolean).map(row).join('')}</ul>
+        <div class="cur-group">${esc(tr('cur.all'))}</div><ul class="cur-list">${all.map(row).join('')}</ul>`;
       else { const hits=all.filter(c=>c.name.toLowerCase().includes(t)||c.code.toLowerCase().includes(t)||c.sym.toLowerCase()===t);
-        box.innerHTML=hits.length?`<ul class="cur-list">${hits.map(row).join('')}</ul>`:`<p class="cur-none">Keine Währung gefunden.</p>`; }
+        box.innerHTML=hits.length?`<ul class="cur-list">${hits.map(row).join('')}</ul>`:`<p class="cur-none">${esc(tr('cur.none'))}</p>`; }
     };
     render(); q.addEventListener('input',render);
     box.addEventListener('click',e=>{
       const b=e.target.closest('[data-code]'); if(!b) return;
       data.settings.currency=b.dataset.code; setCurrency(b.dataset.code); save();
-      closeWin(1); draw(); if(onPick) onPick(); toast(`Währung: ${curName(b.dataset.code)}`);
+      closeWin(1); draw(); if(onPick) onPick(); toast(tr('toast.cur',{name:curName(b.dataset.code)}));
     });
   });
 }
@@ -2016,6 +2164,7 @@ setInterval(()=>{ if(toISO(today())!==lastDay){lastDay=toISO(today());if(!stack.
    Start
    ===================================================================== */
 paintIcons();
+paintStatic();
 fillSince();
 applyTheme();
 draw();
