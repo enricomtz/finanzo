@@ -487,7 +487,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='7.1';   // bei jedem Update erhöhen
+const APP_VERSION='7.2';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -707,7 +707,7 @@ function save(){ data.updatedAt=Date.now(); saveLocal(); syncSoon(); } // Änder
 let data=load();
 setCurrency(data.settings.currency);
 const TABS=['start','list','stats','goals','settings'];
-let tab=store.get('finanzo-tab'); if(!TABS.includes(tab)) tab='start';
+let tab='start'; store.del('finanzo-tab');   // beim Öffnen immer auf Start
 let sub=null;                                                     // Unterseite (Einnahmen, Abos, Termine, Budgets)
 let listMonth={y:today().getFullYear(),m:today().getMonth()}, listFilter='all', listQuery='';
 // Ladebildschirm: bleibt, bis die App wirklich bereit ist (Daten geladen, Anmeldung geprüft)
@@ -1174,7 +1174,7 @@ function draw(){
   liveWins.forEach(f=>f());
   setBarColor();
 }
-function go(t,s=null){ tab=t; sub=s; store.set('finanzo-tab',t); draw(); scrollTo({top:0}); }
+function go(t,s=null){ tab=t; sub=s; draw(); scrollTo({top:0}); }
 
 // Eine Buchung als Zeile
 function bookSub(b){
@@ -1956,7 +1956,11 @@ document.addEventListener('click',e=>{
 });
 // Neuer Tag / App wieder geöffnet: Anzeige und Nachrichten aktualisieren
 let lastDay=toISO(today());
-document.addEventListener('visibilitychange',()=>{ if(document.hidden) return; if(toISO(today())!==lastDay){lastDay=toISO(today());if(!stack.length)draw();} showDueNotifications(); if(ACCOUNTS&&session) pull(); });
+// Wer länger weg war (5 Minuten), kommt wieder auf Start – außer ein Fenster ist noch offen
+const BACK_TO_START=5*60*1000; let leftAt=0;
+document.addEventListener('visibilitychange',()=>{ if(document.hidden){ leftAt=Date.now(); return; }
+  if(leftAt&&Date.now()-leftAt>=BACK_TO_START&&!stack.length&&(tab!=='start'||sub)) go('start'); leftAt=0;
+  if(toISO(today())!==lastDay){lastDay=toISO(today());if(!stack.length)draw();} showDueNotifications(); if(ACCOUNTS&&session) pull(); });
 window.addEventListener('online',()=>{ updateSyncInfo(); if(ACCOUNTS&&session){ if(isDirty()) push(); else pull(); } });
 window.addEventListener('offline',updateSyncInfo);
 window.addEventListener('hashchange',()=>{ if(ACCOUNTS&&/(^#|&)(access_token|error_code)=/.test(location.hash)) bootAccount(); });
