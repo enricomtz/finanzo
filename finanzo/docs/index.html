@@ -409,6 +409,8 @@ form.compact .quick{margin:-2px 0 12px}
 .pick span:first-child{flex:1;font-weight:680}
 .pick small{color:var(--ink-2);font-weight:600;font-size:14.5px}
 .pick svg{color:var(--ink-3)}
+.pw-pick{margin-bottom:12px}
+.sheet .link-btn{display:block;margin:6px auto 0}
 .cur-search{position:sticky;top:44px;background:var(--card);padding:8px 0 10px;z-index:1}
 .cur-group{font-size:13.5px;font-weight:700;color:var(--ink-3);margin:14px 4px 6px}
 .cur-list{list-style:none;margin:0;padding:0}
@@ -487,7 +489,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='7.2';   // bei jedem Update erhöhen
+const APP_VERSION='7.3';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
@@ -1875,12 +1877,14 @@ function drawSettings(){
     <div class="set"><h3>Aussehen</h3>${seg('theme',[['light','Hell'],['dark','Dunkel'],['system','System']])}</div>
     <div class="set"><h3>Währung</h3><button type="button" class="pick" data-currency>${curLabel()}</button></div>
     ${ACCOUNTS&&session?`<div class="set"><h3>Konto</h3><p>Angemeldet als <b>${esc(session.user.email)}</b></p><p class="sync-info" data-sync>${esc(syncText())}</p>
+      <button type="button" class="pick pw-pick" data-pwchange><span>Passwort ändern</span>${ICON.right}</button>
       <div class="btns" style="margin-top:0"><button type="button" class="btn btn-soft" data-logout>Abmelden</button><button type="button" class="btn btn-red" data-delacc>Konto löschen</button></div></div>`:''}
     </section>
     <p class="version">Finanzo Version ${APP_VERSION}</p>`;
   const s=$('#view');
   const lo=s.querySelector('[data-logout]'); if(lo) lo.addEventListener('click',logout);
   const da=s.querySelector('[data-delacc]'); if(da) da.addEventListener('click',deleteAccount);
+  const pc=s.querySelector('[data-pwchange]'); if(pc) pc.addEventListener('click',passwordWin);
   const nm=s.querySelector('[data-name]');
   nm.addEventListener('input',()=>{ data.settings.name=nm.value.trim().slice(0,30); save(); });
   s.querySelectorAll('[data-set]').forEach(g=>g.addEventListener('click',e=>{
@@ -1889,6 +1893,44 @@ function drawSettings(){
     save(); applyTheme();
   }));
   s.querySelector('[data-currency]').addEventListener('click',()=>currencyWin());
+}
+// Passwort ändern: erst das aktuelle Passwort prüfen, dann das neue speichern
+function passwordWin(){
+  if(!ACCOUNTS||!session) return;
+  win('Passwort ändern',`<form novalidate>
+    <label class="field"><span class="label">Aktuelles Passwort</span><input class="input" name="old" type="password" autocomplete="current-password" data-focus></label>
+    <label class="field"><span class="label">Neues Passwort</span><input class="input" name="pw" type="password" autocomplete="new-password" placeholder="Mindestens 8 Zeichen"></label>
+    <label class="field"><span class="label">Neues Passwort wiederholen</span><input class="input" name="pw2" type="password" autocomplete="new-password"></label>
+    <p class="err" hidden></p><p class="ok-msg" hidden></p>
+    <button class="btn btn-main btn-full" type="submit">Passwort speichern</button>
+    <button type="button" class="link-btn" data-pw-forgot>Aktuelles Passwort vergessen?</button>
+  </form>`,s=>{
+    const f=s.querySelector('form'), btn=f.querySelector('[type=submit]'), err=s.querySelector('.err'), ok=s.querySelector('.ok-msg');
+    const info=(e,o)=>{ err.textContent=e||''; err.hidden=!e; ok.textContent=o||''; ok.hidden=!o; };
+    const busy=on=>{ btn.disabled=on; btn.textContent=on?'Einen Moment …':'Passwort speichern'; };
+    f.addEventListener('submit',async e=>{ e.preventDefault();
+      const old=f.old.value, pw=f.pw.value, pw2=f.pw2.value;
+      if(!old) return info('Bitte gib dein aktuelles Passwort ein.');
+      if(pw.length<8) return info('Das neue Passwort braucht mindestens 8 Zeichen.');
+      if(pw!==pw2) return info('Die beiden neuen Passwörter sind nicht gleich.');
+      if(pw===old) return info('Das neue Passwort muss anders sein als das alte.');
+      info(); busy(true);
+      try{
+        let j;
+        try{ j=await sbFetch('/auth/v1/token?grant_type=password',{method:'POST',body:{email:session.user.email,password:old}}); }
+        catch(x){ if(!x.offline&&x.status===400&&(x.code==='invalid_credentials'||x.code==='invalid_grant'||!x.code)) x.wrongOld=true; throw x; }
+        saveSession(toSession(j));                                   // frisch angemeldet: darf das Passwort ändern
+        await sbFetch('/auth/v1/user',{method:'PUT',body:{password:pw},token:session.access_token});
+        closeWin(1); toast('Neues Passwort gespeichert');
+      }catch(x){ busy(false); info(x&&x.wrongOld?'Das aktuelle Passwort stimmt nicht.':authMsg(x)); }
+    });
+    s.querySelector('[data-pw-forgot]').addEventListener('click',async()=>{
+      info();
+      try{ await sbFetch('/auth/v1/recover?redirect_to='+encodeURIComponent(appUrl()),{method:'POST',body:{email:session.user.email}});
+        info('',`Wir haben dir eine E-Mail an ${session.user.email} geschickt. Tippe auf den Link darin und wähle ein neues Passwort.`); }
+      catch(x){ info(authMsg(x)); }
+    });
+  });
 }
 function currencyWin(onPick){
   const all=CURRENCIES.map(code=>({code,name:curName(code),sym:curSymbol(code)})).sort((a,b)=>a.name.localeCompare(b.name,'de'));
