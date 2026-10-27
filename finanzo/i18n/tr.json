@@ -413,5 +413,16 @@
 "lang.searchPh": "Dil ara",
 "lang.none": "Dil bulunamadı.",
 "toast.lang": "Dil: {name}",
-"name.placeholder": "Adın"
+"name.placeholder": "Adın",
+"prof.title": "Profil",
+"prof.email": "E-posta adresi",
+"prof.change": "Değiştir",
+"mail.title": "E-postayı değiştir",
+"mail.current": "Mevcut: {email}",
+"mail.new": "Yeni e-posta adresi",
+"mail.save": "E-postayı kaydet",
+"mail.same": "Bu zaten senin e-posta adresin.",
+"mail.taken": "Bu e-posta adresi başka bir hesap tarafından kullanılıyor.",
+"mail.confirm": "Neredeyse bitti: {email} adresine bir e-posta gönderdik. İçindeki bağlantıya dokun, yeni adres etkinleşsin.",
+"toast.mailChanged": "E-posta adresi değiştirildi"
 }

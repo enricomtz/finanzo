@@ -413,5 +413,16 @@
 "lang.searchPh": "Search language",
 "lang.none": "No language found.",
 "toast.lang": "Language: {name}",
-"name.placeholder": "Your first name"
+"name.placeholder": "Your first name",
+"prof.title": "Profile",
+"prof.email": "Email address",
+"prof.change": "Change",
+"mail.title": "Change email",
+"mail.current": "Current: {email}",
+"mail.new": "New email address",
+"mail.save": "Save email",
+"mail.same": "That is already your email address.",
+"mail.taken": "This email address is already used by another account.",
+"mail.confirm": "Almost done: we sent an email to {email}. Tap the link in it and the new address will be active.",
+"toast.mailChanged": "Email address changed"
 }

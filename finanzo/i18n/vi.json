@@ -404,5 +404,16 @@
 "lang.searchPh": "Tìm ngôn ngữ",
 "lang.none": "Không tìm thấy ngôn ngữ.",
 "toast.lang": "Ngôn ngữ: {name}",
-"name.placeholder": "Tên của bạn"
+"name.placeholder": "Tên của bạn",
+"prof.title": "Hồ sơ",
+"prof.email": "Địa chỉ email",
+"prof.change": "Thay đổi",
+"mail.title": "Đổi email",
+"mail.current": "Hiện tại: {email}",
+"mail.new": "Địa chỉ email mới",
+"mail.save": "Lưu email",
+"mail.same": "Đây đã là email của bạn.",
+"mail.taken": "Email này đã được một tài khoản khác sử dụng.",
+"mail.confirm": "Sắp xong rồi: chúng tôi đã gửi email tới {email}. Nhấn vào liên kết để địa chỉ mới có hiệu lực.",
+"toast.mailChanged": "Đã đổi địa chỉ email"
 }

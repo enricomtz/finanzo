@@ -413,5 +413,16 @@
 "lang.searchPh": "Buscar idioma",
 "lang.none": "Nenhum idioma encontrado.",
 "toast.lang": "Idioma: {name}",
-"name.placeholder": "Seu nome"
+"name.placeholder": "Seu nome",
+"prof.title": "Perfil",
+"prof.email": "Endereço de e-mail",
+"prof.change": "Alterar",
+"mail.title": "Alterar e-mail",
+"mail.current": "Atual: {email}",
+"mail.new": "Novo endereço de e-mail",
+"mail.save": "Salvar e-mail",
+"mail.same": "Esse já é o seu e-mail.",
+"mail.taken": "Este e-mail já está sendo usado por outra conta.",
+"mail.confirm": "Quase lá: enviamos um e-mail para {email}. Toque no link e o novo endereço ficará ativo.",
+"toast.mailChanged": "E-mail alterado"
 }
