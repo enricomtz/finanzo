@@ -80,7 +80,8 @@ body[data-page="start"] main{padding-top:0}
 @media (min-width:760px){ main{padding:28px 32px calc(150px + env(safe-area-inset-bottom))} body[data-page="start"] main{padding-top:28px} }
 
 /* ---------- Reiter unten ---------- */
-.sbar{position:fixed;top:0;left:0;right:0;height:var(--sat);background:var(--brand);z-index:36;pointer-events:none}   /* grüne Leiste hinter Uhrzeit und Akku */
+.sbar{position:fixed;top:0;left:0;right:0;height:var(--sat);background:var(--bg);z-index:36;pointer-events:none}   /* Leiste hinter Uhrzeit und Akku */
+body[data-page="start"] .sbar,body.locked .sbar{background:var(--brand)}                                        /* grün nur bei Start (und beim Anmelden) */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;background:color-mix(in srgb,var(--card) 94%,transparent);
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
 .tabbar-in{display:flex;gap:0;width:100%;max-width:600px}
@@ -492,7 +493,7 @@ body.locked main,body.locked .tabbar,body.locked .fab{display:none!important}
 
 <script>
 "use strict";
-const APP_VERSION='7.4';   // bei jedem Update erhöhen
+const APP_VERSION='7.5';   // bei jedem Update erhöhen
 
 /* =====================================================================
    Symbole
