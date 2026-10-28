@@ -459,5 +459,9 @@
 "rc.missing": "Photo indisponible pour le moment",
 "rc.remove": "Retirer la photo",
 "rc.badImage": "Impossible d’ouvrir la photo.",
-"rc.zoomHint": "Touche l’image pour l’agrandir."
+"rc.zoomHint": "Touche l’image pour l’agrandir.",
+"set.reminders": "Rappels",
+"set.remindersFoot": "Pour les rendez-vous, paiements et essais gratuits, même quand Finanzo est fermé.",
+"set.deleteFoot": "Supprime définitivement ton compte avec toutes les opérations et photos de tickets.",
+"nt.onAt": "Activées · {time}"
 }

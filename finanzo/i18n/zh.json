@@ -450,5 +450,9 @@
 "rc.missing": "照片暂时无法显示",
 "rc.remove": "移除照片",
 "rc.badImage": "无法打开照片。",
-"rc.zoomHint": "点按图片可放大。"
+"rc.zoomHint": "点按图片可放大。",
+"set.reminders": "提醒",
+"set.remindersFoot": "用于约会、付款和免费试用，即使 Finanzo 已关闭。",
+"set.deleteFoot": "永久删除你的账户及所有记录和收据照片。",
+"nt.onAt": "开 · {time}"
 }

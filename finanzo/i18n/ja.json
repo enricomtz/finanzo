@@ -450,5 +450,9 @@
 "rc.missing": "写真を表示できません",
 "rc.remove": "写真を削除",
 "rc.badImage": "写真を開けませんでした。",
-"rc.zoomHint": "画像をタップすると拡大します。"
+"rc.zoomHint": "画像をタップすると拡大します。",
+"set.reminders": "リマインダー",
+"set.remindersFoot": "予定・支払い・無料体験のお知らせ（Finanzo を閉じていても届きます）。",
+"set.deleteFoot": "アカウントとすべての記録・レシート写真を完全に削除します。",
+"nt.onAt": "オン · {time}"
 }

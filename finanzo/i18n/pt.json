@@ -459,5 +459,9 @@
 "rc.missing": "Foto indisponível no momento",
 "rc.remove": "Remover foto",
 "rc.badImage": "Não foi possível abrir a foto.",
-"rc.zoomHint": "Toque na imagem para ampliar."
+"rc.zoomHint": "Toque na imagem para ampliar.",
+"set.reminders": "Lembretes",
+"set.remindersFoot": "Para compromissos, pagamentos e testes grátis, mesmo com o Finanzo fechado.",
+"set.deleteFoot": "Exclui para sempre sua conta com todos os lançamentos e fotos de cupons.",
+"nt.onAt": "Ligadas · {time}"
 }

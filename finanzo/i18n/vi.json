@@ -450,5 +450,9 @@
 "rc.missing": "Hiện không xem được ảnh",
 "rc.remove": "Xóa ảnh",
 "rc.badImage": "Không mở được ảnh.",
-"rc.zoomHint": "Chạm vào ảnh để phóng to."
+"rc.zoomHint": "Chạm vào ảnh để phóng to.",
+"set.reminders": "Lời nhắc",
+"set.remindersFoot": "Cho lịch hẹn, thanh toán và dùng thử miễn phí – kể cả khi Finanzo đã đóng.",
+"set.deleteFoot": "Xóa vĩnh viễn tài khoản cùng mọi giao dịch và ảnh hóa đơn.",
+"nt.onAt": "Bật · {time}"
 }

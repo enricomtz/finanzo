@@ -450,5 +450,9 @@
 "rc.missing": "지금은 사진을 볼 수 없어요",
 "rc.remove": "사진 삭제",
 "rc.badImage": "사진을 열 수 없어요.",
-"rc.zoomHint": "사진을 탭하면 확대돼요."
+"rc.zoomHint": "사진을 탭하면 확대돼요.",
+"set.reminders": "리마인더",
+"set.remindersFoot": "일정, 결제, 무료 체험 알림 – Finanzo가 닫혀 있어도 받아요.",
+"set.deleteFoot": "계정과 모든 기록, 영수증 사진이 영구 삭제돼요.",
+"nt.onAt": "켬 · {time}"
 }

@@ -459,5 +459,9 @@
 "rc.missing": "Foto gerade nicht verfügbar",
 "rc.remove": "Foto entfernen",
 "rc.badImage": "Das Foto konnte nicht geöffnet werden.",
-"rc.zoomHint": "Tippe aufs Bild zum Vergrößern."
+"rc.zoomHint": "Tippe aufs Bild zum Vergrößern.",
+"set.reminders": "Erinnerungen",
+"set.remindersFoot": "Für Termine, Zahlungen und Probe-Abos – auch wenn Finanzo zu ist.",
+"set.deleteFoot": "Löscht dein Konto mit allen Buchungen und Kassenbon-Fotos für immer.",
+"nt.onAt": "An · {time}"
 }

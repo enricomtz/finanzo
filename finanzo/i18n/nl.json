@@ -459,5 +459,9 @@
 "rc.missing": "Foto nu niet beschikbaar",
 "rc.remove": "Foto verwijderen",
 "rc.badImage": "De foto kon niet worden geopend.",
-"rc.zoomHint": "Tik op de afbeelding om te vergroten."
+"rc.zoomHint": "Tik op de afbeelding om te vergroten.",
+"set.reminders": "Herinneringen",
+"set.remindersFoot": "Voor afspraken, betalingen en proefperiodes – ook als Finanzo dicht is.",
+"set.deleteFoot": "Verwijdert je account met alle boekingen en bonnetjesfoto’s voorgoed.",
+"nt.onAt": "Aan · {time}"
 }

@@ -450,5 +450,9 @@
 "rc.missing": "Foto belum tersedia",
 "rc.remove": "Hapus foto",
 "rc.badImage": "Foto tidak bisa dibuka.",
-"rc.zoomHint": "Ketuk gambar untuk memperbesar."
+"rc.zoomHint": "Ketuk gambar untuk memperbesar.",
+"set.reminders": "Pengingat",
+"set.remindersFoot": "Untuk janji, pembayaran, dan uji coba gratis – bahkan saat Finanzo tertutup.",
+"set.deleteFoot": "Menghapus akunmu beserta semua catatan dan foto struk untuk selamanya.",
+"nt.onAt": "Aktif · {time}"
 }

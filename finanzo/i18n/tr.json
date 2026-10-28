@@ -459,5 +459,9 @@
 "rc.missing": "Fotoğraf şu an kullanılamıyor",
 "rc.remove": "Fotoğrafı kaldır",
 "rc.badImage": "Fotoğraf açılamadı.",
-"rc.zoomHint": "Büyütmek için resme dokun."
+"rc.zoomHint": "Büyütmek için resme dokun.",
+"set.reminders": "Hatırlatmalar",
+"set.remindersFoot": "Randevular, ödemeler ve ücretsiz denemeler için – Finanzo kapalıyken bile.",
+"set.deleteFoot": "Hesabını tüm kayıtlar ve fiş fotoğraflarıyla birlikte kalıcı olarak siler.",
+"nt.onAt": "Açık · {time}"
 }

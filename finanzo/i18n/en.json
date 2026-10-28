@@ -459,5 +459,9 @@
 "rc.missing": "Photo not available right now",
 "rc.remove": "Remove photo",
 "rc.badImage": "The photo couldn’t be opened.",
-"rc.zoomHint": "Tap the image to zoom."
+"rc.zoomHint": "Tap the image to zoom.",
+"set.reminders": "Reminders",
+"set.remindersFoot": "For appointments, payments and free trials – even when Finanzo is closed.",
+"set.deleteFoot": "Deletes your account with all bookings and receipt photos forever.",
+"nt.onAt": "On · {time}"
 }

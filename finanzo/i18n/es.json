@@ -459,5 +459,9 @@
 "rc.missing": "La foto no está disponible ahora",
 "rc.remove": "Quitar foto",
 "rc.badImage": "No se pudo abrir la foto.",
-"rc.zoomHint": "Toca la imagen para ampliarla."
+"rc.zoomHint": "Toca la imagen para ampliarla.",
+"set.reminders": "Recordatorios",
+"set.remindersFoot": "Para citas, pagos y pruebas gratis, incluso con Finanzo cerrado.",
+"set.deleteFoot": "Elimina tu cuenta con todos los movimientos y fotos de tickets para siempre.",
+"nt.onAt": "Sí · {time}"
 }

@@ -477,5 +477,9 @@
 "rc.missing": "Zdjęcie jest teraz niedostępne",
 "rc.remove": "Usuń zdjęcie",
 "rc.badImage": "Nie udało się otworzyć zdjęcia.",
-"rc.zoomHint": "Stuknij obraz, aby powiększyć."
+"rc.zoomHint": "Stuknij obraz, aby powiększyć.",
+"set.reminders": "Przypomnienia",
+"set.remindersFoot": "O terminach, płatnościach i okresach próbnych – nawet gdy Finanzo jest zamknięte.",
+"set.deleteFoot": "Usuwa na zawsze Twoje konto ze wszystkimi wpisami i zdjęciami paragonów.",
+"nt.onAt": "Wł. · {time}"
 }
