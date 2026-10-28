@@ -435,5 +435,20 @@
 "nt.dismissed": "Kamu belum memilih apa pun. Ketuk lagi dan pilih “Izinkan”.",
 "toast.ntOn": "Notifikasi diaktifkan",
 "toast.ntOff": "Notifikasi dinonaktifkan",
-"nt.timeSaved": "Notifikasi pukul {time}"
+"nt.timeSaved": "Notifikasi pukul {time}",
+"rc.snap": "Foto struk",
+"rc.load": "Memuat pengenalan teks …",
+"rc.reading": "Membaca struk …",
+"rc.found": "Terbaca: {amount}",
+"rc.check": "Tolong cek sebentar.",
+"rc.noAmount": "Jumlah tidak terbaca",
+"rc.typeIt": "Ketik jumlahnya.",
+"rc.failed": "Tidak bisa dibaca",
+"rc.kept": "Fotonya tetap disimpan.",
+"rc.title": "Struk",
+"rc.view": "Ketuk untuk melihat",
+"rc.missing": "Foto belum tersedia",
+"rc.remove": "Hapus foto",
+"rc.badImage": "Foto tidak bisa dibuka.",
+"rc.zoomHint": "Ketuk gambar untuk memperbesar."
 }

@@ -462,5 +462,20 @@
 "nt.dismissed": "Nic jeszcze nie wybrano. Stuknij ponownie i wybierz „Pozwól”.",
 "toast.ntOn": "Powiadomienia włączone",
 "toast.ntOff": "Powiadomienia wyłączone",
-"nt.timeSaved": "Powiadomienia o {time}"
+"nt.timeSaved": "Powiadomienia o {time}",
+"rc.snap": "Zrób zdjęcie paragonu",
+"rc.load": "Ładowanie rozpoznawania tekstu …",
+"rc.reading": "Czytanie paragonu …",
+"rc.found": "Rozpoznano: {amount}",
+"rc.check": "Sprawdź szybko.",
+"rc.noAmount": "Nie rozpoznano kwoty",
+"rc.typeIt": "Wpisz kwotę.",
+"rc.failed": "Nie udało się odczytać",
+"rc.kept": "Zdjęcie i tak zostanie zapisane.",
+"rc.title": "Paragon",
+"rc.view": "Stuknij, aby zobaczyć",
+"rc.missing": "Zdjęcie jest teraz niedostępne",
+"rc.remove": "Usuń zdjęcie",
+"rc.badImage": "Nie udało się otworzyć zdjęcia.",
+"rc.zoomHint": "Stuknij obraz, aby powiększyć."
 }

@@ -435,5 +435,20 @@
 "nt.dismissed": "Bạn chưa chọn gì. Chạm lại và chọn “Cho phép”.",
 "toast.ntOn": "Đã bật thông báo",
 "toast.ntOff": "Đã tắt thông báo",
-"nt.timeSaved": "Thông báo lúc {time}"
+"nt.timeSaved": "Thông báo lúc {time}",
+"rc.snap": "Chụp hóa đơn",
+"rc.load": "Đang tải nhận dạng chữ …",
+"rc.reading": "Đang đọc hóa đơn …",
+"rc.found": "Nhận ra: {amount}",
+"rc.check": "Hãy kiểm tra nhanh.",
+"rc.noAmount": "Không nhận ra số tiền",
+"rc.typeIt": "Hãy nhập số tiền.",
+"rc.failed": "Không đọc được",
+"rc.kept": "Ảnh vẫn được lưu.",
+"rc.title": "Hóa đơn",
+"rc.view": "Chạm để xem",
+"rc.missing": "Hiện không xem được ảnh",
+"rc.remove": "Xóa ảnh",
+"rc.badImage": "Không mở được ảnh.",
+"rc.zoomHint": "Chạm vào ảnh để phóng to."
 }

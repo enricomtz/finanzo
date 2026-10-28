@@ -444,5 +444,20 @@
 "nt.dismissed": "Tu n’as encore rien choisi. Touche à nouveau et choisis « Autoriser ».",
 "toast.ntOn": "Notifications activées",
 "toast.ntOff": "Notifications désactivées",
-"nt.timeSaved": "Notifications à {time}"
+"nt.timeSaved": "Notifications à {time}",
+"rc.snap": "Photographier le ticket",
+"rc.load": "Chargement de la reconnaissance …",
+"rc.reading": "Lecture du ticket …",
+"rc.found": "Trouvé : {amount}",
+"rc.check": "Vérifie rapidement.",
+"rc.noAmount": "Montant non reconnu",
+"rc.typeIt": "Saisis le montant.",
+"rc.failed": "Lecture impossible",
+"rc.kept": "La photo est quand même enregistrée.",
+"rc.title": "Ticket de caisse",
+"rc.view": "Touche pour voir",
+"rc.missing": "Photo indisponible pour le moment",
+"rc.remove": "Retirer la photo",
+"rc.badImage": "Impossible d’ouvrir la photo.",
+"rc.zoomHint": "Touche l’image pour l’agrandir."
 }

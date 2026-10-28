@@ -435,5 +435,20 @@
 "nt.dismissed": "아직 선택하지 않았어요. 다시 탭하고 ‘허용’을 선택하세요.",
 "toast.ntOn": "알림을 켰어요",
 "toast.ntOff": "알림을 껐어요",
-"nt.timeSaved": "{time}에 알림"
+"nt.timeSaved": "{time}에 알림",
+"rc.snap": "영수증 촬영",
+"rc.load": "글자 인식을 불러오는 중 …",
+"rc.reading": "영수증을 읽는 중 …",
+"rc.found": "인식됨: {amount}",
+"rc.check": "한 번 확인해 주세요.",
+"rc.noAmount": "금액을 인식하지 못했어요",
+"rc.typeIt": "금액을 입력해 주세요.",
+"rc.failed": "읽을 수 없어요",
+"rc.kept": "사진은 그대로 저장돼요.",
+"rc.title": "영수증",
+"rc.view": "탭해서 보기",
+"rc.missing": "지금은 사진을 볼 수 없어요",
+"rc.remove": "사진 삭제",
+"rc.badImage": "사진을 열 수 없어요.",
+"rc.zoomHint": "사진을 탭하면 확대돼요."
 }

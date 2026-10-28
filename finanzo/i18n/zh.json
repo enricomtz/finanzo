@@ -435,5 +435,20 @@
 "nt.dismissed": "你还没有选择。请再点一次并选择“允许”。",
 "toast.ntOn": "通知已开启",
 "toast.ntOff": "通知已关闭",
-"nt.timeSaved": "通知时间 {time}"
+"nt.timeSaved": "通知时间 {time}",
+"rc.snap": "拍摄收据",
+"rc.load": "正在加载文字识别 …",
+"rc.reading": "正在读取收据 …",
+"rc.found": "识别结果：{amount}",
+"rc.check": "请快速核对一下。",
+"rc.noAmount": "未识别出金额",
+"rc.typeIt": "请手动输入金额。",
+"rc.failed": "无法读取",
+"rc.kept": "照片仍会保存。",
+"rc.title": "收据",
+"rc.view": "点按查看",
+"rc.missing": "照片暂时无法显示",
+"rc.remove": "移除照片",
+"rc.badImage": "无法打开照片。",
+"rc.zoomHint": "点按图片可放大。"
 }

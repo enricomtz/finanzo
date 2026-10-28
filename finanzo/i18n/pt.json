@@ -444,5 +444,20 @@
 "nt.dismissed": "Você ainda não escolheu nada. Toque de novo e escolha “Permitir”.",
 "toast.ntOn": "Notificações ligadas",
 "toast.ntOff": "Notificações desligadas",
-"nt.timeSaved": "Notificações às {time}"
+"nt.timeSaved": "Notificações às {time}",
+"rc.snap": "Fotografar cupom",
+"rc.load": "Carregando reconhecimento de texto …",
+"rc.reading": "Lendo o cupom …",
+"rc.found": "Detectado: {amount}",
+"rc.check": "Confira rapidinho.",
+"rc.noAmount": "Valor não reconhecido",
+"rc.typeIt": "Digite o valor.",
+"rc.failed": "Não foi possível ler",
+"rc.kept": "A foto é salva mesmo assim.",
+"rc.title": "Cupom fiscal",
+"rc.view": "Toque para ver",
+"rc.missing": "Foto indisponível no momento",
+"rc.remove": "Remover foto",
+"rc.badImage": "Não foi possível abrir a foto.",
+"rc.zoomHint": "Toque na imagem para ampliar."
 }

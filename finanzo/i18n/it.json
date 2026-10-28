@@ -444,5 +444,20 @@
 "nt.dismissed": "Non hai ancora scelto. Tocca di nuovo e scegli «Consenti».",
 "toast.ntOn": "Notifiche attivate",
 "toast.ntOff": "Notifiche disattivate",
-"nt.timeSaved": "Notifiche alle {time}"
+"nt.timeSaved": "Notifiche alle {time}",
+"rc.snap": "Fotografa lo scontrino",
+"rc.load": "Caricamento riconoscimento testo …",
+"rc.reading": "Lettura dello scontrino …",
+"rc.found": "Rilevato: {amount}",
+"rc.check": "Controlla un attimo.",
+"rc.noAmount": "Importo non rilevato",
+"rc.typeIt": "Inserisci l’importo.",
+"rc.failed": "Impossibile leggerlo",
+"rc.kept": "La foto viene salvata comunque.",
+"rc.title": "Scontrino",
+"rc.view": "Tocca per vedere",
+"rc.missing": "Foto non disponibile ora",
+"rc.remove": "Rimuovi foto",
+"rc.badImage": "Impossibile aprire la foto.",
+"rc.zoomHint": "Tocca l’immagine per ingrandirla."
 }

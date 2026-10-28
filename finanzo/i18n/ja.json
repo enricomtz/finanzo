@@ -435,5 +435,20 @@
 "nt.dismissed": "まだ選択されていません。もう一度タップして「許可」を選んでください。",
 "toast.ntOn": "通知をオンにしました",
 "toast.ntOff": "通知をオフにしました",
-"nt.timeSaved": "{time} に通知"
+"nt.timeSaved": "{time} に通知",
+"rc.snap": "レシートを撮影",
+"rc.load": "文字認識を読み込み中 …",
+"rc.reading": "レシートを読み取り中 …",
+"rc.found": "読み取り結果：{amount}",
+"rc.check": "念のため確認してください。",
+"rc.noAmount": "金額を読み取れませんでした",
+"rc.typeIt": "金額を入力してください。",
+"rc.failed": "読み取れませんでした",
+"rc.kept": "写真はそのまま保存されます。",
+"rc.title": "レシート",
+"rc.view": "タップして表示",
+"rc.missing": "写真を表示できません",
+"rc.remove": "写真を削除",
+"rc.badImage": "写真を開けませんでした。",
+"rc.zoomHint": "画像をタップすると拡大します。"
 }

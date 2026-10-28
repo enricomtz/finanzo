@@ -444,5 +444,20 @@
 "nt.dismissed": "Du hast noch nichts ausgewählt. Tippe nochmal und wähle „Erlauben“.",
 "toast.ntOn": "Mitteilungen eingeschaltet",
 "toast.ntOff": "Mitteilungen ausgeschaltet",
-"nt.timeSaved": "Mitteilungen um {time}"
+"nt.timeSaved": "Mitteilungen um {time}",
+"rc.snap": "Kassenbon fotografieren",
+"rc.load": "Texterkennung wird geladen …",
+"rc.reading": "Kassenbon wird gelesen …",
+"rc.found": "Erkannt: {amount}",
+"rc.check": "Bitte kurz prüfen.",
+"rc.noAmount": "Betrag nicht erkannt",
+"rc.typeIt": "Bitte tippe den Betrag ein.",
+"rc.failed": "Konnte nicht gelesen werden",
+"rc.kept": "Das Foto wird trotzdem gespeichert.",
+"rc.title": "Kassenbon",
+"rc.view": "Tippe zum Ansehen",
+"rc.missing": "Foto gerade nicht verfügbar",
+"rc.remove": "Foto entfernen",
+"rc.badImage": "Das Foto konnte nicht geöffnet werden.",
+"rc.zoomHint": "Tippe aufs Bild zum Vergrößern."
 }

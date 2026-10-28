@@ -444,5 +444,20 @@
 "nt.dismissed": "You haven’t chosen anything yet. Tap again and choose “Allow”.",
 "toast.ntOn": "Notifications turned on",
 "toast.ntOff": "Notifications turned off",
-"nt.timeSaved": "Notifications at {time}"
+"nt.timeSaved": "Notifications at {time}",
+"rc.snap": "Photograph receipt",
+"rc.load": "Loading text recognition …",
+"rc.reading": "Reading receipt …",
+"rc.found": "Found: {amount}",
+"rc.check": "Please check quickly.",
+"rc.noAmount": "Amount not recognized",
+"rc.typeIt": "Please type in the amount.",
+"rc.failed": "Couldn’t be read",
+"rc.kept": "The photo is saved anyway.",
+"rc.title": "Receipt",
+"rc.view": "Tap to view",
+"rc.missing": "Photo not available right now",
+"rc.remove": "Remove photo",
+"rc.badImage": "The photo couldn’t be opened.",
+"rc.zoomHint": "Tap the image to zoom."
 }

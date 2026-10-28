@@ -444,5 +444,20 @@
 "nt.dismissed": "Todavía no has elegido nada. Toca otra vez y elige «Permitir».",
 "toast.ntOn": "Notificaciones activadas",
 "toast.ntOff": "Notificaciones desactivadas",
-"nt.timeSaved": "Notificaciones a las {time}"
+"nt.timeSaved": "Notificaciones a las {time}",
+"rc.snap": "Fotografiar ticket",
+"rc.load": "Cargando reconocimiento de texto …",
+"rc.reading": "Leyendo el ticket …",
+"rc.found": "Detectado: {amount}",
+"rc.check": "Compruébalo un momento.",
+"rc.noAmount": "Importe no detectado",
+"rc.typeIt": "Escribe el importe.",
+"rc.failed": "No se pudo leer",
+"rc.kept": "La foto se guarda igualmente.",
+"rc.title": "Ticket",
+"rc.view": "Toca para verlo",
+"rc.missing": "La foto no está disponible ahora",
+"rc.remove": "Quitar foto",
+"rc.badImage": "No se pudo abrir la foto.",
+"rc.zoomHint": "Toca la imagen para ampliarla."
 }

@@ -444,5 +444,20 @@
 "nt.dismissed": "Je hebt nog niets gekozen. Tik nog een keer en kies ‘Sta toe’.",
 "toast.ntOn": "Meldingen aangezet",
 "toast.ntOff": "Meldingen uitgezet",
-"nt.timeSaved": "Meldingen om {time}"
+"nt.timeSaved": "Meldingen om {time}",
+"rc.snap": "Bonnetje fotograferen",
+"rc.load": "Tekstherkenning laden …",
+"rc.reading": "Bonnetje wordt gelezen …",
+"rc.found": "Herkend: {amount}",
+"rc.check": "Controleer het even.",
+"rc.noAmount": "Bedrag niet herkend",
+"rc.typeIt": "Typ het bedrag in.",
+"rc.failed": "Kon niet worden gelezen",
+"rc.kept": "De foto wordt toch bewaard.",
+"rc.title": "Bonnetje",
+"rc.view": "Tik om te bekijken",
+"rc.missing": "Foto nu niet beschikbaar",
+"rc.remove": "Foto verwijderen",
+"rc.badImage": "De foto kon niet worden geopend.",
+"rc.zoomHint": "Tik op de afbeelding om te vergroten."
 }

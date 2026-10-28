@@ -444,5 +444,20 @@
 "nt.dismissed": "Henüz bir seçim yapmadın. Tekrar dokun ve “İzin Ver”i seç.",
 "toast.ntOn": "Bildirimler açıldı",
 "toast.ntOff": "Bildirimler kapatıldı",
-"nt.timeSaved": "Bildirimler saat {time}"
+"nt.timeSaved": "Bildirimler saat {time}",
+"rc.snap": "Fişin fotoğrafını çek",
+"rc.load": "Metin tanıma yükleniyor …",
+"rc.reading": "Fiş okunuyor …",
+"rc.found": "Bulundu: {amount}",
+"rc.check": "Lütfen kısaca kontrol et.",
+"rc.noAmount": "Tutar tanınmadı",
+"rc.typeIt": "Lütfen tutarı yaz.",
+"rc.failed": "Okunamadı",
+"rc.kept": "Fotoğraf yine de kaydedilir.",
+"rc.title": "Fiş",
+"rc.view": "Görmek için dokun",
+"rc.missing": "Fotoğraf şu an kullanılamıyor",
+"rc.remove": "Fotoğrafı kaldır",
+"rc.badImage": "Fotoğraf açılamadı.",
+"rc.zoomHint": "Büyütmek için resme dokun."
 }
