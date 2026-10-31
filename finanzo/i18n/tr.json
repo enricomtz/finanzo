@@ -463,5 +463,9 @@
 "set.reminders": "Hatırlatmalar",
 "set.remindersFoot": "Randevular, ödemeler ve ücretsiz denemeler için – Finanzo kapalıyken bile.",
 "set.deleteFoot": "Hesabını tüm kayıtlar ve fiş fotoğraflarıyla birlikte kalıcı olarak siler.",
-"nt.onAt": "Açık · {time}"
+"nt.onAt": "Açık · {time}",
+"rc.total": "Toplam: {amount}",
+"rc.pick": "Yanlış mı? Doğru tutara dokun:",
+"rc.pickNone": "Toplam tutara dokun:",
+"rc.noTotal": "Toplam tanınmadı"
 }

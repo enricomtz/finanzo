@@ -463,5 +463,9 @@
 "set.reminders": "Rappels",
 "set.remindersFoot": "Pour les rendez-vous, paiements et essais gratuits, même quand Finanzo est fermé.",
 "set.deleteFoot": "Supprime définitivement ton compte avec toutes les opérations et photos de tickets.",
-"nt.onAt": "Activées · {time}"
+"nt.onAt": "Activées · {time}",
+"rc.total": "Total : {amount}",
+"rc.pick": "Faux ? Touche le bon montant :",
+"rc.pickNone": "Touche le montant total :",
+"rc.noTotal": "Total non reconnu"
 }

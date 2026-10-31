@@ -463,5 +463,9 @@
 "set.reminders": "Erinnerungen",
 "set.remindersFoot": "Für Termine, Zahlungen und Probe-Abos – auch wenn Finanzo zu ist.",
 "set.deleteFoot": "Löscht dein Konto mit allen Buchungen und Kassenbon-Fotos für immer.",
-"nt.onAt": "An · {time}"
+"nt.onAt": "An · {time}",
+"rc.total": "Gesamtbetrag: {amount}",
+"rc.pick": "Falsch? Tippe auf den richtigen Betrag:",
+"rc.pickNone": "Tippe auf den Gesamtbetrag:",
+"rc.noTotal": "Gesamtbetrag nicht erkannt"
 }

@@ -463,5 +463,9 @@
 "set.reminders": "Recordatorios",
 "set.remindersFoot": "Para citas, pagos y pruebas gratis, incluso con Finanzo cerrado.",
 "set.deleteFoot": "Elimina tu cuenta con todos los movimientos y fotos de tickets para siempre.",
-"nt.onAt": "Sí · {time}"
+"nt.onAt": "Sí · {time}",
+"rc.total": "Total: {amount}",
+"rc.pick": "¿No es? Toca el importe correcto:",
+"rc.pickNone": "Toca el importe total:",
+"rc.noTotal": "Total no detectado"
 }

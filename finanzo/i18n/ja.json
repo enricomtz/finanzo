@@ -454,5 +454,9 @@
 "set.reminders": "リマインダー",
 "set.remindersFoot": "予定・支払い・無料体験のお知らせ（Finanzo を閉じていても届きます）。",
 "set.deleteFoot": "アカウントとすべての記録・レシート写真を完全に削除します。",
-"nt.onAt": "オン · {time}"
+"nt.onAt": "オン · {time}",
+"rc.total": "合計：{amount}",
+"rc.pick": "違う場合は正しい金額をタップ：",
+"rc.pickNone": "合計金額をタップ：",
+"rc.noTotal": "合計を読み取れませんでした"
 }

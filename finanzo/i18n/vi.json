@@ -454,5 +454,9 @@
 "set.reminders": "Lời nhắc",
 "set.remindersFoot": "Cho lịch hẹn, thanh toán và dùng thử miễn phí – kể cả khi Finanzo đã đóng.",
 "set.deleteFoot": "Xóa vĩnh viễn tài khoản cùng mọi giao dịch và ảnh hóa đơn.",
-"nt.onAt": "Bật · {time}"
+"nt.onAt": "Bật · {time}",
+"rc.total": "Tổng: {amount}",
+"rc.pick": "Sai? Chạm vào số tiền đúng:",
+"rc.pickNone": "Chạm vào tổng số tiền:",
+"rc.noTotal": "Không nhận ra tổng"
 }

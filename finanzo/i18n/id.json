@@ -454,5 +454,9 @@
 "set.reminders": "Pengingat",
 "set.remindersFoot": "Untuk janji, pembayaran, dan uji coba gratis – bahkan saat Finanzo tertutup.",
 "set.deleteFoot": "Menghapus akunmu beserta semua catatan dan foto struk untuk selamanya.",
-"nt.onAt": "Aktif · {time}"
+"nt.onAt": "Aktif · {time}",
+"rc.total": "Total: {amount}",
+"rc.pick": "Salah? Ketuk jumlah yang benar:",
+"rc.pickNone": "Ketuk jumlah totalnya:",
+"rc.noTotal": "Total tidak terbaca"
 }

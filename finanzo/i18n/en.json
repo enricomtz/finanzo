@@ -463,5 +463,9 @@
 "set.reminders": "Reminders",
 "set.remindersFoot": "For appointments, payments and free trials – even when Finanzo is closed.",
 "set.deleteFoot": "Deletes your account with all bookings and receipt photos forever.",
-"nt.onAt": "On · {time}"
+"nt.onAt": "On · {time}",
+"rc.total": "Total: {amount}",
+"rc.pick": "Wrong? Tap the right amount:",
+"rc.pickNone": "Tap the total amount:",
+"rc.noTotal": "Total not recognized"
 }

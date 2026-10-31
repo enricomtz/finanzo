@@ -463,5 +463,9 @@
 "set.reminders": "Promemoria",
 "set.remindersFoot": "Per appuntamenti, pagamenti e prove gratuite, anche con Finanzo chiuso.",
 "set.deleteFoot": "Elimina per sempre il tuo account con tutti i movimenti e le foto degli scontrini.",
-"nt.onAt": "Attive · {time}"
+"nt.onAt": "Attive · {time}",
+"rc.total": "Totale: {amount}",
+"rc.pick": "Sbagliato? Tocca l’importo giusto:",
+"rc.pickNone": "Tocca l’importo totale:",
+"rc.noTotal": "Totale non rilevato"
 }

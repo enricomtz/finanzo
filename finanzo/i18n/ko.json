@@ -454,5 +454,9 @@
 "set.reminders": "리마인더",
 "set.remindersFoot": "일정, 결제, 무료 체험 알림 – Finanzo가 닫혀 있어도 받아요.",
 "set.deleteFoot": "계정과 모든 기록, 영수증 사진이 영구 삭제돼요.",
-"nt.onAt": "켬 · {time}"
+"nt.onAt": "켬 · {time}",
+"rc.total": "합계: {amount}",
+"rc.pick": "틀렸나요? 맞는 금액을 탭하세요:",
+"rc.pickNone": "합계 금액을 탭하세요:",
+"rc.noTotal": "합계를 인식하지 못했어요"
 }

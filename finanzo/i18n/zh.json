@@ -454,5 +454,9 @@
 "set.reminders": "提醒",
 "set.remindersFoot": "用于约会、付款和免费试用，即使 Finanzo 已关闭。",
 "set.deleteFoot": "永久删除你的账户及所有记录和收据照片。",
-"nt.onAt": "开 · {time}"
+"nt.onAt": "开 · {time}",
+"rc.total": "合计：{amount}",
+"rc.pick": "不对？点按正确的金额：",
+"rc.pickNone": "点按合计金额：",
+"rc.noTotal": "未识别出合计"
 }

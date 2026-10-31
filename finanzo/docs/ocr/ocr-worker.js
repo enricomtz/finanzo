@@ -11,19 +11,27 @@ const SIMD = (() => {
   } catch (e) { return false; }
 })();
 
-async function init() {
-  postMessage({ progress: 0, stage: 'load' });
-  importScripts(SIMD ? 'tesseract-core-simd-lstm.js' : 'tesseract-core-lstm.js');
-  const model = fetch('deu.traineddata').then((r) => {
-    if (!r.ok) throw new Error('model ' + r.status);
-    return r.arrayBuffer();
-  });
-  mod = await TesseractCore({
+async function loadCore(name) {
+  importScripts(name + '.js');
+  return TesseractCore({
     TesseractProgress(p) { postMessage({ progress: Math.max(0, Math.min(1, (p - 30) / 70)), stage: 'read' }); },
   });
+}
+async function init() {
+  postMessage({ progress: 0, stage: 'load' });
+  const model = fetch('deu.traineddata').then((r) => {
+    if (!r.ok) throw new Error('Modell ' + r.status);
+    return r.arrayBuffer();
+  });
+  try {
+    mod = await loadCore(SIMD ? 'tesseract-core-simd-lstm' : 'tesseract-core-lstm');
+  } catch (e) {
+    if (!SIMD) throw e;
+    mod = await loadCore('tesseract-core-lstm');          // ältere Geräte: Version ohne SIMD
+  }
   mod.FS.writeFile('deu.traineddata', new Uint8Array(await model));
   api = new mod.TessBaseAPI();
-  if (api.Init(null, 'deu', 1) === -1) throw new Error('init');
+  if (api.Init(null, 'deu', 1) === -1) throw new Error('Init');
   api.SetVariable('tessedit_pageseg_mode', '6');   // ein Textblock, Zeilen bleiben zusammen (Name … Preis)
   api.SetVariable('user_defined_dpi', '300');
   postMessage({ progress: 1, stage: 'load' });
@@ -35,7 +43,7 @@ self.onmessage = async (e) => {
     if (!ready) ready = init();
     await ready;
     mod.FS.writeFile('/input', new Uint8Array(image));
-    if (api.SetImageFile(1, 0) === 1) throw new Error('image');
+    if (api.SetImageFile(1, 0) === 1) throw new Error('Bild');
     api.Recognize(null);
     const text = api.GetUTF8Text();
     api.Clear();

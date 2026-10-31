@@ -463,5 +463,9 @@
 "set.reminders": "Lembretes",
 "set.remindersFoot": "Para compromissos, pagamentos e testes grátis, mesmo com o Finanzo fechado.",
 "set.deleteFoot": "Exclui para sempre sua conta com todos os lançamentos e fotos de cupons.",
-"nt.onAt": "Ligadas · {time}"
+"nt.onAt": "Ligadas · {time}",
+"rc.total": "Total: {amount}",
+"rc.pick": "Errado? Toque no valor certo:",
+"rc.pickNone": "Toque no valor total:",
+"rc.noTotal": "Total não reconhecido"
 }

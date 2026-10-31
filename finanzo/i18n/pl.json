@@ -481,5 +481,9 @@
 "set.reminders": "Przypomnienia",
 "set.remindersFoot": "O terminach, płatnościach i okresach próbnych – nawet gdy Finanzo jest zamknięte.",
 "set.deleteFoot": "Usuwa na zawsze Twoje konto ze wszystkimi wpisami i zdjęciami paragonów.",
-"nt.onAt": "Wł. · {time}"
+"nt.onAt": "Wł. · {time}",
+"rc.total": "Suma: {amount}",
+"rc.pick": "Źle? Stuknij właściwą kwotę:",
+"rc.pickNone": "Stuknij kwotę łączną:",
+"rc.noTotal": "Nie rozpoznano sumy"
 }

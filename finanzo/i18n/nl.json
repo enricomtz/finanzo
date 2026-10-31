@@ -463,5 +463,9 @@
 "set.reminders": "Herinneringen",
 "set.remindersFoot": "Voor afspraken, betalingen en proefperiodes – ook als Finanzo dicht is.",
 "set.deleteFoot": "Verwijdert je account met alle boekingen en bonnetjesfoto’s voorgoed.",
-"nt.onAt": "Aan · {time}"
+"nt.onAt": "Aan · {time}",
+"rc.total": "Totaal: {amount}",
+"rc.pick": "Fout? Tik op het juiste bedrag:",
+"rc.pickNone": "Tik op het totaalbedrag:",
+"rc.noTotal": "Totaal niet herkend"
 }
